@@ -1,5 +1,5 @@
 <h1 align="center">
-  Fiqus web - dev and deploy notes
+  Lawal web - dev and deploy notes
 </h1>
 
 ## 🚀 Quick start
