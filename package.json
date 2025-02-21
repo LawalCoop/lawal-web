@@ -1,10 +1,10 @@
 {
   "name": "lawal-web",
   "version": "1.0.0",
-  "homepage": "https://fiqus.coop",
+  "homepage": "https://lawal.coop",
   "private": true,
-  "description": "Fiqus Cooperative Web Page",
-  "author": "RomiGomez & Fiqus",
+  "description": "Lawal Cooperative Web Page",
+  "author": "RomiGomez & Lawal",
   "keywords": [
     "gatsby"
   ],
