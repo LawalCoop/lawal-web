@@ -31,8 +31,13 @@ const ServiceWrapper = styled.div`
     flex-basis: 100%;
     /* Estilos neobrutalistas con una sola sombra */
     border: 4px solid #000; /* Borde grueso negro */
-    box-shadow: 8px 8px 0 #000; /* Solo sombra negra */
+    box-shadow: 8px 8px 0 #000; /* Sombra pronunciada */
     transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transición suave */
+
+    &:hover {
+        transform: translate(4px, 4px); /* Efecto de "bajar" */
+        box-shadow: 4px 4px 0 #000; /* Sombra reducida */
+    }
 
     &:last-of-type {
         margin-bottom: 61px;
@@ -98,6 +103,7 @@ const ServiceWrapper = styled.div`
         }
     }}
 `
+
 const ServiceLink = styled(AnchorLink)`
     padding: 18px 20px 22px 20px;
     @media (min-width: ${styles.breakpoints.m}px) {
