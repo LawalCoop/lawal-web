@@ -9,7 +9,7 @@ const styles = data.styles;
 
 // Contenedor principal con estilo neobrutalista y bordes redondeados
 const PostThumbnailWrapper = styled.div`
-    margin-bottom: 50px;
+    margin-bottom: 25px;
     max-width: 320px;
     flex-basis: 100%;
     background: ${styles.colors.white};
@@ -31,7 +31,7 @@ const PostThumbnailWrapper = styled.div`
         flex-basis: 50%;
         min-width: 300px;
         max-width: 460px;
-        margin-bottom: 55px;
+        margin-bottom: 25px;
     }
 `;
 

@@ -10,6 +10,7 @@ import PostThumbnail from '../components/modules/PostThumbnail'
 const styles = data.styles
 
 const MainWrapper = styled.div`
+  background-color: ${styles.colors.celestin};
   padding-bottom: 180px;
   @media (min-width: ${styles.breakpoints.m}px) {
     padding-bottom: 228px;

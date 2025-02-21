@@ -16,9 +16,8 @@ const Culture = () => {
     `;
 
     const HistoryMainContainer = styled.div`
-        background-color: ${styles.colors.white};
+        background-color: ${styles.colors.marroncin};
         padding: 30px 20px 40px 20px;
-        margin: 20px;
         @media (min-width: ${styles.breakpoints.m}px) {
             padding-top: 50px;
             padding-bottom: 53px;
@@ -149,7 +148,6 @@ const Culture = () => {
         display: flex;
         flex-direction: column;
         padding: 30px 20px 10px 20px;
-        margin: 20px;
         @media (min-width: ${styles.breakpoints.m}px) {
             padding-top: 53px;
             padding-bottom: 34px;

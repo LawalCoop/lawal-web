@@ -7,6 +7,7 @@ import SectionHeader from "../components/common/SectionHeader"
 import {styles} from '../content/content.json'
 
 const PostsMainContainer = styled.div`
+  background-color: ${styles.colors.yellow};
   display: flex;
   justify-content: center;
   padding: 30px 20px 109px 20px;
