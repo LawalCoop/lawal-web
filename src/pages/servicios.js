@@ -86,7 +86,7 @@ const ServicesHomeTitle = styled.h2`
   flex-basis: 100%;
   font-size: 2.38em;
   line-height: 49px;
-  color: ${styles.colors.purplePrimary};
+  color: ${styles.colors.white};
   margin: 0 auto 25px auto;
   text-align: center;
   ${props => {
@@ -117,7 +117,7 @@ const ServicesTitle = styled.h1`
   flex-basis: 100%;
   font-size: 2.38em;
   line-height: 49px;
-  color: ${styles.colors.purplePrimary};
+  color: ${styles.colors.white};
   margin: 0 auto 25px auto;
   text-align: center;
   @media (min-width: ${styles.breakpoints.m}px) {
@@ -198,7 +198,7 @@ const Services = (props) => {
             props.ishomepage && 
                 <Btn
                   ishomepage={props.ishomepage}
-                  type='btnPrimaryOrange'
+                  type='btnPrimaryYellow'
                   theme={styles}
                   btnText={intl.formatMessage({id: "services.btnText"})}
                   isLink

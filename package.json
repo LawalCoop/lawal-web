@@ -1,5 +1,5 @@
 {
-  "name": "fiqus-web",
+  "name": "lawal-web",
   "version": "1.0.0",
   "homepage": "https://fiqus.coop",
   "private": true,
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@deckdeckgo/highlight-code": "^3.6.0",
+    "@lottiefiles/dotlottie-react": "^0.12.1",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
     "axios": "^0.24.0",
@@ -45,7 +46,7 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.17.4",
-    "react-lottie": "^1.2.3",
+    "react-lottie": "^1.2.10",
     "react-router-dom": "^5.3.0",
     "react-waypoint": "^10.1.0",
     "styled-components": "^5.3.1"

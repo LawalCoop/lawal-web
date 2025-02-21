@@ -336,30 +336,19 @@ const Culture = () => {
                     <TopBlock>
                         <TopBlockImgContainer>
                             <TopBlockImg
-                                src={require('../images/illustrations/'+ intl.formatMessage({id: "culture_federales.image"}) + '.svg').default}
+                                src={require('../images/'+ intl.formatMessage({id: "culture_federales.imageCreatividad"}) + '.jpg').default}
                                 alt={intl.formatMessage({id: "culture_federales.imageAlt"})}
                             />
                         </TopBlockImgContainer>
                         <TopBlockInfoContainer>
                             <FederalSubtitle>{intl.formatMessage({id: "culture_federales.title1"})}</FederalSubtitle>
                             <FederalContent>{intl.formatMessage({id: "culture_federales.content1"})}</FederalContent>
-                            <FederalContent>
-                                {intl.formatMessage({id: "culture_federales.tenemosSedes"})}
-                                <FederalContentBoldText>CABA</FederalContentBoldText>
-                                {intl.formatMessage({id: "y"})}
-                                <FederalContentBoldText>Villa La Angostura. </FederalContentBoldText>
-                                {intl.formatMessage({id: "culture_federales.personasAsociadas"})}
-                                <FederalContentBoldText>Mar del Plata</FederalContentBoldText>, 
-                                <FederalContentBoldText> San Fernando (Bs.As.)</FederalContentBoldText>, 
-                                <FederalContentBoldText> Puerto Madryn</FederalContentBoldText>
-                                {intl.formatMessage({id: "y"})}
-                                <FederalContentBoldText>San Luis</FederalContentBoldText>.
-                            </FederalContent>
+                            <FederalContent>{intl.formatMessage({id: "culture_federales.content2"})}</FederalContent>
                         </TopBlockInfoContainer>
                     </TopBlock>
                     <BottomBlock>
                             <FederalSubtitle>{intl.formatMessage({id: "culture_federales.title2"})}</FederalSubtitle>
-                            <FederalContent>{intl.formatMessage({id: "culture_federales.content2"})}</FederalContent>
+                            <FederalContent>{intl.formatMessage({id: "culture_federales.content3"})}</FederalContent>
                     </BottomBlock>
                 </FederalMainContainer>                
                 <FactticMainContainer>

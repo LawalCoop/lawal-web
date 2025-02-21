@@ -18,7 +18,7 @@
         "licenseIconAlt": "Creative Commons Attribution logo"
     },
     "header": {
-      "logoAlt": "logo Fiqus",
+      "logoAlt": "logo Lawal",
       "iconTogglerAlt": "icono para abrir menú",
       "iconTogglerCloseAlt": "icono para cerrar menú"  
     },
@@ -26,11 +26,11 @@
         "title": "Homepage",
         "imageAlt": " ",
         "imageAltMobile": " ",
-        "leadLine1": "Somos una ",
-        "leadUnderlined": "cooperativa ",
-        "leadLine2": "de software. Somos ",
-        "leadBold": "construcción colectiva",
-        "leadLine3": ", cultura y mentes en constante movimiento."
+        "leadLine1": " Somos una empresa",
+        "leadUnderlined": " cooperativa",
+        "leadLine2": " de base tecnológica,",
+        "leadBold": " especializada en Inteligencia Artificial",
+        "leadLine3": " y sistemas de alta concurrencia."
     },
     "homepageCulture" : {
         "title": "Cultura",
@@ -38,25 +38,25 @@
         "birdImageAlt": "ilustración de un pájaro",
         "image": "homepageCulture.svg",
         "imageAlt": "ilustración que representa la sección cultura",
-        "descriptionLine1": "Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos! Fiqus no es un trabajo más, es un ",
-        "underlinedText": "proyecto de vida",
-        "descriptionLine2": " ,en el que construimos un equipo consolidado de profesionales que se encuentra en continua capacitación para poder brindar soluciones técnicas de alta calidad. ",
+        "descriptionLine1": "Lawal es una empresa tecnológica administrada, gestionada y gobernada por las personas que trabajan en ella, en otras palabras, ",
+        "underlinedText": " somos una cooperativa de trabajo. ",
+        "descriptionLine2": " Siempre que trates con una persona de Lawal vas a tratar con una persona con capacidad de acción, decisión y compromiso total con los proyectos.",
         "btnText": "ver más"
     },
     "homepageLabs" : {
-        "title": "Labs",
-        "subtitle": "¡Nos capacitamos permanentemente!",
+        "title": "Lawal Experimental",
+        "subtitle": "Experimentamos con la tecnología y el cooperativismo!",
         "image": "homepageLabs.svg",
         "imageAlt": "ilustración que representa la sección cultura",
         "imageAltMobile": "ilustración que representa la sección cultura",
-        "descriptionLine1": "Uno de los objetivos de Fiqus es capacitarnos constantemente para especializarnos en tecnologías de vanguardia, por eso todas las semanas tenemos",
-        "descriptionBold1": " FiqusLabs",
-        "descriptionLine2": " un espacio de aprendizaje práctico donde investigamos tecnologías de vanguardia como",
-        "descriptionBold2": " Elixir",
-        "descriptionComma": ",",
-        "descriptionBold3": " Erlang",
-        "descriptionLine4": " y",
-        "descriptionBold4": " MachineLearning",
+        "descriptionLine1": "En Lawal elegimos usar la tecnología como herramienta para explorar",
+        "descriptionBold1": " nuestro territorio y nuestras mentes",
+        "descriptionLine2": " investigando y aplicando así nuevas tecnologías como",
+        "descriptionBold2": " Elixir, Rust, AI y Blockchain ",
+        "descriptionComma": " ,",
+        "descriptionBold3": " y principios y técnicas de organización horizontal y participación amplia",
+        "descriptionLine4": " para crear programas, aplicaciones, experiencias y espacios",
+        "descriptionBold4": " que nos permitan tener vidas con otros propositos mas allá del sostén económico",
         "descriptionDot": ".",
         "btnText": "ver más"
     },
@@ -74,11 +74,10 @@
         "requiredFieldError": "Por favor, complete el campo requerido.",
         "textAreaField": "Mensaje",
         "messageSent": "Tu mensaje ha sido enviado.",
-        "thankYou": "Gracias por comunicarte con nosotr@s",
-        "email": "info@fiqus.coop",
-        "sedes": "Sedes",
-        "office1": "14 de Julio 1268 Ciudad de Buenos Aires, Argentina",
-        "office2": "Las Frutillas 109, Casa 2 Villa La Angostura, Neuquén, Argentina"
+        "thankYou": "Gracias por comunicarte con Lawal",
+        "email": "info@lawal.com.ar",
+        "sedes": "Sede",
+        "office1": "Villa La Angostura, Neuquén, Argentina"
     },
     "services": {
         "title": "Servicios",
@@ -147,63 +146,61 @@
         "link": " "
     },
     "service_subsection": {
-        "title": "Capacitación",
-        "description": "Realizamos capacitaciones técnicas y/o de cooperativismo para organizaciones, cooperativas y empresas donde buscamos transmitir de forma amena y sistematizada los conocimientos adquiridos en el ámbito tecnológico y cooperativo.",
+        "title": "Asesoramiento a Cooperativas",
+        "description": "Realizamos capacitaciones técnicas y/o de cooperativismo para organizaciones y cooperativas donde buscamos transmitir de forma amena y sistematizada los conocimientos adquiridos en el ámbito tecnológico y cooperativo.",
         "image" : "capacitacion",
         "featuredServiceImageAlt" : "Capacitación, ilustración animada",
         "link": "servicios/#capacitacion"
     },
     "culture" : {
         "title": "Cultura",
-        "subtitle" : "Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos!",
-        "description": "Fiqus no es un trabajo más, es un proyecto de vida, en el que construimos un equipo consolidado de profesionales que se encuentra en continua capacitación para poder brindar soluciones técnicas de alta calidad. "
+        "subtitle" : "¡Somos una cooperativa de trabajo!",
+        "description": "Lawal es una empresa tecnológica administrada, gestionada y gobernada por las personas que trabajan en ella. Siempre que trates con una persona de Lawal vas a tratar con una persona con capacidad de acción, decisión y compromiso total con los proyectos."
     }, 
     "culture_historia": {
-        "title": "Historia",
+        "title": "La Raíz Colectiva",
         "imageMobile" : "equipoMobile",
-        "imageAltMobile" : "equipo Fiqus",
+        "imageAltMobile" : "equipo Lawal",
         "imageDesktop" : "equipoDesktop",
-        "imageAlt" : "equipo Fiqus",
-        "content_line1": "Fiqus es como una gran familia, que comenzó cuando varios estudiantes de ingeniería en sistemas de la Universidad Tecnológica Nacional se cansaron de los trabajos tradicionales y comenzaron a pensar en una construcción propia, con lógicas de producción diferentes a las de las empresas en las que habían trabajado previamente",
-        "content_line2": "Luego de varios meses de gestación, la idea de construir algo autogestivo, horizontal, democrático y de propiedad colectiva se hizo cada vez más fuerte. Así es como nació la idea de construir una empresa social, así es como nació Fiqus.",
-        "content_line3": "Con el transcurso de los años fuimos construyendo una estructura organizacional que se adapta a las personas y no al revés. Así es como, sobre el andar y basándonos en la experiencia adquirida, construimos una serie de acuerdos que hoy en día forman parte de nuestro reglamento interno. Nuestro reglamento no es algo estático, es algo vivo que evoluciona acorde evolucionan las personas que forman parte de nuestra organización. Ahí es donde reflejamos nuestras propuestas concretas para lograr que las personas que participan dentro del colectivo se ubiquen en el centro de los procesos productivos.",
-        "content_line4": "Nos gusta pensar que Fiqus es una propuesta que invita a quienes no conocen al cooperativismo tecnológico a ver que un cambio de paradigma es posible.",
-        "subtitle": "¡Nos organizamos horizontal y democráticamente!",
-        "content_line5": "Las decisiones de la cooperativa se plasman en la Asamblea General Ordinaria una vez al año. Además como forma de organización colectiva realizamos dos veces al año un encuentro donde pensamos, a partir de los deseos personales, nuestros objetivos como cooperativa y semanalmente nos encontramos (de manera virtual) a planificar las tareas diarias. "    
+        "imageAlt" : "equipo Lawal",
+        "content_line1": "Lawal toma forma en el transcurso del año 2024, a través de la decisión de construir un espacio de trabajo arraigado en el territorio patagónico que habitamos. Quienes traccionamos que esto suceda, venimos de transitar años de distintas experiencias cooperativas y particularmente en el ámbito del desarrollo de software, y ese conocimiento puesto en común nos dio la certeza del potencial de las estructuras colaborativas y autogestionadas.",
+        "content_line2": "Lawal (o lahual) es el nombre dado por el pueblo mapuche-huilliche al árbol alerce (Fitzroya cupressoides). Su significado en lengua mapudungun es “vida después de la vida.” Eso mismo representa esta cooperativa para quienes la construimos día a día.",
+        "content_line3": "Somos una empresa organizada como Cooperativa de Trabajo, porque entendemos al asociativismo como herramienta de vida y nos agrupa el saber  y el hacer tecnológico.",
+        "content_line4": "La propiedad es colectiva, y así construimos acuerdos que dan forma a nuestra cotidianeidad, estructura viva que nos permite innovar, experimentar y elegir qué y cómo producimos, de manera democrática.",
+        "subtitle": "¡Trabajamos con lógicas de producción diferentes a las convencionales!",
+        "content_line5": "La voz de todas las personas que integramos la cooperativa tiene lugar y peso en las decisiones que marcan nuestro hacer. "    
     },
     "culture_federales": {
-        "title1": "¡Somos federales!", 
-        "image" : "mapa_argentina",
-        "imageAlt" : " ",
-        "content1": "Nuestra distribución actual es el resultado de haber creado una estructura lo suficientemente maleable como para que logre adaptarse a las necesidades de las personas. De esta manera, a medida que fuimos creciendo como personas y transitando los diferentes escenarios que la vida nos fue planteando, priorizamos acompañar desde el colectivo brindando el apoyo necesario para que todxs puedan decidir por ejemplo en dónde y cómo vivir.",
-        "tenemosSedes": "En la actualidad tenemos sedes en ",
-        "y": "y",
-        "personasAsociadas": "Pero además, contamos con personas asociadas trabajando desde ", 
-        "title2": "Territorial", 
-        "content2": "Como cooperativa de trabajo, nos entendemos como actores sociales territoriales. Apoyándonos en el séptimo principio cooperativo de “Compromiso con la Comunidad”, asumimos la responsabilidad de extender la construcción colectiva que realizamos día a día dentro de la cooperativa en el territorio perteneciente a una de nuestras sedes. Es por esto que trabajamos activamente en la Mesa de Asociativismo de Villa La Angostura, Neuquén. Allí nos reunimos en forma periódica junto con otros actores y actrices de la economía social así como con personas individuales comprometidas con la comunidad local para desarrollar proyectos que potencien iniciativas locales, siempre con una mirada colaborativa y horizontal."
+        "title1": "Creatividad & Tecnología", 
+        "imageCreatividad" : "creatividad",
+        "imageCreatividadAlt" : " ",
+        "content1": "Nos motiva explorar tecnologías de vanguardia y desarrollar soluciones con lenguajes y arquitecturas robustas, eficientes y escalables. ",
+        "content2": "Construimos y participamos en diversos proyectos utilizando Elixir y Rust, lenguajes en los que nos especializamos para diseñar sistemas concurrentes, resilientes y de alto rendimiento. Nuestra exploración nos ha llevado a profundizar en tecnologías como Blockchain y, cada vez más, en Inteligencia Artificial, particularmente a través de la implementación y uso de Large Language Models (LLMs).",
+        "title2": "Exploración Amplia", 
+        "content3": "Nuestra identidad colectiva está compuesta por la diversidad de experiencias que traemos. A la tecnología la cruzamos con la música, las ingenierías, la gestión cultural, la soberanía alimentaria, deportes en la naturaleza, el yoga, las radios comunitarias, las artes marciales, el mutualismo. Nos hacen los distintos senderos que transitamos, la oscilación entre nuestras vidas personales y los proyectos en conjunto. Nos reconocemos amigxs. La sinergía de trabajo nos habilita divertirnos, planificar objetivos, y abordar los desafíos en equipo. Creemos que la creatividad y la técnica se retroalimentan cuando se trabaja de este modo, con estructuras horizontales donde se ponen en común y se comparten las ideas, las responsabilidades, el entusiasmo. Valoramos trabajar con libertad y autonomía, profundizando el compromiso con cada proyecto que abordamos."
     },
     "culture_facttic": {
-        "title": "¡Estamos federados en FACTTIC!", 
-        "subtitle": "La federación es una organización nacional que está conformada por cooperativas tecnológicas de toda Argentina.", 
-        "content_line1_part1": "Todo comenzó cuando las primeras cooperativas del sector comenzamos a ponernos en contacto entre nosotras porque entendimos que en la unión está la fuerza para poder construir un modelo que escale con el objetivo de convertirse poco a poco en una alternativa real al modelo de producción tradicional. Producto de esas primeras interacciones nació la idea de firmar una carta de compromiso para fundar la ",
-        "content_line1_facttic": "Federación Argentina de Cooperativas de Tecnología Innovación y Conocimiento (FACTTIC)",
-        "content_line1_part2": ", un espacio de construcción colectiva que fomenta la solidaridad y la colaboración como motores que impulsan la creación de tecnología con valores cooperativos.",
-        "content_line2": "El contacto continuo con otras cooperativas de nuestro sector y el trabajar en conjunto para desarrollar estrategias comunes y compartir conocimiento genera un círculo virtuoso en constante evolución que nos impulsa a crecer y seguir potenciando nuestro trabajo.",
-        "content_line3": "La federación nos permite estar en contacto con otras realidades, nos permite romper con la endogamia de nuestra organización y nos invita a pensarnos como algo más grande, que abarca una escala mayor. Es un espacio de creación colectiva donde la imaginación aplicada a la construcción colaborativa no encuentra límites."
+        "title": "Puentes hacia el Territorio", 
+        "subtitle": "Compartimos conocimiento a través del Hackerspace", 
+        "content_line1_part1": "Invertimos en nuestra formación, y a su vez, dedicamos energía en generar espacios donde el conocimiento fluya de manera circular con personas y grupos externos a la cooperativa, para romper con la privatización del conocimiento, y aportar a formas de vida que integren la tecnología sin perder el horizonte de la autonomía y la relación comunitaria. De eso se trata el espacio de",
+        "content_line1_facttic": " Hackerspace",
+        "content_line1_part2": ", laboratorio abierto para el aprendizaje.",
+        "content_line2": "Creemos que el futuro también es un territorio en disputa, y desde nuestro hacer, es posible transmitir otros paradigmas de trabajo y cultura.",
+        "content_line3": "El cooperativismo como una forma de reexistencia, una provocación para asumir un lugar de responsabilidad y acción en las comunidades en las que vivimos."
     },
     "culture_internacional": {
-        "title": "Internacional", 
-        "content_line1": "Varios años después de haber participado de la creación de la federación, comenzamos a contactarnos con cooperativas tecnológicas de otras partes del mundo con el objetivo de compartir el modelo de colaboración e intercooperación construido con cooperativas locales a una escala más global.",
-        "content_line2": "Luego de varias interacciones, realizamos el primer viaje intercooperativo internacional de nuestra red. Viajamos a Reino Unido para conocer a cooperativas tecnológicas de una red local. Compartimos experiencias y comenzamos a construir las bases de lo que hoy constituye la Red Global de Cooperativas de Tecnología.",
-        "content_line3": "La red nuclea a más de 45 cooperativas tecnológicas de todo el mundo, con presencia en 3 continentes. Compartimos reuniones semanales en las que aprendemos de nuestras culturas, debatimos acerca de nuestros objetivos comunes y delineamos una hoja de ruta para hacer crecer a la comunidad que la compone. De a poco, comenzamos a intercooperar con el objetivo de fortalecer nuestras construcciones locales con una mirada de escala global. De esta manera, organizadas, las cooperativas de tecnología podremos ayudarnos mediante la cooperación a vender y desarrollar proyectos en conjunto."
+        "title": "Los Ecosistemas que Integramos", 
+        "content_line1": "Elegimos ser cooperativas, y eso lleva al fortalecimiento de lazos no sólo territoriales sino también estructurales hacia la construcción de otras economías posibles. Somos parte del movimiento de la Economía Social y Solidaria (ESS), y de manera sectorial, nuestro trabajo dedicado a la industria tecnológica nos une a FACTTIC, la Federación Argentina de Cooperativas de Trabajo, Tecnología, Innovación y Conocimiento. Somos más de 40 cooperativas agrupadas, espacio de construcción desde el que generamos oportunidades laborales, proyectos sociales y ayuda mutua desde hace más de 10 años.",
+        "content_line2": "Nos entendemos como actores sociales territoriales, y por eso es que quienes integramos Lawal, formamos parte de otros proyectos sociales de Villa La Angostura. Así es que acompañamos el desarrollo de la Mutual La Correntosa, con base en la organización de vecinxs preocupadxs por la soberanía alimentaria, y dedicadxs al fortalecimiento de los lazos entre consumidores y productores de la agricultural familiar y/o cooperativos.",
+        "content_line3": "A su vez, interesadxs en la historia de la Patagonia, desde su ancestralidad a las construcciones de sentido de las que somos hoy parte, así como del sostenimiento de espacios culturales comunitarios, es que nos vinculamos a la Biblioteca Popular Osvaldo Bayer, e integramos proyectos en conjunto como lo son Archivos del Sur."
     },
     "labs" : {
-        "title": "Labs", 
-        "subtitle": "FiqusLabs es un espacio donde investigamos sobre nuevas tecnologías y nos capacitamos.", 
-        "content": "De yapa, muchas veces el aprendizaje de una nueva tecnología viene acompañado con poder plasmar un proyecto que beneficie a la comunidad o al ambiente cooperativo."
+        "title": "Experimental", 
+        "subtitle": "En Lawal elegimos usar la tecnología como herramienta para explorar nuestro territorio y nuestras mentes.", 
+        "content": " Investigamos y aplicamos nuevas tecnologías como Elixir, Rust, AI y Blockchain. También nos basamos en principios y técnicas de organización horizontal y participación amplia. Así creamos programas, aplicaciones, experiencias y espacios que nos permitan tener vidas con otros propósitos mas allá del sostén económico."
     },
     "casos_de_exito": {
-        "title": "Casos de Éxito",
+        "title": "Experiencias",
         "tagsTitle": "Tecnologías Investigadas",
         "imageAltLine1": "imagen del proyecto ",
         "btnTextVerMas": "ver más",
@@ -219,12 +216,12 @@
     },
     "page404" : {
         "title": "Error 404",
-        "descriptionLine1": "No pudimos encontrar lo que estabas buscando. Si necesitás ayuda contactate con nosotr@s.",
+        "descriptionLine1": "No pudimos encontrar lo que estabas buscando.",
         "descriptionLine2": "Te invitamos a seguir navegando nuestro sitio tocando el siguiente botón",
         "btnText": "volver al home",
         "btnHref": "/",
-        "imageAlt": "ilustración árbol fiqus",
-        "imageAltMobile": "ilustración árbol fiqus"
+        "imageAlt": "ilustración de ina",
+        "imageAltMobile": "ilustración de ina"
     }   
     
 }

@@ -8,12 +8,12 @@
             "xl":"1280"
         }, 
         "colors" : {
-            "purplePrimary":"#510066", 
+            "purplePrimary":"#202A33", 
             "purpleGradient":"#7A0185", 
-            "greenMain":"#44DC00", 
+            "greenMain":"#91486F", 
             "orangeMain":"#FF602C",
-            "greenLight": "#E8F7E1", 
-            "purpleLight": "#E9E1EB",
+            "greenLight": "#91486F", 
+            "purpleLight": "#468D81",
             "purpleSecondary": "#854D94", 
             "black": "#000000", 
             "white": "#FFFFFF", 
@@ -23,6 +23,13 @@
             "ultraDarkGrey":"#333333",
             "lightGrey":"#A7ACB4",
             "ultraLightGrey":"#C4C4C4",
+            "yellow": "#FFBE69",
+            "darkBlue": "#202A33",
+            "violetin": "#4B3860",
+            "red": "#DD5769",
+            "red2": "#CC7D8A",
+            "beige": "#AF8CA3",
+            "celestin": "#8DA1B5",
             "transparent":"transparent"
         }, 
         "fontWeight" : {
@@ -96,15 +103,15 @@
             }
         ],
         "subsection": {
-            "title":"Capacitación",
-            "content":"Realizamos capacitaciones técnicas y/o de cooperativismo para organizaciones, cooperativas y empresas donde buscamos transmitir de forma amena y sistematizada los conocimientos adquiridos en el ámbito tecnológico y cooperativo.",
+            "title":"Asesoramiento a Cooperativas",
+            "content":"Realizamos capacitaciones técnicas y/o de cooperativismo para organizaciones y cooperativas donde buscamos transmitir de forma amena y sistematizada los conocimientos adquiridos en el ámbito tecnológico y cooperativo.",
             "image" : "capacitacion"
         }
     }, 
     "culture" : {
             "title": "Cultura",
-            "subtitle" : "Contamos con un superpoder: ¡Ser dueñ@s de la empresa en la que trabajamos!",
-            "description":"Fiqus no es un trabajo más, es un proyecto de vida, en el que construimos un equipo consolidado de profesionales que se encuentra en continua capacitación para poder brindar soluciones técnicas de alta calidad. ",
+            "subtitle" : "¡Somos una cooperativa de trabajo!",
+            "description":"Lawal es una empresa tecnológica administrada, gestionada y gobernada por las personas que trabajan en ella. Siempre que trates con una persona de Lawal vas a tratar con una persona con capacidad de acción, decisión y compromiso total con los proyectos.",
             "sections":{
                 "historia": {
                     "key": "culture_historia",

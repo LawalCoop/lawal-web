@@ -2,11 +2,11 @@ import React , {Fragment} from 'react';
 import { Helmet }from 'react-helmet'
 
 const Seo = () => {
-    const title ="Fiqus - Cooperativa de Software"
-    const url= `https://fiqus.coop`
+    const title ="Lawal - Cooperativa de Software"
+    const url= `https://lawal.coop`
     const favicon = require('../../images/favicon.png').default
     const og = require('../../images/og.jpg').default
-    const description = "Somos una cooperativa de desarrollo de software especializada en brindar servicios profesionales relacionados a tecnologías tales como Data Science, Machine Learning, Sistemas de alta concurrencia y Full-Stack"
+    const description = "Somios una cooperativa de desarrollo de software especializada en brindar servicios profesionales relacionados a tecnologías tales como Data Science, Machine Learning, Sistemas de alta concurrencia y Full-Stack"
 
     return (
         <Fragment>

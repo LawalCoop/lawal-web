@@ -6,101 +6,100 @@
     "Blog": "Blog",
     "Articles": "Articles",
     "footer": {
-        "designby": "Intercooperative work made by",
+        "designby": "An intercooperative work by ",
         "coopName": "el maizal and nayra",
         "coopName1": "el maizal",
         "coopName2": "nayra",
         "coopName1Path": "https://elmaizal.coop.ar",
-        "coopName2Path": "https://nayra.coop/en",
-        "preposition": "and",
-        "disclaimer": "Unless stated otherwise, content on this site is licensed under ",
+        "coopName2Path": "https://nayra.coop",
+        "preposition": "and ",
+        "disclaimer": "Unless otherwise indicated, the content of this site is licensed under a ",
         "licenseName": "Creative Commons Attribution",
         "licenseIconAlt": "Creative Commons Attribution logo"
     },
     "header": {
-      "logoAlt": "logo Fiqus",
-      "iconTogglerAlt": "icon to open menu",
-      "iconTogglerCloseAlt": "icon to close menu"  
+      "logoAlt": "Lawal logo ",
+      "iconTogglerAlt": "icon to open menu ",
+      "iconTogglerCloseAlt": "icon to close menu "  
     },
     "homepage" : {
         "title": "Homepage",
         "imageAlt": " ",
         "imageAltMobile": " ",
-        "leadLine1": "We are a ",
-        "leadUnderlined": "software cooperative ",
-        "leadLine2": "We are ",
-        "leadBold": "collective construction",
-        "leadLine3": ", culture and minds in constant motion."
+        "leadLine1": " We are a ",
+        "leadUnderlined": "cooperative ",
+        "leadLine2": " technology-based company, ",
+        "leadBold": "specialized in Artificial Intelligence ",
+        "leadLine3": " and high-concurrency systems."
     },
     "homepageCulture" : {
         "title": "Culture",
         "birdImage": "bird.svg",
-        "birdImageAlt": "illustration of a bird",
+        "birdImageAlt": "illustration of a bird ",
         "image": "homepageCulture.svg",
-        "imageAlt": "illustration depicting the culture section",
-        "descriptionLine1": "We have a superpower: We own the company we work for! Fiqus is not just another job, it's a ",
-        "underlinedText": "life project",
-        "descriptionLine2": " In which we have built a consolidated team of professionals who are in continuous training to be able to provide high quality technical solutions.",
-        "btnText": "view more"
+        "imageAlt": "illustration representing the culture section ",
+        "descriptionLine1": "Lawal is a technology company administered, managed, and governed by the people who work in it, in other words, ",
+        "underlinedText": " we are a worker cooperative. ",
+        "descriptionLine2": " Whenever you deal with a person from Lawal, you will be dealing with someone with the ability to act, make decisions, and fully commit to the projects.",
+        "btnText": "see more "
     },
     "homepageLabs" : {
-        "title": "Labs",
-        "subtitle": "We train permanently!",
+        "title": "Lawal Experimental",
+        "subtitle": "We experiment with technology and cooperativism! ",
         "image": "homepageLabs.svg",
-        "imageAlt": "illustration representing the culture section",
-        "imageAltMobile": "illustration representing the culture section",
-        "descriptionLine1": "One of the objectives of Fiqus is to constantly train ourselves to specialize in cutting-edge technologies, that's why every week we have",
-        "descriptionBold1": " FiqusLabs",
-        "descriptionLine2": "  a hands-on learning space where we investigate cutting-edge technologies such as",
-        "descriptionBold2": " Elixir",
-        "descriptionComma": ",",
-        "descriptionBold3": " Erlang",
-        "descriptionLine4": " and",
-        "descriptionBold4": " MachineLearning",
-        "descriptionDot": ".",
-        "btnText": "view more"
+        "imageAlt": "illustration representing the culture section ",
+        "imageAltMobile": "illustration representing the culture section ",
+        "descriptionLine1": "At Lawal, we choose to use technology as a tool to explore ",
+        "descriptionBold1": "our territory and our minds ",
+        "descriptionLine2": " by researching and applying new technologies such as ",
+        "descriptionBold2": " Elixir, Rust, AI, and Blockchain ",
+        "descriptionComma": " , ",
+        "descriptionBold3": " and principles and techniques of horizontal organization and broad participation ",
+        "descriptionLine4": " to create programs, applications, experiences, and spaces ",
+        "descriptionBold4": " that allow us to live lives with purposes beyond economic sustenance ",
+        "descriptionDot": ". ",
+        "btnText": "see more "
     },
     "button": {
-        "verMas": "view more",
-        "send": "send", 
-        "read": "read"
+        "verMas": "see more ",
+        "send": "send ", 
+        "read": "read "
     },
-    "verMasArticulos": "view all articles",
+    "verMasArticulos": "see all articles ",
     "y": " and ",
     "contactForm": {
-        "title": "Contact us",
-        "nameField": "Name",
-        "emailField": "E-mail",
-        "requiredFieldError": "Please complete the required field",
-        "textAreaField": "Message",
-        "messageSent": "Your message has been sent.",
-        "thankYou": "Thank you for contacting us",
-        "email": "info@fiqus.coop",
-        "sedes": "Locations",
-        "office1": "14 de Julio 1268 Ciudad de Buenos Aires, Argentina",
-        "office2": "Las Frutillas 109, Casa 2 Villa La Angostura, Neuquén, Argentina"
+        "title": "Contact Us ",
+        "nameField": "Name ",
+        "emailField": "E-mail ",
+        "requiredFieldError": "Please complete the required field. ",
+        "textAreaField": "Message ",
+        "messageSent": "Your message has been sent. ",
+        "thankYou": "Thank you for contacting Lawal ",
+        "email": "info@lawal.com.ar",
+        "sedes": "Office ",
+        "office1": "Villa La Angostura, Neuquén, Argentina "
     },
     "services": {
         "title": "Services",
-        "tagsTitle": "Technologies",
-        "btnText": "go to services"
+        "tagsTitle": "Technologies ",
+        "btnText": "go to services "
     }, 
     "service_datos":  {
-        "service": "Data Science",
-        "description": "This area is dedicated to the cleaning, extraction and analysis of data in order to feed Artificial Intelligence or Machine Learning processes. It is essential to process the data in order to make it easy to understand, as well as its use to reach the proposed goals.",
+        "service": "Data Science ",
+        "description": "This area focuses on cleaning, extracting, and analyzing data to feed Artificial Intelligence or Machine Learning processes. Processing data to make it easily understandable and usable is essential to achieving the outlined objectives. ",
         "tags" : [
             "Python",
             "Pandas",
             "Numpy",
             "Seaborn"
         ],
-        "image": "data",
+        "image": "datos",
         "link": " "
     },
     "service_inteligenciaArtificial" :
     {
-        "service": "Artificial Intelligence",
-        "description": "Machine Learning is a subfield of Artificial Intelligence in which the goal is for computers to learn. From collected and processed data, we design, build and train models that allow us to predict future events, classify images, recognize entities in text and much more.",
+        "service": "Artificial Intelligence ",
+        "description": "Machine Learning is a subfield of Artificial Intelligence aimed at enabling 'computers to learn.' Using collected and processed data, we design, build, and train models that allow us to predict future events, classify images, recognize entities in texts, and much more. ",
         "tags" : [
             "Python",
             "Pandas",
@@ -111,10 +110,10 @@
         "link": " "
     },
     "service_altaConcurrencia": {
-        "service": "High Concurrence",
-        "description": "We use functional programming languages in real time and widely adopted in the market, which support very high levels of concurrency and distribution, producing systems that provide high speed response to high demands.",
+        "service": "High Concurrency ",
+        "description": "We use real-time functional programming languages widely adopted in the market, capable of supporting extremely high levels of concurrency and distribution, resulting in systems that respond quickly under heavy demand. ",
         "tags" : [
-            "Earlang",
+            "Erlang",
             "Elixir",
             "Phoenix Framework", 
             "LiveView"
@@ -123,8 +122,8 @@
         "link": " "
     },
     "service_blockchain" : {
-        "service": "Blockchain | Fintech",
-        "description": "We are developing fintech, which are new applications, processes, products or business models in the financial services industry composed of one or more complementary financial services that are offered to the public through the Internet.",
+        "service": "Blockchain | Fintech ",
+        "description": "We are developing fintech solutions, which are new applications, processes, products, or business models in the financial services industry, composed of one or more complementary financial services and made available to the public via the Internet. ",
         "tags" : [
             "Python",
             "Ethereum"
@@ -133,8 +132,8 @@
         "link": " "
     },
     "service_fullstack": {
-        "service": "Fullstack",
-        "description": "We develop web/mobile/desktop applications with different technologies to solve problems of organizations, cooperatives and companies in order to improve the efficiency of their processes.",
+        "service": "Fullstack ",
+        "description": "We develop web/mobile/desktop applications with various technologies to address the challenges faced by organizations, cooperatives, and companies, enabling them to carry out their processes more efficiently. ",
         "tags" : [
             "Django",
             "Phoenix",
@@ -147,83 +146,81 @@
         "link": " "
     },
     "service_subsection": {
-        "title": "Training",
-        "description": "We provide technical and/or cooperative training for organizations, cooperatives and companies in which we seek to share in a friendly and systematized way the knowledge obtained in the technological and cooperative fields.",
+        "title": "Cooperative Consulting ",
+        "description": "We provide technical and/or cooperative training for organizations and cooperatives, aiming to share knowledge acquired in the technological and cooperative fields in an engaging and systematic way. ",
         "image" : "capacitacion",
-        "featuredServiceImageAlt" : "Training animated image",
-        "link": "servicios/#capacitacion"
+        "featuredServiceImageAlt" : "Training, animated illustration ",
+        "link": "services/#capacitacion"
     },
     "culture" : {
         "title": "Culture",
-        "subtitle" : "We have a superpower: We own the company we work for!",
-        "description": "Fiqus is not just another job, it is a life project, in which we have built a consolidated team of professionals who are in continuous training to provide high quality technical solutions."
+        "subtitle" : "We are a worker cooperative! ",
+        "description": "Lawal is a technology company administered, managed, and governed by the people who work in it. Whenever you deal with a person from Lawal, you will be dealing with someone with the ability to act, make decisions, and fully commit to the projects. "
     }, 
     "culture_historia": {
-        "title": "History",
+        "title": "The Collective Root ",
         "imageMobile" : "equipoMobile",
-        "imageAltMobile" : "equipo Fiqus",
+        "imageAltMobile" : "Lawal team ",
         "imageDesktop" : "equipoDesktop",
-        "imageAlt" : "Fiqus team",
-        "content_line1": "Fiqus is like a big family, which started when several engineering students from the National Technological University got tired of traditional jobs and began to think of their own construction, based on different production approaches to those of the companies they had previously worked for",
-        "content_line2": "After several months of preparation, the idea of building something self-managed, horizontal, democratic and collectively owned became stronger and stronger. That is how the idea of building a social enterprise was born, that is how Fiqus was born.",
-        "content_line3": "Over the years, we have built an organizational structure that adapts to people and not the other way around. This is how, as we went along and based on the experience acquired, we built a series of agreements that today are part of our internal regulations. Our rules and regulations are not static, they are living things that evolve according to the evolution of the people who are part of our organization. This is where we reflect our concrete proposals to ensure that the people who participate in the collective are placed at the center of the production processes.",
-        "content_line4": "We like to think that Fiqus is a proposal that invites those who are not familiar with technological cooperativism to see that a paradigm shift is possible.",
-        "subtitle": "We are organized horizontally and democratically!",
-        "content_line5": "The decisions of the cooperative are made at the Ordinary General Assembly once a year. In addition, as a collective organization, twice a year we hold a meeting where we think, based on our personal desires, about our objectives as a cooperative and we meet weekly (virtually) to plan the daily tasks. "    
+        "imageAlt" : "Lawal team ",
+        "content_line1": "Lawal took shape during 2024 through the decision to build a workspace rooted in the Patagonian territory we inhabit. Those of us who made this happen come from years of diverse cooperative experiences, particularly in software development, and this shared knowledge gave us confidence in the potential of collaborative and self-managed structures. ",
+        "content_line2": "Lawal (or lahual) is the name given by the Mapuche-Huilliche people to the larch tree (Fitzroya cupressoides). Its meaning in the Mapudungun language is 'life after life.' That is precisely what this cooperative represents for those of us who build it day by day. ",
+        "content_line3": "We are a company organized as a Worker Cooperative because we see association as a tool for life, and we are united by technological knowledge and practice. ",
+        "content_line4": "Ownership is collective, and thus we build agreements that shape our daily life, a living structure that allows us to innovate, experiment, and democratically choose what and how we produce. ",
+        "subtitle": "We work with production logics different from the conventional ones! ",
+        "content_line5": "The voice of everyone who is part of the cooperative has a place and weight in the decisions that guide our work. "    
     },
     "culture_federales": {
-        "title1": "We operate at federal level!", 
-        "image" : "mapa_argentina",
-        "imageAlt" : " ",
-        "content1": "Our current distribution is the result of having created a structure malleable enough to be able to adapt to people's needs. In this way, as we have grown as people and as we have gone through the different scenarios that life has presented us with, we have prioritized accompanying the collective by providing the necessary support so that everyone can decide, for example, where and how to live.",
-        "tenemosSedes": "We currently have offices in ",
-        "y": "and",
-        "personasAsociadas": "But in addition, we have associates working from ", 
-        "title2": "Territorial", 
-        "content2": "As a worker cooperative, we understand ourselves as territorial social actors. Based on the seventh cooperative principle of 'Commitment to the Community', we assume the responsibility of extending the collective construction that we carry out day by day within the cooperative in the territory belonging to one of our locations. That is why we work actively in the Associativism Board of Villa La Angostura, Neuquén. There we meet periodically together with other actors of the social economy as well as with individuals committed to the local community to develop projects that enhance local initiatives, always with a collaborative and horizontal approach."
+        "title1": "Creativity & Technology ", 
+        "imageCreatividad" : "creatividad",
+        "imageCreatividadAlt" : " ",
+        "content1": "We are driven to explore cutting-edge technologies and develop solutions with robust, efficient, and scalable languages and architectures. ",
+        "content2": "We build and participate in various projects using Elixir and Rust, languages we specialize in to design concurrent, resilient, and high-performance systems. Our exploration has led us to delve into technologies like Blockchain and, increasingly, Artificial Intelligence, particularly through the implementation and use of Large Language Models (LLMs). ",
+        "title2": "Broad Exploration ", 
+        "content3": "Our collective identity is shaped by the diversity of experiences we bring. We blend technology with music, engineering, cultural management, food sovereignty, outdoor sports, yoga, community radio, martial arts, and mutualism. We are defined by the different paths we’ve walked, the oscillation between our personal lives and joint projects. We see ourselves as friends. The synergy of working together allows us to have fun, plan goals, and tackle challenges as a team. We believe that creativity and technique feed off each other when working this way, with horizontal structures where ideas, responsibilities, and enthusiasm are shared. We value working with freedom and autonomy, deepening our commitment to every project we take on. "
     },
     "culture_facttic": {
-        "title": "We are FACTTIC members!", 
-        "subtitle": "The federation is a national organization made up of technology cooperatives from all over Argentina.", 
-        "content_line1_part1": "It all started when the first cooperatives in the sector began to get in touch with each other because we understood that there is strength in unity to build a model that can scale with the goal of gradually becoming a real alternative to the traditional production model. As a result of these first interactions, the idea of signing a letter of commitment was born to found the ",
-        "content_line1_facttic": "Argentine Federation of Technology, Innovation and Knowledge Cooperatives (FACTTIC)",
-        "content_line1_part2": ", a space for collective construction that fosters solidarity and collaboration as the driving forces behind the creation of technology with cooperative values.",
-        "content_line2": "The continuous interaction with other cooperatives in our sector and the joint work to develop common strategies and share knowledge generates a continuously evolving virtuous circle that drives us to grow and continue to strengthen our work.",
-        "content_line3": "The federation allows us to be in contact with other realities, allows us to break with the endogamy of our organization and invites us to think of ourselves as something bigger, covering a larger scale. It is a space of collective creation where imagination applied to collaborative construction finds no limits."
+        "title": "Bridges to the Territory ", 
+        "subtitle": "We share knowledge through the Hackerspace ", 
+        "content_line1_part1": "We invest in our training, and at the same time, we dedicate energy to creating spaces where knowledge flows circularly with people and groups outside the cooperative, to break with the privatization of knowledge and contribute to ways of life that integrate technology without losing sight of autonomy and community relationships. That’s what the ",
+        "content_line1_facttic": " Hackerspace ",
+        "content_line1_part2": ", an open laboratory for learning. ",
+        "content_line2": "We believe the future is also a contested territory, and through our work, it’s possible to transmit alternative paradigms of work and culture. ",
+        "content_line3": "Cooperativism as a form of resilience, a provocation to take on a role of responsibility and action in the communities where we live. "
     },
     "culture_internacional": {
-        "title": "International", 
-        "content_line1": "Several years after participating in the creation of the federation, we began to contact technology cooperatives in other parts of the world with the objective of sharing the collaboration and intercooperation model built with local cooperatives on a more global scale.",
-        "content_line2": "After several interactions, we made our network's first international inter-cooperative trip. We traveled to the United Kingdom to meet technology cooperatives from a local network. We shared experiences and began to build the foundations of what is now the Global Community of Technology Worker Cooperatives.",
-        "content_line3": "The network brings together more than 50 technology cooperatives from around the world, with presence in 16 countries from three different continents. We share weekly meetings where we learn about our cultures, discuss our common goals and outline a roadmap to grow the community that composes it. Little by little, we begin to intercooperate with the objective of strengthening our local constructions with a global scale. In this way, organized, technology cooperatives will be able to help each other through cooperation to sell and develop projects together."
+        "title": "The Ecosystems We Are Part Of ", 
+        "content_line1": "We choose to be cooperatives, which strengthens ties not only territorially but also structurally toward building other possible economies. We are part of the Social and Solidarity Economy (ESS) movement, and sectorally, our work in the tech industry connects us to FACTTIC, the Argentine Federation of Worker Cooperatives in Technology, Innovation, and Knowledge. We are more than 40 grouped cooperatives, a space of construction that has been generating job opportunities, social projects, and mutual aid for over 10 years. ",
+        "content_line2": "We see ourselves as territorial social actors, which is why those of us at Lawal are also involved in other social projects in Villa La Angostura. That’s how we support the development of Mutual La Correntosa, based on the organization of neighbors concerned with food sovereignty and dedicated to strengthening ties between consumers and family or cooperative agriculture producers. ",
+        "content_line3": "Additionally, with an interest in Patagonia’s history—from its ancestral roots to the meanings we construct today—as well as in sustaining community cultural spaces, we connect with the Osvaldo Bayer Popular Library and participate in joint projects like Archivos del Sur. "
     },
     "labs" : {
-        "title": "Labs", 
-        "subtitle": "FiqusLabs is a space where we research new technologies and train ourselves.", 
-        "content": "In addition, learning a new technology often comes with the ability to implement a project that benefits the community or the cooperative environment."
+        "title": "Experimental ", 
+        "subtitle": "At Lawal, we choose to use technology as a tool to explore our territory and our minds. ", 
+        "content": " We research and apply new technologies like Elixir, Rust, AI, and Blockchain. We also rely on principles and techniques of horizontal organization and broad participation. This way, we create programs, applications, experiences, and spaces that allow us to live lives with purposes beyond economic sustenance. "
     },
     "casos_de_exito": {
-        "title": "Case Studies",
-        "tagsTitle": "Researched Technologies",
-        "imageAltLine1": "project image",
-        "btnTextVerMas": "view more",
-        "btnTextGithub": "go to Github"
+        "title": "Experiences ",
+        "tagsTitle": "Technologies Investigated ",
+        "imageAltLine1": "project image ",
+        "btnTextVerMas": "see more ",
+        "btnTextGithub": "go to Github "
     },
     "blog":{
         "title": "Blog"
     }, 
     "blogPost": {
-        "tagsTitle": "Related tags", 
-        "relatesPost": "Related articles", 
-        "verTodosBtn": "See all articles"
+        "tagsTitle": "Related Tags ", 
+        "relatesPost": "Related Articles ", 
+        "verTodosBtn": "See all articles "
     },
     "page404" : {
         "title": "Error 404",
-        "descriptionLine1": "We couldn't find what you were looking for. If you need help, please contact us.",
-        "descriptionLine2": "We invite you to continue browsing our site by clicking on the following button",
-        "btnText": "go back to home",
+        "descriptionLine1": "We couldn’t find what you were looking for. ",
+        "descriptionLine2": "We invite you to continue browsing our site by clicking the button below ",
+        "btnText": "back to home ",
         "btnHref": "/",
-        "imageAlt": "illustration fiqus tree",
-        "imageAltMobile": "illustration fiqus tree"
-    }
+        "imageAlt": "ina illustration ",
+        "imageAltMobile": "ina illustration "
+    }   
 }

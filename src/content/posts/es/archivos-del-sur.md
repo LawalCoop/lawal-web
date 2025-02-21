@@ -2,7 +2,7 @@
 lang: es
 type: "post"
 title: "Archivo digital: el desafío de registrar y compartir las historias para construir memoria colectiva"
-author: "FIQUS"
+author: "Joaquín Mansilla"
 slug: "/archivos-del-sur"
 date: "2022-10-18"
 image:  ../images/archivos-portada.png

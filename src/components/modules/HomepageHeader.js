@@ -3,11 +3,10 @@ import {styles} from '../../content/content.json'
 import styled from 'styled-components'
 import { useIntl } from "gatsby-plugin-react-intl"
 import Lottie from 'react-lottie'
-import homepageAnimation from '../../images/animations/homepage.json'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
+import homepageAnimation from '../../images/animations/ina.json'
 
-const iluHomepage = require('../../images/illustrations/homepage.svg');
-
-
+const iluHomepage = require('../../images/illustrations/ina.png');
 
 
 const setSharedStyles = (type) => {
@@ -69,9 +68,17 @@ const ImageContainer = styled.div`
         text-align: right;
     }
     @media (min-width: ${styles.breakpoints.l}px) {
-        max-width: 411px;
+        max-width: 611px;
     }
 `
+
+const ImageContainerMobile = styled.div`
+    width: 100%;
+    @media (min-width: ${styles.breakpoints.m}px) {
+        display: none;
+    }
+`
+
 const SectionHeaderDescription = styled.p`
     font-size: 1.44em;
     font-weight: ${styles.fontWeight.regular};    
@@ -91,44 +98,14 @@ const SectionHeaderDescription = styled.p`
     }
 `
 const SectionHeaderUnderlineSpan = styled.span`
-    font-size: 1.44rem;
-    position: relative;
-    &::before {
-        content: url("${require('../../images/orange_underline.svg').default}");
-        position: absolute; 
-        left: 3px;
-        bottom: -9px;
-    }
-    @media (max-width: ${styles.breakpoints.xs}px) {
-        border-bottom: 2px solid ${styles.colors.orangeMain};
-        &::before {
-            content: none;
-        }
-    }
-    @media (min-width: ${styles.breakpoints.m}px) {
-        font-size: 2rem;
-        &::before {
-            content: url("${require('../../images/orange_underline_desktop.svg').default}");
-            left: unset;
-            right: 0px;
-            bottom: -11px;
-            max-width: 100%;
-            overflow: hidden;
-        }
-    }
-    @media (min-width: ${styles.breakpoints.l}px) {
-        font-size: 2.38rem;
-        &::before {
-            left: unset;
-            right: -1px;
-            bottom: -11px;
-            max-width: unset;
-            overflow: visible;
-        }
-    }
+    color: ${styles.colors.white};
+    font-weight: ${styles.fontWeight.bold};
+    font-family: "Saira Stencil One";
 `
 const SectionHeaderSpan = styled.span`
     font-weight: ${styles.fontWeight.bold};
+    font-family: "Saira Stencil One";
+    color: ${styles.colors.white};
     @media (min-width: ${styles.breakpoints.m}px) {
         font-size: 2rem;
     }
@@ -139,11 +116,12 @@ const SectionHeaderSpan = styled.span`
 const SectionHeaderImg = styled.div`
 
     width: 100%;
+    height: 450px;
     @media (min-width: ${styles.breakpoints.m}px) {
         max-width: 320px;
     }
     @media (min-width: ${styles.breakpoints.l}px) {
-        max-width: 411px;
+        max-width: 611px;
     }
 `
 const SectionHeaderImgMobile = styled.img`
@@ -158,23 +136,20 @@ const SectionHeaderImgMobile = styled.img`
 const HomepageHeader = (props) => {
     const intl = useIntl();
 
-    const animationOptions= {
-        loop: false,
-        autoplay: true,
-        animationData: homepageAnimation,
-        rendererSettings: {
-          preserveAspectRatio: "xMidYMid slice"
-        }
-    }
-
     return (
         <HeaderContainer>
             <HeaderWrapper>
                 <InfoContainer>
-                    <SectionHeaderImgMobile
-                        src={iluHomepage.default}
-                        alt={intl.formatMessage({id: "homepage.imageAltMobile"})}
-                    />
+                    <ImageContainerMobile>
+                        <SectionHeaderImg> 
+                            <DotLottieReact
+                                src="/static/ina.json"
+                                autoplay
+                                loop
+                                layout={{ fit: "fit-width", align: [0.5, 0.5]}}
+                            />
+                        </SectionHeaderImg>
+                    </ImageContainerMobile>
                     <SectionHeaderDescription>
                         {intl.formatMessage({id: "homepage.leadLine1"})}
                         <SectionHeaderUnderlineSpan>{intl.formatMessage({id: "homepage.leadUnderlined"})}</SectionHeaderUnderlineSpan>
@@ -186,9 +161,11 @@ const HomepageHeader = (props) => {
                 </InfoContainer>
                 <ImageContainer>
                     <SectionHeaderImg> 
-                        <Lottie
-                            options = {animationOptions}
-                            width = "100%"
+                        <DotLottieReact
+                            src="/static/ina.json"
+                            autoplay
+                            loop
+                            layout={{ fit: "fit-width", align: [0.5, 0.5]}}
                         />
                     </SectionHeaderImg>
                 </ImageContainer>

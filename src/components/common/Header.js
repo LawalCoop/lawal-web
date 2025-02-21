@@ -2,10 +2,12 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
 import data from '../../content/content.json'
 import { useIntl, Link, IntlContextConsumer, changeLocale } from "gatsby-plugin-react-intl"
+import homepageAnimation from '../../images/animations/logo_blanco.json'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 
 const styles = data.styles
-const darkLogo = require('../../images/logo_dark.svg')
-const lightLogo = require('../../images/logo_light.svg')
+const darkLogo = require('../../images/logo_blanco.png')
+const lightLogo = require('../../images/logo_blanco.png')
 const lightIconToggler = require('../../images/icon_toggler.svg')
 const darkIconToggler = require('../../images/icon_toggler_dark.svg')
 const iconTogglerClose = require('../../images/icon_toggler_close.svg')
@@ -24,26 +26,27 @@ const NavWrapper = styled.nav`
     }
 `
 const LinkLogo = styled(Link)`
-    width: 83px;
-    height: 32px;
+    width: 238px;
+    height: 50px;
+    margin-left: -45px;
     @media (min-width: ${styles.breakpoints.xl}px) {
-        width: 117.1px;
-        height: 44.22px;
+        width: 300px;
+        height: 65px;
         order: 1;
     }
 `
 const Logo = styled.img`
-    width: 83px;
-    height: 32px;
+    width: 100px;
+    height: 21px;
     @media (min-width: ${styles.breakpoints.xl}px) {
-        width: 117.1px;
-        height: 44.22px;
+        width: 200px;
+        height: 43px;
     }
 `
 const LangSelector = styled.nav`
     border: 2px solid ${props => props.ishomepage === "true" ? styles.colors.purplePrimary : styles.colors.white};
     margin-right: auto;
-    margin-left: 10px;
+    margin-left: auto;
     padding: 7px 10px;
     border-radius: 47px;
     max-width: 88px;
@@ -63,7 +66,7 @@ const LangList = styled.ul`
 const LangItem = styled.li`
     list-style-type: none;
     border-radius: 100%;
-    background-color: ${props => props.isSelected ? styles.colors.greenMain : styles.colors.transparent};
+    background-color: ${props => props.isSelected ? styles.colors.yellow : styles.colors.transparent};
     &:first-of-type {
         margin-right: 5px;
     }
@@ -167,9 +170,9 @@ const NavLink = styled(Link)`
     }
     &:hover,
     &:active{
-        color: ${styles.colors.greenMain}!important;
+        color: ${styles.colors.yellow}!important;
     }
-    ${props => props.active ? `color: ${styles.colors.greenMain}!important;` : '' }
+    ${props => props.active ? `color: ${styles.colors.yellow}!important;` : '' }
     @media (min-width: ${styles.breakpoints.xl}px) {
         color: ${styles.colors.darkMainBg};
         text-transform: uppercase;
@@ -203,6 +206,14 @@ const Header = (props) => {
         "en": "English",
         "es": "Español"
     }
+    const animationOptions= {
+        loop: false,
+        autoplay: true,
+        animationData: homepageAnimation,
+        rendererSettings: {
+          preserveAspectRatio: "xMidYMid slice"
+        }
+    }
 
     useEffect(() => {
         let active;
@@ -221,11 +232,20 @@ const Header = (props) => {
         <NavWrapper ishomepage={props.ishomepage}>
             <LinkLogo to="/">
                 {
-                    props.ishomepage === "true"? 
-                    <Logo src={darkLogo.default} alt={intl.formatMessage({id: "header.logoAlt"})} /> : 
-                    <Logo src={lightLogo.default} alt={intl.formatMessage({id: "header.logoAlt"})} />
+                    // <Lottie
+                    //     options = {animationOptions}
+                    //     width = "150%"
+                    // />
+                    <DotLottieReact
+                        src="/static/logo_blanco.json"
+                        autoplay
+                    />
+                    // props.ishomepage === "true"? 
+                    // <Logo src={darkLogo.default} alt={intl.formatMessage({id: "header.logoAlt"})} /> : 
+                    // <Logo src={lightLogo.default} alt={intl.formatMessage({id: "header.logoAlt"})} />
                 }
             </LinkLogo>
+            
             <LangSelector ishomepage={props.ishomepage}>
                 <IntlContextConsumer>
                 {({ languages, language: currentLocale }) =>
@@ -265,7 +285,7 @@ const Header = (props) => {
                             props.menuLinks && props.menuLinks.map((menuLink)=> {
                                 return (
                                     <NavItem key={menuLink.name} onClick={() => {setIsNavOpen(false)}}>
-                                        <NavLink to={menuLink.link} active={activeLink === menuLink.link ? 1 : 0}>
+                                        <NavLink className="navbar-item" to={menuLink.link} active={activeLink === menuLink.link ? 1 : 0}>
                                             {intl.formatMessage({id:menuLink.name})}
                                         </NavLink>
                                     </NavItem>)

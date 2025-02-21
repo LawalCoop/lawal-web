@@ -14,6 +14,11 @@ const FeaturedServiceContainer = styled.div`
     position: relative;
     min-height: 253px;
     margin-bottom: 0px;
+    /* Estilos neobrutalistas con una sola sombra */
+    border: 4px solid #000; /* Borde grueso negro */
+    box-shadow: 8px 8px 0 #000; /* Sombra única negra */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transición suave */
+
     @media (min-width: ${styles.breakpoints.m}px) {
         min-height: 215px;
         padding: 0 20px;
@@ -29,6 +34,16 @@ const FeaturedServiceContainer = styled.div`
             min-height: unset;
             background: ${styles.colors.white};
             margin: 0px;
+            /* Aplico neobrutalismo con sombra única */
+            border: 4px solid #000;
+            box-shadow: 8px 8px 0 #000;
+
+            &:hover {
+                transform: translate(4px, 4px); /* Movimiento al hover */
+                box-shadow: 4px 4px 0 #000; /* Sombra reducida */
+                outline: none; /* Quito el outline original */
+            }
+
             @media (min-width: ${styles.breakpoints.m}px) {
                 position: static;
                 flex-basis: 50%;
@@ -37,19 +52,21 @@ const FeaturedServiceContainer = styled.div`
                 width: 100%;
                 margin: 0;
                 padding: 0;
-                border: none;
-                box-shadow: none;
+                /* Sobreescribo border: none y box-shadow: none */
+                border: 4px solid #000;
+                box-shadow: 8px 8px 0 #000;
                 &:hover {
-                    outline: solid 3px ${styles.colors.purplePrimary};
+                    transform: translate(4px, 4px);
+                    box-shadow: 4px 4px 0 #000;
                 }
             }
             @media (min-width: ${styles.breakpoints.l}px) {
                 flex-basis: 33.33%;
             }
-            `
+            `;
         }
     }}
-`
+`;
 const FeaturedServiceLink = styled(AnchorLink)`
     width: 100%;
     height: 100%;
@@ -220,7 +237,7 @@ const InfoContainer = styled.div`
 const FeaturedServiceTitle = styled.h3`
     font-size: 1.44em;
     margin-bottom: 11px;
-    color: ${styles.colors.orangeMain};
+    color: ${styles.colors.greenMain};
     text-align: center;
     @media (min-width: ${styles.breakpoints.m}px) {
         margin-bottom: 20px;

@@ -76,6 +76,16 @@ const Button = (props) => {
                     imgDisplay : 'none'
                  }
             break
+            case "btnPrimaryYellow" : 
+                return {
+                    background : props.theme.colors.yellow,
+                    borderColor : props.theme.colors.purplePrimary,
+                    boxShadow : props.theme.colors.purplePrimary, 
+                    fontWeight : props.theme.fontWeight.bold, 
+                    color : props.theme.colors.purplePrimary,
+                    imgDisplay : 'none'
+                }
+            break
             case "btnPrimaryPurple" : 
                 return {
                     background : props.theme.colors.white,

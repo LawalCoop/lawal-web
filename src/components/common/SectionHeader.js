@@ -220,15 +220,15 @@ const SectionHeader = (props) => {
         switch (type) {
             case "cultura" : 
                 return {
-                    background : styles.colors.purpleLight,
-                    color : styles.colors.purplePrimary,
+                    background : styles.colors.red,
+                    color : styles.colors.white,
                     image: iluCultura,
                  }
             break
             case "labs" : 
                 return {
                     background : styles.colors.greenLight,
-                    color : styles.colors.darkMainBg,
+                    color : styles.colors.white,
                     image : iluLabs
                  }
             break

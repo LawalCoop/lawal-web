@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://fiqus.coop",
-    title: "fiqus-web",
+    siteUrl: "https://lawal.coop",
+    title: "lawal-web",
     menuLinks: [
       {
         name:"Servicios",

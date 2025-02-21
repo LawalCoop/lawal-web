@@ -11,4 +11,4 @@ english: true
 
 ---
 
-(EN) Sistema de facturación electrónica donde se pueden autorizar todo tipo de facturas con AFIP, también visualizarlas en un dashboard, descargarlas y compartirlas.
+Sistema de facturación electrónica donde se pueden autorizar todo tipo de facturas con AFIP, también visualizarlas en un dashboard, descargarlas y compartirlas.

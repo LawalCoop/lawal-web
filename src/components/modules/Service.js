@@ -29,16 +29,22 @@ const ServiceWrapper = styled.div`
     margin-right: auto;
     min-width: unset;
     flex-basis: 100%;
+    /* Estilos neobrutalistas con una sola sombra */
+    border: 4px solid #000; /* Borde grueso negro */
+    box-shadow: 8px 8px 0 #000; /* Solo sombra negra */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transición suave */
+
     &:last-of-type {
         margin-bottom: 61px;
         ${props => {
-        if (props.ishomepage) {
-            return ` 
-                margin-bottom: 30px;
-                `
-        }
-    }}
+            if (props.ishomepage) {
+                return ` 
+                    margin-bottom: 30px;
+                `;
+            }
+        }}
     }
+
     @media (min-width: ${styles.breakpoints.m}px) {
         flex-direction: row;
         padding: 30px 45px 30px 67px;
@@ -56,6 +62,16 @@ const ServiceWrapper = styled.div`
             padding: 0;
             margin-bottom: 0;
             margin: 0;
+            /* Una sola sombra en homepage */
+            border: 4px solid #000;
+            box-shadow: 8px 8px 0 #000;
+
+            &:hover {
+                transform: translate(4px, 4px); /* Movimiento al hover */
+                box-shadow: 4px 4px 0 #000; /* Sombra reducida */
+                outline: none; /* Quito el outline original */
+            }
+
             @media (min-width: ${styles.breakpoints.m}px) {
                 min-width: 330px;                
                 margin-bottom: 50px;
@@ -67,17 +83,20 @@ const ServiceWrapper = styled.div`
                 max-width: 330px; 
                 flex-basis: 50%;
                 margin: 0;
+                /* Reaplico sombra única */
+                border: 4px solid #000;
+                box-shadow: 8px 8px 0 #000;
                 &:hover {
-                    outline: solid 3px ${styles.colors.purplePrimary};
+                    transform: translate(4px, 4px);
+                    box-shadow: 4px 4px 0 #000;
                 }
                 @media (min-width: ${styles.breakpoints.l}px) {
                     flex-basis: 33.33%;
                 }
             }
-            `
+            `;
         }
     }}
-
 `
 const ServiceLink = styled(AnchorLink)`
     padding: 18px 20px 22px 20px;

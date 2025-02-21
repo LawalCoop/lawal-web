@@ -24,13 +24,13 @@ const Tags = (props) => {
                 return {
                     background : props.styles.colors.greenLight, 
                     fontWeight : props.styles.fontWeight.regular, 
-                    color : props.styles.colors.ultraDarkGrey,
+                    color : props.styles.colors.white,
                     padding : '9px 14px'
                  }
             break
             case "services" : 
                 return {
-                    background : props.styles.colors.purpleLight, 
+                    background : props.styles.colors.yellow, 
                     fontWeight : props.styles.fontWeight.medium, 
                     color : props.styles.colors.purpleSecondary,
                     padding : '8px 14px'
@@ -40,7 +40,7 @@ const Tags = (props) => {
                 return {
                     background : props.styles.colors.greenLight, 
                     fontWeight : props.styles.fontWeight.regular, 
-                    color : props.styles.colors.ultraDarkGrey,
+                    color : props.styles.colors.white,
                     padding : '8px 14px'
                 }
         }
