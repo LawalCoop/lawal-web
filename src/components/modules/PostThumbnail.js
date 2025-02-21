@@ -88,7 +88,7 @@ const PostThumbnail = (props) => {
                     alt=""
                 />
             </PostThumbnailImage>
-            <PostThumbnailTitle to={props.shortSlug}>{props.postTitle}</PostThumbnailTitle>
+            <PostThumbnailTitle to={props.shortSlug}><h3>{props.postTitle}</h3></PostThumbnailTitle>
             <PostThumbnailDescription>{props.postDescription}</PostThumbnailDescription>
             <BtnContainer>
                 <Btn
