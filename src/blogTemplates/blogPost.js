@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import { changeLocale } from "gatsby-plugin-react-intl";
 import styled from 'styled-components'
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import data from '../content/content.json'
 import { useIntl, Link } from "gatsby-plugin-react-intl"
 
@@ -27,7 +27,7 @@ const PostMainWrapper = styled.div`
       padding: 0;
   }
 `
-const HeaderImage = styled(Img)`
+const HeaderImage = styled(GatsbyImage)`
   width:100%;
 `
 
@@ -232,7 +232,7 @@ export default function Post({ data: {allMarkdownRemark: { edges }} }) {
   <PostContainer>
     <HeaderImageContainer>
       <HeaderImageWrapper>
-          <HeaderImage fluid={post.image.childImageSharp.fluid} alt="" />
+          <HeaderImage image={post.image.childImageSharp.gatsbyImageData} alt="" />
       </HeaderImageWrapper>
     </HeaderImageContainer>
     <BreadcrumbContainer>
@@ -288,9 +288,7 @@ export const pageQuery = graphql`
             tags
             image{
               childImageSharp {
-                fluid(maxWidth: 800) {
-                  ...GatsbyImageSharpFluid
-                }
+                gatsbyImageData(width: 800)
               }
             }
             imageCredits

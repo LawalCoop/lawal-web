@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import data from '../../content/content.json';
 import { useIntl, Link } from "gatsby-plugin-react-intl";
 import Button from '../common/Button';
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const styles = data.styles;
 
@@ -51,7 +51,7 @@ const PostThumbnailImage = styled(Link)`
 `;
 
 // Imagen con estilo neobrutalista
-const Image = styled(Img)`
+const Image = styled(GatsbyImage)`
     height: 100%;
     width: 100%;
     object-fit: cover; /* Asegura que la imagen cubra el espacio */
@@ -120,7 +120,7 @@ const PostThumbnail = (props) => {
         <PostThumbnailWrapper>
             <PostThumbnailImage to={props.shortSlug}>
                 <Image
-                    fluid={props.fluid}
+                    image={props.image}
                     alt=""
                 />
             </PostThumbnailImage>

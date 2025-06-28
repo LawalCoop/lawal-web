@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import data from '../../content/content.json';
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import Tags from '../common/Tags';
 import { useIntl, Link } from "gatsby-plugin-react-intl";
 import Button from '../common/Button';
@@ -39,7 +39,7 @@ const CaseWrapper = styled.div`
 `;
 
 // Imagen con bordes redondeados
-const LabImage = styled(Img)`
+const LabImage = styled(GatsbyImage)`
     border-radius: 6px; /* Bordes redondeados */
     margin-bottom: 15px;
     height: 182px;
@@ -128,7 +128,7 @@ const SuccessCase = (props) => {
     return (
         <CaseWrapper>
             <LabImage
-                fluid={props.fluidImg}
+                image={props.image}
                 alt={intl.formatMessage({ id: "casos_de_exito.imageAltLine1" }) + lab.frontmatter.title}
             />
             <LabTitle>{lab.frontmatter.title}</LabTitle>
