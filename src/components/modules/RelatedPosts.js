@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import data from '../../content/content.json'
-import { useIntl, Link } from "gatsby-plugin-react-intl"
+import { useTranslation, Link } from "gatsby-plugin-react-i18next"
 import Button from '../common/Button'
 
 
@@ -115,7 +115,7 @@ const TagsTitle = styled.h4`
 `
 
 const RelatedPosts = (props) => {
-    const intl = useIntl();
+    const { t } = useTranslation();
 
     return (
         <RelatedPostsContainer>

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
 import data from '../../content/content.json'
-import { useIntl, Link, IntlContextConsumer, changeLocale } from "gatsby-plugin-react-intl"
+import { useTranslation, Link, useI18next } from "gatsby-plugin-react-i18next"
 import homepageAnimation from '../../images/animations/logo_blanco.json'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 
@@ -203,7 +203,8 @@ const LangContent = styled.abbr`
 const Header = (props) => {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const [activeLink, setActiveLink] = useState('/');
-    const intl = useIntl();
+    const { t } = useTranslation();
+    const { languages, language, changeLanguage } = useI18next();
     const languageNames = {
         "en": "English",
         "es": "Español"
@@ -235,43 +236,41 @@ const Header = (props) => {
             <LinkLogo to="/">
                 {
                     props.ishomepage === "true"? 
-                    <Logo src={darkLogo.default} alt={intl.formatMessage({id: "header.logoAlt"})} /> : 
-                    <Logo src={lightLogo.default} alt={intl.formatMessage({id: "header.logoAlt"})} />
+                    <Logo src={darkLogo.default} alt={t("header.logoAlt")} /> : 
+                    <Logo src={lightLogo.default} alt={t("header.logoAlt")} />
                 }
             </LinkLogo>
             
             <LangSelector ishomepage={props.ishomepage}>
-                <IntlContextConsumer>
-                {({ languages, language: currentLocale }) =>
-                    languages.map(language => (
-                        <LangItem key={language} 
-                            isSelected={currentLocale === language}
-                            onClick={() => changeLocale(language)}
+                <LangList>
+                    {languages.map(lang => (
+                        <LangItem key={lang} 
+                            isSelected={language === lang}
+                            onClick={() => changeLanguage(lang)}
                             >
                             <Lang href="#">
                                 <LangContent 
-                                    isSelected={currentLocale === language} 
+                                    isSelected={language === lang} 
                                     ishomepage={props.ishomepage} 
-                                    lang={language} 
-                                    title={languageNames[language]}>
-                                    {language}
+                                    lang={lang} 
+                                    title={languageNames[lang]}>
+                                    {lang}
                                 </LangContent>
                             </Lang>
                         </LangItem>
-                    ))
-                }
-                </IntlContextConsumer>
+                    ))}
+                </LangList>
             </LangSelector>
             <NavToggler onClick={() => {setIsNavOpen(true)}}>
                 {
                     props.ishomepage === "true" ? 
-                    <NavTogglerIcon src={lightIconToggler.default} alt={intl.formatMessage({id: "header.iconTogglerAlt" })} />
-                    : <NavTogglerIcon src={darkIconToggler.default} alt={intl.formatMessage({id: "header.iconTogglerAlt" })} />
+                    <NavTogglerIcon src={lightIconToggler.default} alt={t("header.iconTogglerAlt")} />
+                    : <NavTogglerIcon src={darkIconToggler.default} alt={t("header.iconTogglerAlt")} />
                 }
             </NavToggler>
             <MainNavContainer isNavOpen={isNavOpen} >
                 <NavTogglerClose onClick={() => {setIsNavOpen(false)}}>
-                    <NavTogglerCloseIcon src={iconTogglerClose.default} alt={intl.formatMessage({id: "header.iconTogglerCloseAlt"})} />
+                    <NavTogglerCloseIcon src={iconTogglerClose.default} alt={t("header.iconTogglerCloseAlt")} />
                 </NavTogglerClose>
                 <MainNav ishomepage={props.ishomepage}>
                     <NavLinks>
@@ -280,7 +279,7 @@ const Header = (props) => {
                                 return (
                                     <NavItem key={menuLink.name} onClick={() => {setIsNavOpen(false)}}>
                                         <NavLink className="navbar-item" to={menuLink.link} active={activeLink === menuLink.link ? 1 : 0}>
-                                            {intl.formatMessage({id:menuLink.name})}
+                                            {t(menuLink.name)}
                                         </NavLink>
                                     </NavItem>)
                                 })

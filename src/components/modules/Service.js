@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import data from '../../content/content.json'
 import Tags from '../common/Tags'
 import Button from '../common/Button'
-import { useIntl, Link } from "gatsby-plugin-react-intl"
+import { useTranslation, Link } from "gatsby-plugin-react-i18next"
 import Lottie from 'react-lottie';
 import { Waypoint } from 'react-waypoint';
 import { AnchorLink } from 'gatsby-plugin-anchor-links'
@@ -358,7 +358,7 @@ const Service = (props) => {
     const [pauseAnimation, setPauseAnimation] = useState(true)
     const [renderLottie, setRenderLottie] = useState(false)
     const service = props.service;
-    const intl = useIntl();
+    const { t } = useTranslation();
 
     const getServiceAnimation = (service) => {
         switch (service) {
@@ -414,7 +414,7 @@ const Service = (props) => {
                     Cuando estén listas las landings individuales de cada servicio hay que descomentar este atributo, comentar el que está debajo (to='servicios') y
                     reemplazar service.link en los archivos de idiomas con el link que corresponda.
                     
-                    to={'/' + intl.formatMessage({id: `${props.id}.link`})}
+                    to={'/' + t(`${props.id}.link`)}
                     */
                     to={`servicios/#${service.image}`}
                 >
@@ -440,7 +440,7 @@ const Service = (props) => {
                             </ServiceImage>
                         </ImageContainer>
                         <TagsContainer ishomepage={props.ishomepage}>
-                            <TagsTitle>{intl.formatMessage({ id: "services.tagsTitle" })}</TagsTitle>
+                            <TagsTitle>{t("services.tagsTitle")}</TagsTitle>
                             <Tag
                                 tagsType="services"
                                 tags={service.tags}
@@ -454,21 +454,21 @@ const Service = (props) => {
                             //href={intl.formatMessage({id: `${props.id}.link`})}
                             href='servicios'
                             isLink
-                            btnText={intl.formatMessage({ id: "button.verMas" })}
+                            btnText={t("button.verMas")}
                         /> */}
                     </LeftBlock>
                     <RightBlock ishomepage={props.ishomepage}>
                         <TextContainer>
-                            <ServiceTitle ishomepage={props.ishomepage}>{intl.formatMessage({ id: `${props.id}.service` })}</ServiceTitle>
-                            <ServiceDescription ishomepage={props.ishomepage}>{intl.formatMessage({ id: `${props.id}.description` })}</ServiceDescription>
+                            <ServiceTitle ishomepage={props.ishomepage}>{t(`${props.id}.service`)}</ServiceTitle>
+                            <ServiceDescription ishomepage={props.ishomepage}>{t(`${props.id}.description`)}</ServiceDescription>
                         </TextContainer>
                         {/*                         <Btn
                             ishomepage={props.ishomepage}
                             type='btnPrimaryPurple'
                             theme={styles}
-                            href={intl.formatMessage({ id: `${props.id}.link` })}
+                            href={t(`${props.id}.link`)}
                             isLink
-                            btnText={intl.formatMessage({ id: "button.verMas" })}
+                            btnText={t("button.verMas")}
                         /> */}
                     </RightBlock>
                 </ServiceLink>
@@ -496,7 +496,7 @@ const Service = (props) => {
                         </ServiceImage>
                     </ImageContainer>
                     <TagsContainer ishomepage={props.ishomepage}>
-                        <TagsTitle>{intl.formatMessage({ id: "services.tagsTitle" })}</TagsTitle>
+                        <TagsTitle>{t("services.tagsTitle")}</TagsTitle>
                         <Tag
                             tagsType="services"
                             tags={service.tags}
@@ -506,22 +506,22 @@ const Service = (props) => {
                     <BtnMobile
                         type='btnPrimaryPurple'
                         theme={styles}
-                        href={intl.formatMessage({ id: `${props.id}.link` })}
-                        btnText={intl.formatMessage({ id: "button.verMas" })}
+                        href={t(`${props.id}.link`)}
+                        btnText={t("button.verMas")}
                         ishomepage={props.ishomepage}
                         isLink
                     />
                 </LeftBlock>
                 <RightBlock ishomepage={props.ishomepage}>
                     <TextContainer>
-                        <ServiceTitle ishomepage={props.ishomepage}>{intl.formatMessage({ id: `${props.id}.service` })}</ServiceTitle>
-                        <ServiceDescription ishomepage={props.ishomepage}>{intl.formatMessage({ id: `${props.id}.description` })}</ServiceDescription>
+                        <ServiceTitle ishomepage={props.ishomepage}>{t(`${props.id}.service`)}</ServiceTitle>
+                        <ServiceDescription ishomepage={props.ishomepage}>{t(`${props.id}.description`)}</ServiceDescription>
                     </TextContainer>
                     <Btn type='btnPrimaryPurple'
                         theme={styles}
-                        href={intl.formatMessage({ id: `${props.id}.link` })}
+                        href={t(`${props.id}.link`)}
                         isLink
-                        btnText={intl.formatMessage({ id: "button.verMas" })}
+                        btnText={t("button.verMas")}
                         ishomepage={props.ishomepage}
                     />
                 </RightBlock>

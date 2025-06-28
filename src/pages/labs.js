@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { graphql } from "gatsby";
 import styled from "styled-components";
 import Lab from "../components/modules/Lab";
-import { useIntl } from "gatsby-plugin-react-intl";
+import { useTranslation, useI18next } from "gatsby-plugin-react-i18next";
 import SectionHeader from "../components/common/SectionHeader";
 import data from "../content/content.json";
 
@@ -56,13 +56,14 @@ const Labs = ({
     allMarkdownRemark: { edges },
   },
 }) => {
-  const intl = useIntl();
+  const { t } = useTranslation();
+  const { language } = useI18next();
 
   const Labs = edges.map((edge) => {
     const image = edge.node.frontmatter.image.childImageSharp.gatsbyImageData;
     const english = edge.node.frontmatter.english;
 
-    if ((english && intl.locale == "en") || (!english && intl.locale == "es")) {
+    if ((english && language == "en") || (!english && language == "es")) {
       return (
         <Lab
           key={edge.node.frontmatter.id}
@@ -78,14 +79,14 @@ const Labs = ({
     <Fragment>
       <SectionHeader
         section="labs"
-        title={intl.formatMessage({ id: "labs.title" })}
-        subtitle={intl.formatMessage({ id: "labs.subtitle" })}
-        description={intl.formatMessage({ id: "labs.content" })}
+        title={t("labs.title")}
+        subtitle={t("labs.subtitle")}
+        description={t("labs.content")}
       />
       <PostsMainContainer>
         <PostsContainer>
           <PostsTitle>
-            {intl.formatMessage({ id: "casos_de_exito.title" })}
+            {t("casos_de_exito.title")}
           </PostsTitle>
           {Labs}
         </PostsContainer>

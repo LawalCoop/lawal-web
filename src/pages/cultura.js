@@ -1,15 +1,20 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
 import data from "../content/content.json";
-import { useIntl } from "gatsby-plugin-react-intl";
+import { useTranslation } from "gatsby-plugin-react-i18next";
 import SectionHeader from "../components/common/SectionHeader";
+
+// Import static images
+import equipoMobile from "../images/equipoMobile.png";
+import equipoDesktop from "../images/equipoDesktop.png";
+import creatividad from "../images/creatividad.jpg";
 
 // Desestructurar las propiedades para evitar warnings de webpack
 const { styles } = data;
 const { colors, breakpoints, fontWeight } = styles;
 
 const Culture = () => {
-    const intl = useIntl();
+    const { t } = useTranslation();
 
     // Estilos neobrutalistas
     const CultureMainContainer = styled.div`
@@ -347,83 +352,83 @@ const Culture = () => {
 
     const FactticContentBoldText = styled.b``;
 
-    const history = intl.formatMessage({ id: "culture_historia.content_col1" });
+    const history = t("culture_historia.content_col1");
     return (
         <Fragment>
             <SectionHeader
                 section="cultura"
-                title={intl.formatMessage({ id: "culture.title" })}
-                subtitle={intl.formatMessage({ id: "culture.subtitle" })}
-                description={intl.formatMessage({ id: "culture.description" })}
+                title={t("culture.title")}
+                subtitle={t("culture.subtitle")}
+                description={t("culture.description")}
             />
             <CultureMainContainer>
                 <HistoryMainContainer>
-                    <HistoryTitle>{intl.formatMessage({ id: "culture_historia.title" })}</HistoryTitle>
+                    <HistoryTitle>{t("culture_historia.title")}</HistoryTitle>
                     <TeamImgContainer>
                         <TeamImgMobile
-                            src={require("../images/" + intl.formatMessage({ id: "culture_historia.imageMobile" }) + ".png").default}
-                            alt={intl.formatMessage({ id: "culture_historia.imageAltMobile" })}
+                            src={equipoMobile}
+                            alt={t("culture_historia.imageAltMobile")}
                         />
                         <TeamImgDesktop
-                            src={require("../images/" + intl.formatMessage({ id: "culture_historia.imageDesktop" }) + ".png").default}
-                            alt={intl.formatMessage({ id: "culture_historia.imageAlt" })}
+                            src={equipoDesktop}
+                            alt={t("culture_historia.imageAlt")}
                         />
                     </TeamImgContainer>
                     <HistoryContentContainer>
                         <HistoryContentLeftBlock>
-                            <HistoryContent>{intl.formatMessage({ id: "culture_historia.content_line1" })}</HistoryContent>
-                            <HistoryContent>{intl.formatMessage({ id: "culture_historia.content_line2" })}</HistoryContent>
+                            <HistoryContent>{t("culture_historia.content_line1")}</HistoryContent>
+                            <HistoryContent>{t("culture_historia.content_line2")}</HistoryContent>
                         </HistoryContentLeftBlock>
                         <HistoryContentRightBlock>
-                            <HistoryContent>{intl.formatMessage({ id: "culture_historia.content_line3" })}</HistoryContent>
-                            <HistoryContent>{intl.formatMessage({ id: "culture_historia.content_line4" })}</HistoryContent>
+                            <HistoryContent>{t("culture_historia.content_line3")}</HistoryContent>
+                            <HistoryContent>{t("culture_historia.content_line4")}</HistoryContent>
                         </HistoryContentRightBlock>
                     </HistoryContentContainer>
                     <HistoryContentFullBlock>
-                        <HistorySubtitle>{intl.formatMessage({ id: "culture_historia.subtitle" })}</HistorySubtitle>
-                        <HistoryContent>{intl.formatMessage({ id: "culture_historia.content_line5" })}</HistoryContent>
+                        <HistorySubtitle>{t("culture_historia.subtitle")}</HistorySubtitle>
+                        <HistoryContent>{t("culture_historia.content_line5")}</HistoryContent>
                     </HistoryContentFullBlock>
                 </HistoryMainContainer>
                 <FederalMainContainer>
                     <TopBlock>
                         <TopBlockImgContainer>
                             <TopBlockImg
-                                src={require("../images/" + intl.formatMessage({ id: "culture_federales.imageCreatividad" }) + ".jpg").default}
-                                alt={intl.formatMessage({ id: "culture_federales.imageAlt" })}
+                                src={creatividad}
+                                alt={t("culture_federales.imageAlt")}
                             />
                         </TopBlockImgContainer>
                         <TopBlockInfoContainer>
-                            <FederalSubtitle>{intl.formatMessage({ id: "culture_federales.title1" })}</FederalSubtitle>
-                            <FederalContent>{intl.formatMessage({ id: "culture_federales.content1" })}</FederalContent>
-                            <FederalContent>{intl.formatMessage({ id: "culture_federales.content2" })}</FederalContent>
+                            <FederalSubtitle>{t("culture_federales.title1")}</FederalSubtitle>
+                            <FederalContent>{t("culture_federales.content1")}</FederalContent>
+                            <FederalContent>{t("culture_federales.content2")}</FederalContent>
                         </TopBlockInfoContainer>
                     </TopBlock>
                     <BottomBlock>
-                        <FederalSubtitle>{intl.formatMessage({ id: "culture_federales.title2" })}</FederalSubtitle>
-                        <FederalContent>{intl.formatMessage({ id: "culture_federales.content3" })}</FederalContent>
+                        <FederalSubtitle>{t("culture_federales.title2")}</FederalSubtitle>
+                        <FederalContent>{t("culture_federales.content3")}</FederalContent>
                     </BottomBlock>
                 </FederalMainContainer>
                 <FactticMainContainer>
                     <FactticContentContainer>
-                        <FactticTitle>{intl.formatMessage({ id: "culture_facttic.title" })}</FactticTitle>
-                        <FactticLead>{intl.formatMessage({ id: "culture_facttic.subtitle" })}</FactticLead>
+                        <FactticTitle>{t("culture_facttic.title")}</FactticTitle>
+                        <FactticLead>{t("culture_facttic.subtitle")}</FactticLead>
                         <FactticContentLeftBlock>
                             <FactticContent>
-                                {intl.formatMessage({ id: "culture_facttic.content_line1_part1" })}
-                                <FactticContentBoldText>{intl.formatMessage({ id: "culture_facttic.content_line1_facttic" })}</FactticContentBoldText>
-                                {intl.formatMessage({ id: "culture_facttic.content_line1_part2" })}
+                                {t("culture_facttic.content_line1_part1")}
+                                <FactticContentBoldText>{t("culture_facttic.content_line1_facttic")}</FactticContentBoldText>
+                                {t("culture_facttic.content_line1_part2")}
                             </FactticContent>
                         </FactticContentLeftBlock>
                         <FactticContentRightBlock>
-                            <FactticContent>{intl.formatMessage({ id: "culture_facttic.content_line2" })}</FactticContent>
-                            <FactticContent>{intl.formatMessage({ id: "culture_facttic.content_line3" })}</FactticContent>
+                            <FactticContent>{t("culture_facttic.content_line2")}</FactticContent>
+                            <FactticContent>{t("culture_facttic.content_line3")}</FactticContent>
                         </FactticContentRightBlock>
                     </FactticContentContainer>
                     <FactticContentFullBlock>
-                        <FactticSubtitle>{intl.formatMessage({ id: "culture_internacional.title" })}</FactticSubtitle>
-                        <FactticContent>{intl.formatMessage({ id: "culture_internacional.content_line1" })}</FactticContent>
-                        <FactticContent>{intl.formatMessage({ id: "culture_internacional.content_line2" })}</FactticContent>
-                        <FactticContent>{intl.formatMessage({ id: "culture_internacional.content_line3" })}</FactticContent>
+                        <FactticSubtitle>{t("culture_internacional.title")}</FactticSubtitle>
+                        <FactticContent>{t("culture_internacional.content_line1")}</FactticContent>
+                        <FactticContent>{t("culture_internacional.content_line2")}</FactticContent>
+                        <FactticContent>{t("culture_internacional.content_line3")}</FactticContent>
                     </FactticContentFullBlock>
                 </FactticMainContainer>
             </CultureMainContainer>

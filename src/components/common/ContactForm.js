@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import data from '../../content/content.json';
-import { useIntl, Link } from "gatsby-plugin-react-intl";
+import { useTranslation, Link } from "gatsby-plugin-react-i18next";
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 
@@ -145,7 +145,7 @@ const OfficeListItem = styled.li`
 `;
 
 const ContactForm = () => {
-    const intl = useIntl();
+    const { t } = useTranslation();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [emailSent, setEmailSent] = useState(false);
     const [name, setName] = useState("");
@@ -175,13 +175,13 @@ const ContactForm = () => {
         <ContactMainContainer>
             <ContactWrapper>
                 <ContactHeading>
-                    {intl.formatMessage({ id: 'contactForm.title' })}
+                    {t('contactForm.title')}
                 </ContactHeading>
                 <ContactInfoBlock>
-                    <Email>{intl.formatMessage({ id: 'contactForm.email' })}</Email>
-                    <Office>{intl.formatMessage({ id: 'contactForm.office1' })}</Office>
+                    <Email>{t('contactForm.email')}</Email>
+                    <Office>{t('contactForm.office1')}</Office>
                     {/* <OfficeList>
-                        <OfficeListItem>{intl.formatMessage({ id: 'contactForm.office1' })}</OfficeListItem>
+                        <OfficeListItem>{t('contactForm.office1')}</OfficeListItem>
                     </OfficeList> */}
                 </ContactInfoBlock>
             </ContactWrapper>

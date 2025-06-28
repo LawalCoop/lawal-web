@@ -3,12 +3,12 @@ import { graphql } from "gatsby";
 import styled from "styled-components";
 import { GatsbyImage } from "gatsby-plugin-image";
 import data from "../content/content.json";
-import { useIntl, Link } from "gatsby-plugin-react-intl";
+import { useTranslation, Link, useI18next } from "gatsby-plugin-react-i18next";
 
 import Button from "../components/common/Button";
 import Tags from "../components/common/Tags";
 
-import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
+// import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader";
 
 // Desestructurar las propiedades para evitar warnings de webpack
 const { styles } = data;
@@ -218,8 +218,17 @@ export default function Post({
     allMarkdownRemark: { edges },
   },
 }) {
-  deckDeckGoHighlightElement();
-  const intl = useIntl();
+  // Only load highlight elements on client side
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import("@deckdeckgo/highlight-code/dist/loader").then(({ defineCustomElements }) => {
+        defineCustomElements();
+      });
+    }
+  }, []);
+  
+  const { t } = useTranslation();
+  const { language } = useI18next();
   let post = {};
   let html = "";
   if (edges[0]) {
@@ -230,7 +239,7 @@ export default function Post({
   
   const postFiqus = edges.forEach((e) => {
     const { frontmatter: p } = e.node;
-    if (p.lang === intl.locale) {
+    if (p.lang === language) {
       post = p;
       html = e.node.html;
     }      
@@ -270,7 +279,7 @@ export default function Post({
 
         <TagsContainer>
           <TagsTitle>
-            {intl.formatMessage({ id: "blogPost.tagsTitle" })}
+            {t("blogPost.tagsTitle")}
           </TagsTitle>
           <Tags tags={post.tags} styles={styles} tagsType="services"></Tags>
         </TagsContainer>
@@ -280,7 +289,7 @@ export default function Post({
           isLink={true}
           href="/blog"
           theme={styles}
-          btnText={intl.formatMessage({ id: "blogPost.verTodosBtn" })}
+          btnText={t("blogPost.verTodosBtn")}
         ></Btn>
       </PostMainWrapper>
     </PostContainer>

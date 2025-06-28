@@ -1,5 +1,5 @@
 import * as React from "react"
-import {useIntl} from "gatsby-plugin-react-intl"
+import {useTranslation} from "gatsby-plugin-react-i18next"
 import data from '../content/content.json'
 import styled from 'styled-components'
 import Button from '../components/common/Button'
@@ -122,33 +122,33 @@ const Page404ImgMobile = styled.img`
 `
 
 const Page404 = () => {
-  const intl = useIntl();
+  const { t } = useTranslation();
   return (
     <Page404Container>
         <Page404Wrapper>
             <InfoContainer>
                 <Page404ImgMobile
                     src={iluPage404.default}
-                    alt={intl.formatMessage({id: "page404.imageAltMobile"})}
+                    alt={t("page404.imageAltMobile")}
                 />
-                <Page404Title>{intl.formatMessage({id: "page404.title"})}</Page404Title>
+                <Page404Title>{t("page404.title")}</Page404Title>
                 <Page404DescriptionContainer>
-                    <Page404Description>{intl.formatMessage({id: "page404.descriptionLine1"})}</Page404Description>
+                    <Page404Description>{t("page404.descriptionLine1")}</Page404Description>
                     <LineBreak />
-                    <Page404Description>{intl.formatMessage({id: "page404.descriptionLine2"})}</Page404Description>
+                    <Page404Description>{t("page404.descriptionLine2")}</Page404Description>
                 </Page404DescriptionContainer>
                 <Btn 
                     type='btnPrimaryPurple' 
                     theme={styles} 
                     isLink={true}
                     href="/"
-                    btnText={intl.formatMessage({id: "page404.btnText"})}
+                    btnText={t("page404.btnText")}
                 />
             </InfoContainer>
             <ImageContainer>
                 <Page404Img
                     src={iluPage404.default}
-                    alt={intl.formatMessage({id: "page404.imageAlt"})} 
+                    alt={t("page404.imageAlt")} 
                 />
             </ImageContainer>
         </Page404Wrapper>

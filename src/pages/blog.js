@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment }  from 'react'
 import { graphql } from 'gatsby';
 import styled from 'styled-components'
 import data from '../content/content.json'
-import { useIntl } from "gatsby-plugin-react-intl"
+import { useTranslation, useI18next } from "gatsby-plugin-react-i18next"
 
 import Button from '../components/common/Button'
 import PostThumbnail from '../components/modules/PostThumbnail'
@@ -68,7 +68,8 @@ const Btn = styled(Button)`
 
 
 const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
-  const intl = useIntl();
+  const { t } = useTranslation();
+  const { language } = useI18next();
   const [currentPostsList, setCurrentPostsList] = useState([])
   const [visiblePosts, setVisiblePosts] = useState([])
   const [postsLimit, setPostsLimit] = useState(6)
@@ -77,7 +78,7 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
   useEffect(()=>{
     let tempPostsList = []
     edges.forEach(edge => {
-      if(edge.node.frontmatter.lang === intl.locale){
+      if(edge.node.frontmatter.lang === language){
         tempPostsList.push(edge)
       }
       setCurrentPostsList([...tempPostsList])
@@ -125,7 +126,7 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
             type='btnPrimaryPurple'
             theme={styles}
             to="#"
-            btnText={intl.formatMessage({id: 'verMasArticulos'})}
+            btnText={t( 'verMasArticulos')}
             onButtonClick = {showMorePosts}
           />
         </PostsContainer>

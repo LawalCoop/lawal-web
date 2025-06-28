@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
-import { useIntl, Link } from "gatsby-plugin-react-intl"
+import { useTranslation, Link } from "gatsby-plugin-react-i18next"
 import data from '../../content/content.json'
 import {Waypoint} from 'react-waypoint'
 import Lottie from 'react-lottie'
@@ -288,7 +288,7 @@ const FeaturedServiceDescription = styled.p`
 const FeaturedService = (props) => {
     const [renderLottie, setRenderLottie] = useState(false)
     const [pauseAnimation, setPauseAnimation] = useState(true)
-    const intl = useIntl();
+    const { t } = useTranslation();
 
     useEffect(() => {
         setPauseAnimation(renderLottie)
@@ -317,11 +317,11 @@ const FeaturedService = (props) => {
             <FeaturedServiceWrapper ishomepage={props.ishomepage}> 
                 <FeaturedServiceLink
                     ishomepage={props.ishomepage}
-                    to={intl.formatMessage({id: "service_subsection.link"})}
+                    to={t("service_subsection.link")}
                 >
                     <ImageContainer ishomepage={props.ishomepage}>
                         <FeaturedServiceImage
-                            alt={intl.formatMessage({id: "service_subsection.featuredServiceImageAlt"})}
+                            alt={t("service_subsection.featuredServiceImageAlt")}
                             ishomepage={props.ishomepage}
                         >
 
@@ -333,8 +333,8 @@ const FeaturedService = (props) => {
                         </FeaturedServiceImage>
                     </ImageContainer>
                     <InfoContainer ishomepage={props.ishomepage}>
-                            <FeaturedServiceTitle ishomepage={props.ishomepage}>{intl.formatMessage({id: "service_subsection.title"})}</FeaturedServiceTitle>
-                            <FeaturedServiceDescription ishomepage={props.ishomepage}>{intl.formatMessage({id: "service_subsection.description"})}</FeaturedServiceDescription>
+                            <FeaturedServiceTitle ishomepage={props.ishomepage}>{t("service_subsection.title")}</FeaturedServiceTitle>
+                            <FeaturedServiceDescription ishomepage={props.ishomepage}>{t("service_subsection.description")}</FeaturedServiceDescription>
                     </InfoContainer>
                 </FeaturedServiceLink>
             </FeaturedServiceWrapper>
@@ -345,7 +345,7 @@ const FeaturedService = (props) => {
                     <Waypoint onEnter={() => { setRenderLottie(true) }} onLeave={()=>{setRenderLottie(false)}} />
                 <ImageContainer ishomepage={props.ishomepage}>
                     <FeaturedServiceImage
-                        alt={intl.formatMessage({id: "service_subsection.featuredServiceImageAlt"})}
+                        alt={t("service_subsection.featuredServiceImageAlt")}
                         ishomepage={props.ishomepage}>
                         <Lottie
                             options = {animationOptions}
@@ -355,8 +355,8 @@ const FeaturedService = (props) => {
                     </FeaturedServiceImage>
                 </ImageContainer>
                 <InfoContainer ishomepage={props.ishomepage}>
-                        <FeaturedServiceTitle ishomepage={props.ishomepage}>{intl.formatMessage({id: "service_subsection.title"})}</FeaturedServiceTitle>
-                        <FeaturedServiceDescription ishomepage={props.ishomepage}>{intl.formatMessage({id: "service_subsection.description"})}</FeaturedServiceDescription>
+                        <FeaturedServiceTitle ishomepage={props.ishomepage}>{t("service_subsection.title")}</FeaturedServiceTitle>
+                        <FeaturedServiceDescription ishomepage={props.ishomepage}>{t("service_subsection.description")}</FeaturedServiceDescription>
                 </InfoContainer>
             </FeaturedServiceWrapper>
         </FeaturedServiceContainer>

@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import data from '../../content/content.json'
 import styled from 'styled-components'
-import { useIntl } from "gatsby-plugin-react-intl"
+import { useTranslation } from "gatsby-plugin-react-i18next"
+
+// Import static images
+import homepageLabsImg from '../../images/illustrations/homepageLabs.svg'
 import Lottie from 'react-lottie'
 import {Waypoint} from 'react-waypoint'
 import labsAnimation from '../../images/animations/labs.json'
@@ -133,7 +136,7 @@ const Btn = styled(Button)`
 
 const HomepageLabs = (props) => {
     const [renderLottie, setRenderLottie] = useState(false)
-    const intl = useIntl();
+    const { t } = useTranslation();
 
     const animationOptions= {
         loop: false,
@@ -148,30 +151,30 @@ const HomepageLabs = (props) => {
         <HomepageLabsContainer>
             <HomepageLabsWrapper>
                 <InfoContainer>
-                    <HomepageLabsTitle>{intl.formatMessage({id: "homepageLabs.title"})}</HomepageLabsTitle>
+                    <HomepageLabsTitle>{t("homepageLabs.title")}</HomepageLabsTitle>
                     <HomepageLabsImgMobile
-                        src={require('../../images/illustrations/' + intl.formatMessage({id: "homepageLabs.image"})).default}
-                        alt={intl.formatMessage({id: "homepageLabs.imageAltMobile"})}
+                        src={homepageLabsImg}
+                        alt={t("homepageLabs.imageAltMobile")}
                     />
-                    <HomepageLabsSubtitle>{intl.formatMessage({id: "homepageLabs.subtitle"})}</HomepageLabsSubtitle>
+                    <HomepageLabsSubtitle>{t("homepageLabs.subtitle")}</HomepageLabsSubtitle>
                     <HomepageLabsDescription>
-                        {intl.formatMessage({id: "homepageLabs.descriptionLine1"})}
-                        <DescriptionBold>{intl.formatMessage({id: "homepageLabs.descriptionBold1"})}</DescriptionBold>
-                        {intl.formatMessage({id: "homepageLabs.descriptionComma"})}
-                        {intl.formatMessage({id: "homepageLabs.descriptionLine2"})}
-                        <DescriptionBold>{intl.formatMessage({id: "homepageLabs.descriptionBold2"})}</DescriptionBold>
-                        {intl.formatMessage({id: "homepageLabs.descriptionComma"})}
-                        <DescriptionBold>{intl.formatMessage({id: "homepageLabs.descriptionBold3"})}</DescriptionBold>
-                        {intl.formatMessage({id: "homepageLabs.descriptionLine4"})}
-                        <DescriptionBold>{intl.formatMessage({id: "homepageLabs.descriptionBold4"})}</DescriptionBold>
-                        {intl.formatMessage({id: "homepageLabs.descriptionDot"})}
+                        {t("homepageLabs.descriptionLine1")}
+                        <DescriptionBold>{t("homepageLabs.descriptionBold1")}</DescriptionBold>
+                        {t("homepageLabs.descriptionComma")}
+                        {t("homepageLabs.descriptionLine2")}
+                        <DescriptionBold>{t("homepageLabs.descriptionBold2")}</DescriptionBold>
+                        {t("homepageLabs.descriptionComma")}
+                        <DescriptionBold>{t("homepageLabs.descriptionBold3")}</DescriptionBold>
+                        {t("homepageLabs.descriptionLine4")}
+                        <DescriptionBold>{t("homepageLabs.descriptionBold4")}</DescriptionBold>
+                        {t("homepageLabs.descriptionDot")}
                     </HomepageLabsDescription>
                     <Btn 
                       type='btnPrimaryWhite' 
                       theme={styles} 
                       href="labs" 
                       isLink
-                      btnText={intl.formatMessage({id: "homepageLabs.btnText"})}
+                      btnText={t("homepageLabs.btnText")}
                     />
                 </InfoContainer>
                 <ImageContainer>

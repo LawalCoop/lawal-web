@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import data from '../../content/content.json';
 import { GatsbyImage } from "gatsby-plugin-image";
 import Tags from '../common/Tags';
-import { useIntl, Link } from "gatsby-plugin-react-intl";
+import { useTranslation, Link } from "gatsby-plugin-react-i18next";
 import Button from '../common/Button';
 
 const githubIcon = require('../../images/icon_github.svg');
@@ -123,17 +123,17 @@ const BtnSite = styled(Button)`
 
 const SuccessCase = (props) => {
     const lab = props.labData;
-    const intl = useIntl();
+    const { t } = useTranslation();
 
     return (
         <CaseWrapper>
             <LabImage
                 image={props.image}
-                alt={intl.formatMessage({ id: "casos_de_exito.imageAltLine1" }) + lab.frontmatter.title}
+                alt={t("casos_de_exito.imageAltLine1") + lab.frontmatter.title}
             />
             <LabTitle>{lab.frontmatter.title}</LabTitle>
             <LabDescription>{lab.excerpt}</LabDescription>
-            <TagsTitle>{intl.formatMessage({ id: "casos_de_exito.tagsTitle" })}</TagsTitle>
+            <TagsTitle>{t("casos_de_exito.tagsTitle")}</TagsTitle>
             <TagsContainer>
                 <Tags styles={props.styles} type="labs" tags={lab.frontmatter.tags}></Tags>
             </TagsContainer>
@@ -145,7 +145,7 @@ const SuccessCase = (props) => {
                         isLink
                         target="_blank"
                         href={props.labData.frontmatter.website}
-                        btnText={intl.formatMessage({ id: "casos_de_exito.btnTextVerMas" })}
+                        btnText={t("casos_de_exito.btnTextVerMas")}
                     />
                 )}
                 {props.labData.frontmatter.github && (
@@ -157,7 +157,7 @@ const SuccessCase = (props) => {
                         github={true}
                         href={props.labData.frontmatter.github}
                         target="_blank"
-                        btnText={intl.formatMessage({ id: "casos_de_exito.btnTextGithub" })}
+                        btnText={t("casos_de_exito.btnTextGithub")}
                     />
                 )}
             </BtnContainer>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import data from '../../content/content.json';
-import { useIntl, Link } from "gatsby-plugin-react-intl";
+import { useTranslation, Link } from "gatsby-plugin-react-i18next";
 import Button from '../common/Button';
 import { GatsbyImage } from "gatsby-plugin-image";
 
@@ -114,7 +114,7 @@ const Btn = styled(Button)`
 `;
 
 const PostThumbnail = (props) => {
-    const intl = useIntl();
+    const { t } = useTranslation();
 
     return (
         <PostThumbnailWrapper>
@@ -134,7 +134,7 @@ const PostThumbnail = (props) => {
                     theme={styles}
                     isLink
                     href={props.slug}
-                    btnText={intl.formatMessage({ id: 'button.read' })}
+                    btnText={t('button.read')}
                 />
             </BtnContainer>
         </PostThumbnailWrapper>

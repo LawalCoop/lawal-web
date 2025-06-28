@@ -1,12 +1,12 @@
 import React, {Fragment} from "react"
-import { useIntl } from "gatsby-plugin-react-intl"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 import HomepageHeader from "../components/modules/HomepageHeader"
 import HomepageCulture from "../components/modules/HomepageCulture"
 import HomepageLabs from "../components/modules/HomepageLabs"
 import Services from "./servicios"
 
 const Index = (props) => {
-  const intl = useIntl();
+  const { t } = useTranslation();
 
   return (
     <Fragment>

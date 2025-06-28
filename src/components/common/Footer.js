@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components'
 import data from '../../content/content.json'
-import { useIntl } from 'gatsby-plugin-react-intl'
+import { useTranslation } from 'gatsby-plugin-react-i18next'
 import ContactForm from './ContactForm'
 
 const styles = data.styles
@@ -73,7 +73,7 @@ const FooterLicenseIcon = styled.img`
 `
 
 const Footer = () => {
-    const intl = useIntl();
+    const { t } = useTranslation();
 
     return (
         <Fragment>
@@ -81,29 +81,29 @@ const Footer = () => {
             <FooterContainer>
                 <FooterWrapper>
                     <FooterLicense>
-                        <FooterLicenseIcon src={licenseLogo.default} alt={intl.formatMessage({id: "footer.licenseIconAlt" })} />
+                        <FooterLicenseIcon src={licenseLogo.default} alt={t("footer.licenseIconAlt")} />
                         <FooterLicenseContent>
-                            {intl.formatMessage({id: "footer.disclaimer" })}  <FooterLicenseName>{intl.formatMessage({id: "footer.licenseName" })}</FooterLicenseName>
+                            {t("footer.disclaimer")}  <FooterLicenseName>{t("footer.licenseName")}</FooterLicenseName>
                         </FooterLicenseContent>
                     </FooterLicense>
                     <FooterCopyright>
-                        {intl.formatMessage({id: "footer.designby" })}{" "}
+                        {t("footer.designby")}{" "}
                         <FooterCoopName
                             type="link"
                             isLink={true}
-                            href={intl.formatMessage({ id: "footer.coopName1Path" })}
+                            href={t("footer.coopName1Path")}
                             target="_blank"
                         >
-                        {intl.formatMessage({ id: "footer.coopName1" })}
+                        {t("footer.coopName1")}
                         </FooterCoopName>
-                    {" "}{intl.formatMessage({ id: "footer.preposition" })}{" "}
+                    {" "}{t("footer.preposition")}{" "}
                         <FooterCoopName
                             type="link"
                             isLink={true}
-                            href={intl.formatMessage({ id: "footer.coopName2Path" })}
+                            href={t("footer.coopName2Path")}
                             target="_blank"
                         >
-                        {intl.formatMessage({ id: "footer.coopName2" })}
+                        {t("footer.coopName2")}
                         </FooterCoopName>
                     </FooterCopyright>
                 </FooterWrapper>
