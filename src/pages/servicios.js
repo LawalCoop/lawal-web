@@ -1,6 +1,10 @@
 import React, {Fragment} from "react"
 import styled from 'styled-components'
-import { styles, services } from '../content/content.json'
+import data from '../content/content.json'
+
+// Desestructurar las propiedades para evitar warnings de webpack
+const { styles, services } = data;
+const { colors, breakpoints } = styles;
 import { useIntl } from "gatsby-plugin-react-intl"
 
 import FeaturedService from '../components/modules/FeaturedService'
@@ -16,7 +20,7 @@ const MainWrapper = styled.div`
         `
     }
   }}
-  @media (min-width: ${styles.breakpoints.m}px) {
+  @media (min-width: ${breakpoints.m}px) {
     padding-bottom: 243px;
     ${props => {
       if (props.ishomepage) {
@@ -28,7 +32,7 @@ const MainWrapper = styled.div`
   }
 `
 const ServicesContainer = styled.div`
-  background-color: ${styles.colors.purpleLight};
+  background-color: ${colors.purpleLight};
   padding: 40px 20px 200px 20px;
   ${props => {
     if (props.ishomepage) {
@@ -38,7 +42,7 @@ const ServicesContainer = styled.div`
         `
     }
   }}
-  @media (min-width: ${styles.breakpoints.m}px) {
+  @media (min-width: ${breakpoints.m}px) {
     padding-bottom: 155px;
     ${props => {
       if (props.ishomepage) {
@@ -49,7 +53,7 @@ const ServicesContainer = styled.div`
       }
     }}
   }
-  @media (min-width: ${styles.breakpoints.lpx}) {
+  @media (min-width: ${breakpoints.lpx}) {
     padding-top: 55px;
     padding-left: 0;
     padding-right: 0;
@@ -71,11 +75,11 @@ const ServicesWrapper = styled.div`
             max-width: 1102px;
               gap: 24px;
               margin-bottom: 34px;
-            @media (min-width: ${styles.breakpoints.m}px) {
+            @media (min-width: ${breakpoints.m}px) {
               gap: 56px;
               margin-bottom: 50px;
             }
-            @media (min-width: ${styles.breakpoints.xl}px) {
+            @media (min-width: ${breakpoints.xl}px) {
                 justify-content: flex-start;
             }
             `
@@ -86,7 +90,7 @@ const ServicesHomeTitle = styled.h2`
   flex-basis: 100%;
   font-size: 2.38em;
   line-height: 49px;
-  color: ${styles.colors.white};
+  color: ${colors.white};
   margin: 0 auto 25px auto;
   text-align: center;
   ${props => {
@@ -96,7 +100,7 @@ const ServicesHomeTitle = styled.h2`
           `
       }
   }}
-  @media (min-width: ${styles.breakpoints.m}px) {
+  @media (min-width: ${breakpoints.m}px) {
     text-align: left;
     font-size: 3em;    
     line-height: 62px;
@@ -117,10 +121,10 @@ const ServicesTitle = styled.h1`
   flex-basis: 100%;
   font-size: 2.38em;
   line-height: 49px;
-  color: ${styles.colors.white};
+  color: ${colors.white};
   margin: 0 auto 25px auto;
   text-align: center;
-  @media (min-width: ${styles.breakpoints.m}px) {
+  @media (min-width: ${breakpoints.m}px) {
     text-align: left;
     font-size: 3em;    
     line-height: 62px;
@@ -142,13 +146,13 @@ const Btn = styled(Button)`
           return `
           display: flex;
           margin: 0 auto;
-          @media (min-width: ${styles.breakpoints.m}px) {
+          @media (min-width: ${breakpoints.m}px) {
             margin: 35px auto 0 auto;
           }
           `
       }
     }}
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
       //display: none;
       ${props => {
         if (props.ishomepage) {

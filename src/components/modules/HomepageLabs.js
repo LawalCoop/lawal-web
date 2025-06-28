@@ -1,5 +1,9 @@
 import React, {useState} from 'react';
-import {styles} from '../../content/content.json'
+import data from '../../content/content.json'
+
+// Desestructurar las propiedades para evitar warnings de webpack
+const { styles } = data;
+const { colors, breakpoints, fontWeight } = styles;
 import styled from 'styled-components'
 import { useIntl } from "gatsby-plugin-react-intl"
 import Lottie from 'react-lottie'
@@ -9,14 +13,14 @@ import labsAnimation from '../../images/animations/labs.json'
 import Button from '../../components/common/Button'
 
 const HomepageLabsContainer = styled.div`
-    background: ${styles.colors.greenLight};
+    background: ${colors.greenLight};
     display: flex; 
     justify-content: center;
     padding: 32px 20px 180px 20px;
     margin-bottom: 0px;
     //margin-top: 200px;
-    background: ${styles.colors.white};
-    @media (min-width: ${styles.breakpoints.m}px) {
+    background: ${colors.white};
+    @media (min-width: ${breakpoints.m}px) {
         margin-bottom: 0px;
         padding-top: 81px;
         padding-bottom: 255px;
@@ -28,7 +32,7 @@ const HomepageLabsWrapper = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         flex-direction: row;
         justify-content: center;
         text-align: left;
@@ -42,7 +46,7 @@ const InfoContainer = styled.div`
     width: 100%;
     max-width: 320px;
     margin: auto;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         flex-basis: 50%;
         max-width: 559px;
         align-items: flex-start;
@@ -52,7 +56,7 @@ const InfoContainer = styled.div`
 `
 const ImageContainer = styled.div`
     display: none;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         display: block;
         flex-basis: 50%;
         max-width: 532px;
@@ -64,10 +68,10 @@ const ImageContainer = styled.div`
 const HomepageLabsSubtitle = styled.h3`
     font-size: 1.72em;
     line-height: 37px;
-    font-weight: ${styles.fontWeight.bold};
-    color: ${styles.colors.greenMain};
+    font-weight: ${fontWeight.bold};
+    color: ${colors.greenMain};
     margin-bottom: 10px;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         font-size: 2.38em;
         line-height: 49px;
     }
@@ -75,11 +79,11 @@ const HomepageLabsSubtitle = styled.h3`
 const HomepageLabsTitle = styled.h2`
     font-size: 2.38em;
     line-height: 49px;
-    font-weight: ${styles.fontWeight.bold};
+    font-weight: ${fontWeight.bold};
     text-align: center;
-    color: ${styles.colors.darkMainBg};
+    color: ${colors.darkMainBg};
     margin-bottom: 35px;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         font-size: 3.33em;
         line-height: 64px;
         text-align: left;
@@ -89,26 +93,26 @@ const HomepageLabsTitle = styled.h2`
 const HomepageLabsDescription = styled.p`
     font-size: 1em;
     line-height: 26px;
-    font-weight: ${styles.fontWeight.regular};
-    color: ${styles.colors.darkMainBg};
+    font-weight: ${fontWeight.regular};
+    color: ${colors.darkMainBg};
     margin-bottom: 40px;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         margin-bottom: 30px;
         font-size: 1.44em;
         line-height: 34px;
     }
 `
 const DescriptionBold = styled.span`
-    font-weight: ${styles.fontWeight.bold};
+    font-weight: ${fontWeight.bold};
 `
 
 const HomepageLabsImg = styled.div`
     margin-top: 98px;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         max-width: 400px;
         width: 100%;
     }
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${breakpoints.l}px) {
         max-width: 532px;
     }
 `
@@ -116,14 +120,14 @@ const HomepageLabsImgMobile = styled.img`
     width: 100%;
     max-width: 270px;
     margin-bottom: 40px;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         display: none;
     }
     
 `
 const Btn = styled(Button)`
   margin: 0px auto 15px auto;
-  @media (min-width: ${styles.breakpoints.m}px) {
+  @media (min-width: ${breakpoints.m}px) {
     margin: 0px auto 0 0;
   }
 `

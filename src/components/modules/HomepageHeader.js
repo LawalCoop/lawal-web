@@ -1,5 +1,9 @@
 import React from 'react';
-import {styles} from '../../content/content.json'
+import data from '../../content/content.json'
+
+// Desestructurar las propiedades para evitar warnings de webpack
+const { styles } = data;
+const { colors, breakpoints, fontWeight } = styles;
 import styled from 'styled-components'
 import { useIntl } from "gatsby-plugin-react-intl"
 import Lottie from 'react-lottie'
@@ -20,15 +24,15 @@ const setSharedStyles = (type) => {
     `
 } 
 const HeaderContainer = styled.div`
-    background: ${styles.colors.greenLight};
+    background: ${colors.greenLight};
     display: flex; 
     justify-content: center;
     padding: 48px 20px 50px 20px;
-    background: ${styles.colors.purplePrimary};
-    @media (min-width: ${styles.breakpoints.m}px) {
+    background: ${colors.purplePrimary};
+    @media (min-width: ${breakpoints.m}px) {
         padding: 75px 20px 80px 20px;
     }
-    @media (min-width: ${styles.breakpoints.xl}px) {
+    @media (min-width: ${breakpoints.xl}px) {
         padding: 75px 0 80px 0px;
     }
 `
@@ -37,7 +41,7 @@ const HeaderWrapper = styled.div`
     flex-direction: column;
     width: 100%;
     max-width: 1083px;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         flex-direction: row;        
         align-items: center;
         justify-content: space-between;        
@@ -50,7 +54,7 @@ const InfoContainer = styled.div`
     width: 100%;
     max-width: 320px;
     margin: auto;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         flex-basis: 50%;
         align-items: flex-start;
         max-width: 560px;
@@ -60,56 +64,56 @@ const InfoContainer = styled.div`
 `
 const ImageContainer = styled.div`
     display: none;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         display: block;
         flex-basis: 50%;
         max-width: 350px;
         margin-left: auto;
         text-align: right;
     }
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${breakpoints.l}px) {
         max-width: 611px;
     }
 `
 
 const ImageContainerMobile = styled.div`
     width: 100%;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         display: none;
     }
 `
 
 const SectionHeaderDescription = styled.p`
     font-size: 1.44em;
-    font-weight: ${styles.fontWeight.regular};    
+    font-weight: ${fontWeight.regular};    
     line-height: 34px;
     text-align: center;
-    color: ${styles.colors.white};
-    @media (min-width: ${styles.breakpoints.m}px) {
+    color: ${colors.white};
+    @media (min-width: ${breakpoints.m}px) {
         font-size: 2em;
         line-height: 42px;
         text-align: left;
         min-width: 402px;
     }
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${breakpoints.l}px) {
         font-size: 2.38em;
         line-height: 49px;
         text-align: left;
     }
 `
 const SectionHeaderUnderlineSpan = styled.span`
-    color: ${styles.colors.white};
-    font-weight: ${styles.fontWeight.bold};
+    color: ${colors.white};
+    font-weight: ${fontWeight.bold};
     font-family: "Saira Stencil One";
 `
 const SectionHeaderSpan = styled.span`
-    font-weight: ${styles.fontWeight.bold};
+    font-weight: ${fontWeight.bold};
     font-family: "Saira Stencil One";
-    color: ${styles.colors.white};
-    @media (min-width: ${styles.breakpoints.m}px) {
+    color: ${colors.white};
+    @media (min-width: ${breakpoints.m}px) {
         font-size: 2rem;
     }
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${breakpoints.l}px) {
         font-size: 2.38rem;
     }
 `
@@ -117,10 +121,10 @@ const SectionHeaderImg = styled.div`
 
     width: 100%;
     height: 450px;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         max-width: 320px;
     }
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${breakpoints.l}px) {
         max-width: 611px;
     }
 `
@@ -128,7 +132,7 @@ const SectionHeaderImgMobile = styled.img`
     width: 100%;
     max-width: 249px;
     margin-bottom: 25px;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         display: none;
     }
 `

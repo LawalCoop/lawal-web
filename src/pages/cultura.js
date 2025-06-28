@@ -1,6 +1,10 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
-import { styles } from "../content/content.json";
+import data from "../content/content.json";
+
+// Desestructurar las propiedades para evitar warnings de webpack
+const { styles } = data;
+const { colors, breakpoints, fontWeight } = styles;
 import { useIntl } from "gatsby-plugin-react-intl";
 import SectionHeader from "../components/common/SectionHeader";
 
@@ -10,15 +14,15 @@ const Culture = () => {
     // Estilos neobrutalistas
     const CultureMainContainer = styled.div`
         padding-bottom: 151px;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             padding-bottom: 247px;
         }
     `;
 
     const HistoryMainContainer = styled.div`
-        background-color: ${styles.colors.marroncin};
+        background-color: ${colors.marroncin};
         padding: 30px 20px 40px 20px;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             padding-top: 50px;
             padding-bottom: 53px;
         }
@@ -27,11 +31,11 @@ const Culture = () => {
     const HistoryTitle = styled.h2`
         font-size: 1.72em;
         line-height: 37px;
-        font-weight: ${styles.fontWeight.medium};
-        color: ${styles.colors.purplePrimary};
+        font-weight: ${fontWeight.medium};
+        color: ${colors.purplePrimary};
         text-align: center;
         margin-bottom: 30px;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             font-size: 2.83em;
             line-height: 59px;
             margin-bottom: 42px;
@@ -52,11 +56,11 @@ const Culture = () => {
             box-shadow: 4px 4px 0 #000; /* Sombra reducida */
         }
 
-        @media (min-width: ${styles.breakpoints.s}px) {
+        @media (min-width: ${breakpoints.s}px) {
             max-width: 500px;
             height: 220px;
         }
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             max-width: 754px;
             height: 248px;
             margin: 0 auto 28px auto;
@@ -66,7 +70,7 @@ const Culture = () => {
     const TeamImgMobile = styled.img`
         display: block;
         width: 100%;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             display: none;
         }
     `;
@@ -74,14 +78,14 @@ const Culture = () => {
     const TeamImgDesktop = styled.img`
         display: none;
         width: 100%;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             display: block;
         }
     `;
 
     const HistoryContentContainer = styled.div`
         padding: 0;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             max-width: 754px;
             margin: auto;
             display: flex;
@@ -93,7 +97,7 @@ const Culture = () => {
     `;
 
     const HistoryContentLeftBlock = styled.div`
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             flex-basis: calc(50% - 9px);
             max-width: 370px;
             margin-right: 15px;
@@ -102,14 +106,14 @@ const Culture = () => {
 
     const HistoryContentRightBlock = styled.div`
         margin-bottom: 30px;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             flex-basis: calc(50% - 8px);
             max-width: 370px;
         }
     `;
 
     const HistoryContentFullBlock = styled.div`
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             width: 100%;
             max-width: 754px;
             margin: auto;
@@ -119,14 +123,14 @@ const Culture = () => {
     const HistorySubtitle = styled.h3`
         font-size: 1.44em;
         line-height: 34px;
-        font-weight: ${styles.fontWeight.bold};
-        color: ${styles.colors.purplePrimary};
+        font-weight: ${fontWeight.bold};
+        color: ${colors.purplePrimary};
         text-align: left;
         margin-bottom: 18px;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             font-size: 1.66em;
             line-height: 37px;
-            font-weight: ${styles.fontWeight.regular};
+            font-weight: ${fontWeight.regular};
             margin-bottom: 15px;
         }
     `;
@@ -134,9 +138,9 @@ const Culture = () => {
     const HistoryContent = styled.p`
         font-size: 0.88em;
         line-height: 22px;
-        color: ${styles.colors.darkMainBg};
+        color: ${colors.darkMainBg};
         margin-bottom: 22px;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             font-size: 1em;
             line-height: 26px;
             margin-bottom: 25px;
@@ -144,11 +148,11 @@ const Culture = () => {
     `;
 
     const FederalMainContainer = styled.div`
-        background-color: ${styles.colors.purplePrimary};
+        background-color: ${colors.purplePrimary};
         display: flex;
         flex-direction: column;
         padding: 30px 20px 10px 20px;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             padding-top: 53px;
             padding-bottom: 34px;
         }
@@ -157,7 +161,7 @@ const Culture = () => {
     const TopBlock = styled.div`
         display: flex;
         flex-direction: column-reverse;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             width: 100%;
             max-width: 754px;
             flex-direction: row;
@@ -180,7 +184,7 @@ const Culture = () => {
             box-shadow: 4px 4px 0 #000; /* Sombra reducida */
         }
 
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             max-width: 346px;
             flex-basis: 50%;
             margin-right: auto;
@@ -195,7 +199,7 @@ const Culture = () => {
     `;
 
     const TopBlockInfoContainer = styled.div`
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             flex-basis: 50%;
             max-width: 367px;
             margin-left: auto;
@@ -207,11 +211,11 @@ const Culture = () => {
     const FederalSubtitle = styled.h3`
         font-size: 1.44em;
         line-height: 34px;
-        font-weight: ${styles.fontWeight.bold};
-        color: ${styles.colors.white};
+        font-weight: ${fontWeight.bold};
+        color: ${colors.white};
         text-align: left;
         margin-bottom: 18px;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             font-size: 1.66em;
             line-height: 37px;
             margin-bottom: 12px;
@@ -221,9 +225,9 @@ const Culture = () => {
     const FederalContent = styled.p`
         font-size: 0.88em;
         line-height: 22px;
-        color: ${styles.colors.white};
+        color: ${colors.white};
         margin-bottom: 22px;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             font-size: 1em;
             line-height: 26px;
             margin-bottom: 25px;
@@ -231,21 +235,21 @@ const Culture = () => {
     `;
 
     const FederalContentBoldText = styled.b`
-        font-weight: ${styles.fontWeight.regular};
+        font-weight: ${fontWeight.regular};
     `;
 
     const BottomBlock = styled.div`
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             max-width: 754px;
             margin: auto;
         }
     `;
 
     const FactticMainContainer = styled.div`
-        background-color: ${styles.colors.white};
+        background-color: ${colors.white};
         padding: 30px 20px 0px 20px;
         margin: 20px;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             padding-top: 55px;
         }
     `;
@@ -253,12 +257,12 @@ const Culture = () => {
     const FactticTitle = styled.h3`
         font-size: 1.44em;
         line-height: 34px;
-        font-weight: ${styles.fontWeight.bold};
-        color: ${styles.colors.purplePrimary};
+        font-weight: ${fontWeight.bold};
+        color: ${colors.purplePrimary};
         margin-bottom: 10px;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             font-size: 1.72em;
-            font-weight: ${styles.fontWeight.bold};
+            font-weight: ${fontWeight.bold};
             margin-bottom: 20px;
         }
     `;
@@ -266,20 +270,20 @@ const Culture = () => {
     const FactticLead = styled.h4`
         font-size: 1em;
         line-height: 26px;
-        font-weight: ${styles.fontWeight.regular};
-        color: ${styles.colors.purplePrimary};
+        font-weight: ${fontWeight.regular};
+        color: ${colors.purplePrimary};
         margin-bottom: 15px;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             font-size: 1.44em;
             line-height: 34px;
-            font-weight: ${styles.fontWeight.regular};
+            font-weight: ${fontWeight.regular};
             margin-bottom: 18px;
         }
     `;
 
     const FactticContentContainer = styled.div`
         padding: 0;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             max-width: 754px;
             margin: auto;
             margin-bottom: 2px;
@@ -291,7 +295,7 @@ const Culture = () => {
     `;
 
     const FactticContentLeftBlock = styled.div`
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             flex-basis: calc(50% - 9px);
             max-width: 370px;
             margin-right: 15px;
@@ -300,14 +304,14 @@ const Culture = () => {
 
     const FactticContentRightBlock = styled.div`
         margin-bottom: 27px;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             flex-basis: calc(50% - 8px);
             max-width: 370px;
         }
     `;
 
     const FactticContentFullBlock = styled.div`
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             width: 100%;
             max-width: 754px;
             margin: auto;
@@ -317,14 +321,14 @@ const Culture = () => {
     const FactticSubtitle = styled.h3`
         font-size: 1.44em;
         line-height: 34px;
-        font-weight: ${styles.fontWeight.bold};
-        color: ${styles.colors.purplePrimary};
+        font-weight: ${fontWeight.bold};
+        color: ${colors.purplePrimary};
         text-align: left;
         margin-bottom: 18px;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             font-size: 1.72em;
             line-height: 32px;
-            font-weight: ${styles.fontWeight.bold};
+            font-weight: ${fontWeight.bold};
             margin-bottom: 15px;
         }
     `;
@@ -332,9 +336,9 @@ const Culture = () => {
     const FactticContent = styled.p`
         font-size: 0.88em;
         line-height: 22px;
-        color: ${styles.colors.darkMainBg};
+        color: ${colors.darkMainBg};
         margin-bottom: 22px;
-        @media (min-width: ${styles.breakpoints.m}px) {
+        @media (min-width: ${breakpoints.m}px) {
             font-size: 1em;
             line-height: 26px;
             margin-bottom: 25px;

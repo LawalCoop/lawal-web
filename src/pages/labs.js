@@ -4,17 +4,21 @@ import styled from 'styled-components'
 import Lab from "../components/modules/Lab"
 import { useIntl, Link } from "gatsby-plugin-react-intl"
 import SectionHeader from "../components/common/SectionHeader"
-import {styles} from '../content/content.json'
+import data from '../content/content.json'
+
+// Desestructurar las propiedades para evitar warnings de webpack
+const { styles } = data;
+const { colors, breakpoints, fontWeight } = styles;
 
 const PostsMainContainer = styled.div`
-  background-color: ${styles.colors.yellow};
+  background-color: ${colors.yellow};
   display: flex;
   justify-content: center;
   padding: 30px 20px 109px 20px;
-  @media (min-width: ${styles.breakpoints.m}px) {
+  @media (min-width: ${breakpoints.m}px) {
     padding: 52px 20px 163px 20px;
   }
-  @media (min-width: ${styles.breakpoints.xl}px) {
+  @media (min-width: ${breakpoints.xl}px) {
     padding: 52px 0px 168px 0px;
   }
 `
@@ -24,7 +28,7 @@ const PostsContainer = styled.div`
   justify-content: center;
   gap: 10px;
   padding: 0;
-  @media (min-width: ${styles.breakpoints.m}px) {
+  @media (min-width: ${breakpoints.m}px) {
     max-width: 1140px;
     justify-content: flex-start;
     margin: auto;
@@ -35,12 +39,12 @@ const PostsContainer = styled.div`
 const PostsTitle = styled.h2`
   flex-basis: 100%;
   font-size: 1.72em;
-  font-weight: ${styles.fontWeight.medium};
+  font-weight: ${fontWeight.medium};
   line-height: 37px;
   text-align: center;
-  color: ${styles.colors.darkMainBg};
+  color: ${colors.darkMainBg};
   margin-bottom: 20px;
-  @media (min-width: ${styles.breakpoints.m}px) {
+  @media (min-width: ${breakpoints.m}px) {
     font-size: 2.83em;
     line-height: 59px;
     margin-bottom: 24px;

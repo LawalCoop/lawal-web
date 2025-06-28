@@ -3,7 +3,11 @@ import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components'
 import Header from '../common/Header'
 import Footer from '../common/Footer'
-import { styles } from '../../content/content.json'
+import data from '../../content/content.json'
+
+// Desestructurar las propiedades para evitar warnings de webpack
+const { styles } = data;
+const { colors, breakpoints } = styles;
 import Seo from '../common/Seo'
 
 
@@ -15,13 +19,13 @@ const Wrapper = styled.div`
     padding:0;
     width:100%;
     min-height:100%;
-    background: ${styles.colors.white};      
+    background: ${colors.white};      
 `
 const PageContainer = styled.section`
     width:100%;
     margin: 0 auto;
     padding-top: 62px;
-    @media (min-width: ${styles.breakpoints.xl}px) {
+    @media (min-width: ${breakpoints.xl}px) {
         padding-top: 76px;
     }
 `

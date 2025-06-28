@@ -1,6 +1,10 @@
 import React from "react"
 import styled from 'styled-components'
-import {styles} from '../content/content.json'
+import data from '../content/content.json'
+
+// Desestructurar las propiedades para evitar warnings de webpack
+const { styles } = data;
+const { breakpoints } = styles;
 
 
 const Showcase = ({path}) => {
@@ -9,7 +13,7 @@ const Showcase = ({path}) => {
     padding-bottom: 151px;
     align-items: center; /* Center vertically */
     display: flex; /* Use flexbox */
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         justify-content: center; /* Center horizontally */
         padding-bottom: 167px;
     }

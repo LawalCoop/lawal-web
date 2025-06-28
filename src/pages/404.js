@@ -1,18 +1,22 @@
 import * as React from "react"
 import {useIntl} from "gatsby-plugin-react-intl"
-import {styles} from '../content/content.json'
+import data from '../content/content.json'
+
+// Desestructurar las propiedades para evitar warnings de webpack
+const { styles } = data;
+const { colors, breakpoints, fontWeight } = styles;
 import styled from 'styled-components'
 import Button from '../components/common/Button'
 
 const iluPage404 = require('../images/illustrations/page404.svg');
 
 const Page404Container = styled.div`
-    background: ${styles.colors.greenLight};
+    background: ${colors.greenLight};
     display: flex; 
     justify-content: center;
     padding: 48px 20px 142px 20px;
-    background: ${styles.colors.purpleLight};
-    @media (min-width: ${styles.breakpoints.m}px) {
+    background: ${colors.purpleLight};
+    @media (min-width: ${breakpoints.m}px) {
         padding: 45px 20px 240px 20px;
     }
 `
@@ -21,7 +25,7 @@ const Page404Wrapper = styled.div`
     flex-direction: column;
     width: 100%;
     max-width: 1083px;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         flex-direction: row-reverse;        
         align-items: center;
         justify-content: space-between;        
@@ -34,7 +38,7 @@ const InfoContainer = styled.div`
     width: 100%;
     max-width: 320px;
     margin: auto;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         align-items: flex-start;
         max-width: 435px;
         margin: 0;
@@ -42,35 +46,35 @@ const InfoContainer = styled.div`
         margin-top: 150px;
         margin-left: 35px;
     }
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${breakpoints.l}px) {
         max-width: 587px;
         margin-left: 4px;
     }
 `
 const Page404Title = styled.h1`
     font-size: 2.44em;
-    font-weight: ${styles.fontWeight.bold};
+    font-weight: ${fontWeight.bold};
     line-height: 50px;
     margin-bottom: 7px;
-    color: ${styles.colors.purplePrimary};
-    @media (min-width: ${styles.breakpoints.m}px) {
+    color: ${colors.purplePrimary};
+    @media (min-width: ${breakpoints.m}px) {
         margin-bottom: 0;
     }
 
 `
 const Page404DescriptionContainer = styled.div`
     margin-bottom: 15px;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         margin-bottom: 37px;
     }
 `
 const Page404Description = styled.p`
     font-size: 1em;
-    font-weight: ${styles.fontWeight.regular};    
+    font-weight: ${fontWeight.regular};    
     line-height: 26px;
     text-align: center;
-    color: ${styles.colors.purplePrimary};
-    @media (min-width: ${styles.breakpoints.m}px) {
+    color: ${colors.purplePrimary};
+    @media (min-width: ${breakpoints.m}px) {
         text-align: left;
         font-size: 1.44em;
         line-height: 34px;
@@ -81,30 +85,30 @@ const LineBreak = styled.br`
 `
 const Btn = styled(Button)`
     margin: 0px auto 15px auto;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         margin: 0px auto 0 0;
     }
 `
 const ImageContainer = styled.div`
     display: none;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         display: block;
         flex-basis: 50%;
         max-width: 320px;
         margin-right: auto;
         text-align: right;
     }
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${breakpoints.l}px) {
         max-width: 401px;
         margin-left: 7px;
     }
 `
 const Page404Img = styled.img`
     width: 100%;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         max-width: 320px;
     }
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${breakpoints.l}px) {
         max-width: 411px;
     }
 `
@@ -112,7 +116,7 @@ const Page404ImgMobile = styled.img`
     width: 100%;
     max-width: 249px;
     margin-bottom: 25px;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         display: none;
     }
 `

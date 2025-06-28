@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
-import {styles} from '../../content/content.json'
+import data from '../../content/content.json'
 import styled from 'styled-components'
+
+// Desestructurar las propiedades para evitar warnings de webpack
+const { styles } = data;
+const { colors, breakpoints, fontWeight } = styles;
 
 import {Waypoint} from 'react-waypoint'
 import Lottie from 'react-lottie'
@@ -25,14 +29,14 @@ const setSharedStyles = (type) => {
     `
 } 
 const HeaderContainer = styled.div`
-    background: ${styles.colors.greenLight};
+    background: ${colors.greenLight};
     padding-bottom: 80px;
     display: flex; 
     justify-content: center;
     padding: 40px 20px 50px 20px;
     margin-bottom: 0px;
     background: ${props => props.type.background};
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         margin-bottom: 0px;
         padding-top: 55px;
         padding-bottom: 79px;
@@ -50,7 +54,7 @@ const HeaderWrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         flex-direction: row;
         justify-content: center;        
     }
@@ -63,7 +67,7 @@ const InfoContainer = styled.div`
     width: 100%;
     max-width: 320px;
     margin: auto;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         flex-basis: 50%;
         max-width: 463px;
         align-items: flex-start;
@@ -73,7 +77,7 @@ const InfoContainer = styled.div`
 `
 const ImageContainer = styled.div`
     display: none;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         display: block;
         flex-basis: 50%;
         max-width: 463px;
@@ -95,7 +99,7 @@ const ImageContainer = styled.div`
             }
         }}
     }
-    @media (min-width: ${styles.breakpoints.m}px) and (max-width: ${styles.breakpoints.l}px){
+    @media (min-width: ${breakpoints.m}px) and (max-width: ${breakpoints.l}px){
         ${props => {
             if (props.section === 'cultura') {
                 return  `
@@ -111,16 +115,16 @@ const ImageContainer = styled.div`
 `
 const SectionHeaderSubtitle = styled.h2`
     font-size: 1.44em;
-    font-weight: ${styles.fontWeight.medium};
+    font-weight: ${fontWeight.medium};
     line-height: 34px;
     color: ${props => props.type.color};
     margin-bottom: 25px;
     ${props => {
         if (props.section === 'cultura') {
-            return  `font-weight: ${styles.fontWeight.regular};`
+            return  `font-weight: ${fontWeight.regular};`
         }
     }}
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         margin-bottom: 35px;
         ${props => {
             if (props.section === 'cultura') {
@@ -131,11 +135,11 @@ const SectionHeaderSubtitle = styled.h2`
 `
 const SectionHeaderTitle = styled.h1`
     font-size: 2.38em;
-    font-weight: ${styles.fontWeight.bold};
+    font-weight: ${fontWeight.bold};
     text-align: center;
     color: ${props => props.type.color};
     margin-bottom: 25px;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         font-size: 3em;
         text-align: left;
         margin-bottom: 30px;
@@ -150,26 +154,26 @@ const SectionHeaderTitle = styled.h1`
 const SectionHeaderDescription = styled.p`
     font-size: 1em;
     line-height: 26px;
-    font-weight: ${styles.fontWeight.regular};
+    font-weight: ${fontWeight.regular};
     color: ${props => props.type.color};
     
 `
 
 const SectionHeaderImg = styled.img`
     margin-top: 83px;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         max-width: 350px;
     }
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${breakpoints.l}px) {
         max-width: 463px;
     }
     ${props => {
         if (props.section === 'cultura') {
             return  `margin-top: 0;
-            @media (min-width: ${styles.breakpoints.m}px) {
+            @media (min-width: ${breakpoints.m}px) {
                 max-width: 350px;
             }
-            @media (min-width: ${styles.breakpoints.l}px) {
+            @media (min-width: ${breakpoints.l}px) {
                 max-width: 429px;
             }
             `
@@ -185,7 +189,7 @@ const SectionHeaderImgMobile = styled.img`
             return  `max-width: 320px;`
         }
     }}
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         display: none;
     }
     
@@ -220,22 +224,22 @@ const SectionHeader = (props) => {
         switch (type) {
             case "cultura" : 
                 return {
-                    background : styles.colors.red,
-                    color : styles.colors.white,
+                    background : colors.red,
+                    color : colors.white,
                     image: iluCultura,
                  }
             break
             case "labs" : 
                 return {
-                    background : styles.colors.greenLight,
-                    color : styles.colors.white,
+                    background : colors.greenLight,
+                    color : colors.white,
                     image : iluLabs
                  }
             break
             default : 
                 return {
-                    background : styles.colors.greenLight,
-                    color : styles.colors.darkMainBg,
+                    background : colors.greenLight,
+                    color : colors.darkMainBg,
                     image : iluLabs
                 }
         }   

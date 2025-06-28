@@ -1,5 +1,9 @@
 import React, {useState} from 'react';
-import {styles} from '../../content/content.json'
+import data from '../../content/content.json'
+
+// Desestructurar las propiedades para evitar warnings de webpack
+const { styles } = data;
+const { colors, breakpoints, fontWeight } = styles;
 import styled from 'styled-components'
 import { useIntl } from "gatsby-plugin-react-intl"
 import Lottie from 'react-lottie'
@@ -10,13 +14,13 @@ import Button from '../../components/common/Button'
 
 const HomepageCultureContainer = styled.div`
     position: relative;
-    background: ${styles.colors.greenLight};
+    background: ${colors.greenLight};
     display: flex; 
     justify-content: center;
     padding: 0px 20px 35px 20px;
     margin-bottom: 0px;
-    background: ${styles.colors.purplePrimary};
-    @media (min-width: ${styles.breakpoints.m}px) {
+    background: ${colors.purplePrimary};
+    @media (min-width: ${breakpoints.m}px) {
         margin-bottom: 0px;
         padding-top: 0px;
         padding-bottom: 90px;
@@ -28,7 +32,7 @@ const HomepageCultureWrapper = styled.div`
     display: flex;
     flex-direction: column;
     text-align: center;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         text-align: left;
         max-width: 959px;
     }
@@ -40,7 +44,7 @@ const InfoContainer = styled.div`
     width: 100%;
     max-width: 320px;
     margin: auto;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         align-items: flex-start;
         flex-basis: 100%;
         max-width: 657px;
@@ -49,18 +53,18 @@ const InfoContainer = styled.div`
         margin-top: 10px;
         text-align: left;
     }
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${breakpoints.l}px) {
         margin-top: -22px;
     }
 `
 const HomepageCultureTitle = styled.h2`
     font-size: 2.38em;
     line-height: 49px;
-    font-weight: ${styles.fontWeight.bold};
+    font-weight: ${fontWeight.bold};
     text-align: center;
-    color: ${styles.colors.white};
+    color: ${colors.white};
     margin-bottom: 23px;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         font-size: 3.33em;
         line-height: 64px;
         text-align: left;
@@ -70,17 +74,17 @@ const HomepageCultureTitle = styled.h2`
 const HomepageCultureDescription = styled.p`
     font-size: 1em;
     line-height: 26px;
-    font-weight: ${styles.fontWeight.regular};
-    color: ${styles.colors.white};
+    font-weight: ${fontWeight.regular};
+    color: ${colors.white};
     margin-bottom: 40px;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         margin-bottom: 26px;
         font-size: 1.44em;
         line-height: 34px;
     }
 `
 const DescriptionUnderline = styled.span`
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         position: relative;
         &::before {
             position: absolute; 
@@ -93,20 +97,20 @@ const DescriptionUnderline = styled.span`
 const ImageContainer = styled.div`
     margin: -105px auto 8px auto;
     max-width: 314px;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         max-width: 400px;
         flex-basis: 100%;
         margin: unset;
         margin-top: -220px;
     }
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${breakpoints.l}px) {
         max-width: 548px;
     }
     
 `
 const HomepageCultureBird = styled.img`
     display: none;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
         position: absolute;
         display: block;
         top: -52px;
@@ -119,7 +123,7 @@ const HomepageCultureImg = styled.div`
 `
 const Btn = styled(Button)`
   margin: 0px auto 15px auto;
-  @media (min-width: ${styles.breakpoints.m}px) {
+  @media (min-width: ${breakpoints.m}px) {
     margin: 0px auto 0 0;
   }
 `
