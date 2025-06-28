@@ -7,12 +7,14 @@ import { useIntl } from "gatsby-plugin-react-intl"
 import Button from '../components/common/Button'
 import PostThumbnail from '../components/modules/PostThumbnail'
 
-const styles = data.styles
+// Desestructurar las propiedades para evitar warnings de webpack
+const { styles } = data;
+const { colors, breakpoints } = styles;
 
 const MainWrapper = styled.div`
-  background-color: ${styles.colors.celestin};
+  background-color: ${colors.celestin};
   padding-bottom: 180px;
-  @media (min-width: ${styles.breakpoints.m}px) {
+  @media (min-width: ${breakpoints.m}px) {
     padding-bottom: 228px;
   }
 `
@@ -21,7 +23,7 @@ const PostsContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  @media (min-width: ${styles.breakpoints.lpx}) {
+  @media (min-width: ${breakpoints.lpx}) {
     padding-top: 55px;
     padding-left: 0;
     padding-right: 0;
@@ -35,13 +37,13 @@ const PostsWrapper = styled.div`
     gap: 10px;
     padding: 0;
     max-width: 946px;
-    @media (min-width: ${styles.breakpoints.m}px) {
+    @media (min-width: ${breakpoints.m}px) {
       justify-content: flex-start;
       margin: auto;
       gap: 23px;
       padding: 0;
     }
-    @media (min-width: ${styles.breakpoints.l}px) {
+    @media (min-width: ${breakpoints.l}px) {
      width: 946px;
     }
 `
@@ -50,10 +52,10 @@ const BlogTitle = styled.h1`
   flex-basis: 100%;
   font-size: 2.38em;
   line-height: 49px;
-  color: ${styles.colors.purplePrimary};
+  color: ${colors.purplePrimary};
   margin: 0 auto 25px auto;
   text-align: center;
-  @media (min-width: ${styles.breakpoints.m}px) {
+  @media (min-width: ${breakpoints.m}px) {
     text-align: left;
     font-size: 3em;    
     line-height: 62px;
@@ -110,7 +112,7 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
                   <PostThumbnail 
                     postTitle={post.node.frontmatter.title}
                     postDescription={post.node.excerpt}
-                    fluid={post.node.frontmatter.image.childImageSharp.fluid}
+                    image={post.node.frontmatter.image.childImageSharp.gatsbyImageData}
                     slug={`/${post.node.frontmatter.lang}/post${post.node.frontmatter.slug}`}
                     shortSlug={`/post${post.node.frontmatter.slug}`}
                   />
@@ -151,9 +153,7 @@ export const pageQuery = graphql`
             tags
             image{
               childImageSharp {
-                fluid(maxWidth: 800) {
-                  ...GatsbyImageSharpFluid
-                }
+                gatsbyImageData(width: 800)
               }
             }
             imageCredits

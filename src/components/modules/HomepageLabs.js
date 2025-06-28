@@ -1,16 +1,15 @@
 import React, {useState} from 'react';
 import data from '../../content/content.json'
-
-// Desestructurar las propiedades para evitar warnings de webpack
-const { styles } = data;
-const { colors, breakpoints, fontWeight } = styles;
 import styled from 'styled-components'
 import { useIntl } from "gatsby-plugin-react-intl"
 import Lottie from 'react-lottie'
 import {Waypoint} from 'react-waypoint'
 import labsAnimation from '../../images/animations/labs.json'
-
 import Button from '../../components/common/Button'
+
+// Desestructurar las propiedades para evitar warnings de webpack
+const { styles } = data;
+const { colors, breakpoints, fontWeight } = styles;
 
 const HomepageLabsContainer = styled.div`
     background: ${colors.greenLight};

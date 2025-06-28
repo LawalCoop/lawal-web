@@ -1,12 +1,12 @@
 import * as React from "react"
 import {useIntl} from "gatsby-plugin-react-intl"
 import data from '../content/content.json'
+import styled from 'styled-components'
+import Button from '../components/common/Button'
 
 // Desestructurar las propiedades para evitar warnings de webpack
 const { styles } = data;
 const { colors, breakpoints, fontWeight } = styles;
-import styled from 'styled-components'
-import Button from '../components/common/Button'
 
 const iluPage404 = require('../images/illustrations/page404.svg');
 

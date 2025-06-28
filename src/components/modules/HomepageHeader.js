@@ -1,14 +1,14 @@
 import React from 'react';
 import data from '../../content/content.json'
-
-// Desestructurar las propiedades para evitar warnings de webpack
-const { styles } = data;
-const { colors, breakpoints, fontWeight } = styles;
 import styled from 'styled-components'
 import { useIntl } from "gatsby-plugin-react-intl"
 import Lottie from 'react-lottie'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import homepageAnimation from '../../images/animations/ina.json'
+
+// Desestructurar las propiedades para evitar warnings de webpack
+const { styles } = data;
+const { colors, breakpoints, fontWeight } = styles;
 
 const iluHomepage = require('../../images/illustrations/ina.png');
 
@@ -140,17 +140,24 @@ const SectionHeaderImgMobile = styled.img`
 const HomepageHeader = (props) => {
     const intl = useIntl();
 
+    const animationOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: homepageAnimation,
+        rendererSettings: {
+            preserveAspectRatio: "xMidYMid slice"
+        }
+    };
+
     return (
         <HeaderContainer>
             <HeaderWrapper>
                 <InfoContainer>
                     <ImageContainerMobile>
                         <SectionHeaderImg> 
-                            <DotLottieReact
-                                src="/static/ina.json"
-                                autoplay
-                                loop
-                                layout={{ fit: "fit-width", align: [0.5, 0.5]}}
+                            <Lottie
+                                options={animationOptions}
+                                width="100%"
                             />
                         </SectionHeaderImg>
                     </ImageContainerMobile>
@@ -165,11 +172,9 @@ const HomepageHeader = (props) => {
                 </InfoContainer>
                 <ImageContainer>
                     <SectionHeaderImg> 
-                        <DotLottieReact
-                            src="/static/ina.json"
-                            autoplay
-                            loop
-                            layout={{ fit: "fit-width", align: [0.5, 0.5]}}
+                        <Lottie
+                            options={animationOptions}
+                            width="100%"
                         />
                     </SectionHeaderImg>
                 </ImageContainer>

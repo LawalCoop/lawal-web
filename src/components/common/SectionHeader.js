@@ -1,16 +1,14 @@
 import React, {useState} from 'react';
 import data from '../../content/content.json'
 import styled from 'styled-components'
+import {Waypoint} from 'react-waypoint'
+import Lottie from 'react-lottie'
+import cultureAnimation from '../../images/animations/cultura.json'
+import labsAnimation from '../../images/animations/labs.json'
 
 // Desestructurar las propiedades para evitar warnings de webpack
 const { styles } = data;
 const { colors, breakpoints, fontWeight } = styles;
-
-import {Waypoint} from 'react-waypoint'
-import Lottie from 'react-lottie'
-
-import cultureAnimation from '../../images/animations/cultura.json'
-import labsAnimation from '../../images/animations/labs.json'
 
 const iluLabs = require('../../images/illustrations/labs.svg');
 const iluCultura = require('../../images/illustrations/cultura.svg');

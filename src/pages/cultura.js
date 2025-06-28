@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
 import data from "../content/content.json";
+import { useIntl } from "gatsby-plugin-react-intl";
+import SectionHeader from "../components/common/SectionHeader";
 
 // Desestructurar las propiedades para evitar warnings de webpack
 const { styles } = data;
 const { colors, breakpoints, fontWeight } = styles;
-import { useIntl } from "gatsby-plugin-react-intl";
-import SectionHeader from "../components/common/SectionHeader";
 
 const Culture = () => {
     const intl = useIntl();

@@ -1,15 +1,14 @@
 import React, {Fragment} from "react"
 import styled from 'styled-components'
 import data from '../content/content.json'
+import { useIntl } from "gatsby-plugin-react-intl"
+import FeaturedService from '../components/modules/FeaturedService'
+import Button from '../components/common/Button'
+import Service from '../components/modules/Service'
 
 // Desestructurar las propiedades para evitar warnings de webpack
 const { styles, services } = data;
 const { colors, breakpoints } = styles;
-import { useIntl } from "gatsby-plugin-react-intl"
-
-import FeaturedService from '../components/modules/FeaturedService'
-import Button from '../components/common/Button'
-import Service from '../components/modules/Service'
 
 const MainWrapper = styled.div`
   padding-bottom: 187px;

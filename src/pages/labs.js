@@ -1,10 +1,10 @@
-import React, {Fragment} from "react"
-import { graphql } from 'gatsby';
-import styled from 'styled-components'
-import Lab from "../components/modules/Lab"
-import { useIntl, Link } from "gatsby-plugin-react-intl"
-import SectionHeader from "../components/common/SectionHeader"
-import data from '../content/content.json'
+import React, { Fragment } from "react";
+import { graphql } from "gatsby";
+import styled from "styled-components";
+import Lab from "../components/modules/Lab";
+import { useIntl } from "gatsby-plugin-react-intl";
+import SectionHeader from "../components/common/SectionHeader";
+import data from "../content/content.json";
 
 // Desestructurar las propiedades para evitar warnings de webpack
 const { styles } = data;
@@ -21,7 +21,7 @@ const PostsMainContainer = styled.div`
   @media (min-width: ${breakpoints.xl}px) {
     padding: 52px 0px 168px 0px;
   }
-`
+`;
 const PostsContainer = styled.div`
   display: inline-flex;
   flex-wrap: wrap;
@@ -34,8 +34,8 @@ const PostsContainer = styled.div`
     margin: auto;
     gap: 36px;
     padding: 0;
-  };
-`
+  }
+`;
 const PostsTitle = styled.h2`
   flex-basis: 100%;
   font-size: 1.72em;
@@ -49,49 +49,59 @@ const PostsTitle = styled.h2`
     line-height: 59px;
     margin-bottom: 24px;
   }
-`
+`;
 
-const Labs = ({data: {allMarkdownRemark: { edges }}}) => {
+const Labs = ({
+  data: {
+    allMarkdownRemark: { edges },
+  },
+}) => {
   const intl = useIntl();
 
-  const Labs = edges.map( 
-    edge => {
-      const fluidImg = edge.node.frontmatter.image.childImageSharp.fluid 
-      const english = edge.node.frontmatter.english;
+  const Labs = edges.map((edge) => {
+    const image = edge.node.frontmatter.image.childImageSharp.gatsbyImageData;
+    const english = edge.node.frontmatter.english;
 
-      if ( (english && intl.locale == 'en') || (!english && intl.locale == 'es')) {
-        return(
-          <Lab key={edge.node.frontmatter.id} fluidImg={fluidImg} styles={styles} labData={edge.node}></Lab>
-        )
-      }      
+    if ((english && intl.locale == "en") || (!english && intl.locale == "es")) {
+      return (
+        <Lab
+          key={edge.node.frontmatter.id}
+          image={image}
+          styles={styles}
+          labData={edge.node}
+        ></Lab>
+      );
     }
-  )
-  
-  return ( 
+  });
+
+  return (
     <Fragment>
-      <SectionHeader 
+      <SectionHeader
         section="labs"
-        title={intl.formatMessage({id: 'labs.title'})}
-        subtitle={intl.formatMessage({id: 'labs.subtitle'})}
-        description={intl.formatMessage({id: 'labs.content'})}
+        title={intl.formatMessage({ id: "labs.title" })}
+        subtitle={intl.formatMessage({ id: "labs.subtitle" })}
+        description={intl.formatMessage({ id: "labs.content" })}
       />
       <PostsMainContainer>
         <PostsContainer>
-          <PostsTitle>{intl.formatMessage({id: 'casos_de_exito.title'})}</PostsTitle>
+          <PostsTitle>
+            {intl.formatMessage({ id: "casos_de_exito.title" })}
+          </PostsTitle>
           {Labs}
         </PostsContainer>
       </PostsMainContainer>
-    
     </Fragment>
-  )
-
+  );
 };
 
 export default Labs;
 
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }, filter: {frontmatter: {type: {eq: "lab"}}}) {
+    allMarkdownRemark(
+      sort: { order: DESC, fields: [frontmatter___date] }
+      filter: { frontmatter: { type: { eq: "lab" } } }
+    ) {
       edges {
         node {
           id
@@ -102,11 +112,9 @@ export const pageQuery = graphql`
             id
             title
             tags
-            image{
+            image {
               childImageSharp {
-                fluid(maxWidth: 1500, quality: 50) {
-                  ...GatsbyImageSharpFluid
-                }
+                gatsbyImageData(width: 1500, quality: 50)
               }
             }
             website
@@ -117,4 +125,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
