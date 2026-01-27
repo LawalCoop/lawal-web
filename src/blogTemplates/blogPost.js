@@ -59,11 +59,12 @@ const BreadcrumbWrapper = styled.div`
 `;
 const Breadcrumb = styled.p`
   font-size: 0.72em;
-  color: ${colors.darkGrey};
+  color: ${colors.white};
+  font-weight: ${fontWeight.medium};
 `;
 const BlogLink = styled(Link)`
-  //font-weight: ${fontWeight.medium};
-  color: ${colors.darkGrey};
+  color: ${colors.yellow};
+  text-decoration: underline;
 `;
 const PostInfo = styled.div`
   display: flex;

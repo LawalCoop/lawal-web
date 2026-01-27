@@ -29,6 +29,8 @@ const LinkLogo = styled(Link)`
     width: 238px;
     height: 50px;
     margin-left: -45px;
+    display: flex;
+    align-items: center;
     @media (min-width: ${breakpoints.xl}px) {
         width: 300px;
         height: 65px;
@@ -38,6 +40,7 @@ const LinkLogo = styled(Link)`
 const Logo = styled.img`
     width: 100px;
     height: 21px;
+    display: block;
     @media (min-width: ${breakpoints.xl}px) {
         width: 200px;
         height: 43px;
