@@ -1,13 +1,11 @@
 import React, {Fragment} from "react"
-import { useIntl } from "gatsby-plugin-react-intl"
+import { graphql } from "gatsby"
 import HomepageHeader from "../components/modules/HomepageHeader"
 import HomepageCulture from "../components/modules/HomepageCulture"
 import HomepageLabs from "../components/modules/HomepageLabs"
 import Services from "./servicios"
 
 const Index = (props) => {
-  const intl = useIntl();
-
   return (
     <Fragment>
         <HomepageHeader/>
@@ -19,3 +17,17 @@ const Index = (props) => {
 }
 
 export default Index
+
+export const pageQuery = graphql`
+  query ($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`

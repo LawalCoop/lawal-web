@@ -2,7 +2,7 @@ import React, { useState, useEffect, Fragment }  from 'react'
 import { graphql } from 'gatsby';
 import styled from 'styled-components'
 import data from '../content/content.json'
-import { useIntl } from "gatsby-plugin-react-intl"
+import { useI18next } from "gatsby-plugin-react-i18next"
 
 import Button from '../components/common/Button'
 import PostThumbnail from '../components/modules/PostThumbnail'
@@ -68,7 +68,7 @@ const Btn = styled(Button)`
 
 
 const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
-  const intl = useIntl();
+  const { language, t } = useI18next();
   const [currentPostsList, setCurrentPostsList] = useState([])
   const [visiblePosts, setVisiblePosts] = useState([])
   const [postsLimit, setPostsLimit] = useState(6)
@@ -77,12 +77,12 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
   useEffect(()=>{
     let tempPostsList = []
     edges.forEach(edge => {
-      if(edge.node.frontmatter.lang === intl.locale){
+      if(edge.node.frontmatter.lang === language){
         tempPostsList.push(edge)
       }
       setCurrentPostsList([...tempPostsList])
     });
-  }, [])
+  }, [edges, language])
 
   useEffect(()=>{
     if(currentPostsList.length !== 0){
@@ -105,7 +105,7 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
       <MainWrapper>
       <PostsContainer>
         <PostsWrapper>
-            <BlogTitle>Blog</BlogTitle>
+            <BlogTitle>{t("blog.title")}</BlogTitle>
 
             {visiblePosts.map( post => {
                 return(
@@ -125,7 +125,7 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
             type='btnPrimaryPurple'
             theme={styles}
             to="#"
-            btnText={intl.formatMessage({id: 'verMasArticulos'})}
+            btnText={t('verMasArticulos')}
             onButtonClick = {showMorePosts}
           />
         </PostsContainer>
@@ -137,8 +137,20 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
 export default Blog;
 
 export const pageQuery = graphql`
-  query {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }, filter: {frontmatter: {type: {eq: "post"}}}) {
+  query ($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+    allMarkdownRemark(
+      sort: { frontmatter: { date: DESC } }
+      filter: { frontmatter: { type: { eq: "post" } } }
+    ) {
       edges {
         node {
           id

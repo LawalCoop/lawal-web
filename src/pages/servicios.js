@@ -1,7 +1,8 @@
 import React, {Fragment} from "react"
 import styled from 'styled-components'
 import data from '../content/content.json'
-import { useIntl } from "gatsby-plugin-react-intl"
+import { graphql } from "gatsby"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 import FeaturedService from '../components/modules/FeaturedService'
 import Button from '../components/common/Button'
 import Service from '../components/modules/Service'
@@ -166,15 +167,15 @@ const Btn = styled(Button)`
 
 const Services = (props) => {
 
-    const intl = useIntl();
+    const { t } = useTranslation();
     return (
       <MainWrapper ishomepage={props.ishomepage}>
         <ServicesContainer ishomepage={props.ishomepage}>
           <ServicesWrapper ishomepage={props.ishomepage}>
             {
                 props.ishomepage ? 
-                <ServicesHomeTitle ishomepage={props.ishomepage}>{intl.formatMessage({id: "services.title"})}</ServicesHomeTitle>
-                : <ServicesTitle ishomepage={props.ishomepage}>{intl.formatMessage({id: "services.title"})}</ServicesTitle>
+                <ServicesHomeTitle ishomepage={props.ishomepage}>{t("services.title")}</ServicesHomeTitle>
+                : <ServicesTitle ishomepage={props.ishomepage}>{t("services.title")}</ServicesTitle>
             }
             <Fragment>
               {services.services.map( (service) =>{
@@ -193,7 +194,7 @@ const Services = (props) => {
             </Fragment>
             {
                 props.ishomepage ? 
-                <FeaturedService ishomepage={props.ishomepage}>{intl.formatMessage({id: "services.title"})}</FeaturedService>
+                <FeaturedService ishomepage={props.ishomepage}>{t("services.title")}</FeaturedService>
                 : ""
             }
           </ServicesWrapper>
@@ -203,7 +204,7 @@ const Services = (props) => {
                   ishomepage={props.ishomepage}
                   type='btnPrimaryYellow'
                   theme={styles}
-                  btnText={intl.formatMessage({id: "services.btnText"})}
+                  btnText={t("services.btnText")}
                   isLink
                   href="servicios"
                 />
@@ -219,3 +220,17 @@ const Services = (props) => {
 };
 
 export default Services;
+
+export const pageQuery = graphql`
+  query ($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`

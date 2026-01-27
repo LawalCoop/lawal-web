@@ -1,4 +1,5 @@
 module.exports = {
+  trailingSlash: "never",
   siteMetadata: {
     siteUrl: "https://lawal.coop",
     title: "lawal-web",
@@ -87,29 +88,33 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "locale",
+        path: `${__dirname}/src/content/intl`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-layout`,
       options: {
         component: require.resolve(`./src/components/layout/PageWrapper`),
       },
     },
-    // It's really important that `gatsby-plugin-react-intl` is listed AFTER `gatsby-plugin-layout`
     {
-      resolve: `gatsby-plugin-react-intl`,
+      resolve: `gatsby-plugin-react-i18next`,
       options: {
-        // language JSON resource path
-        path: `${__dirname}/src/content/intl`,
-        // supported language
-        languages: [`es`,`en`],
-        // language file path
+        localeJsonSourceName: `locale`,
+        languages: [`es`, `en`],
         defaultLanguage: `es`,
-        // option to redirect to `/es` when connecting `/`
+        siteUrl: `https://lawal.coop`,
         redirect: true,
-        // option for use / as defaultLangauge root path. if your defaultLanguage is `ko`, when `redirectDefaultLanguageToRoot` is true, then it will not generate `/ko/xxx` pages, instead of `/xxx`
-        redirectDefaultLanguageToRoot: false,
-        // paths that you don't want to genereate locale pages, example: ["/dashboard/","/test/**"], string format is from micromatch https://github.com/micromatch/micromatch
-        ignoredPaths: [],
-        // option to fallback to the defined language instead of the `defaultLanguage` if the user langauge is not in the list
-        fallbackLanguage: `es`,
+        generateDefaultLanguagePage: true,
+        trailingSlash: "never",
+        i18nextOptions: {
+          interpolation: {
+            escapeValue: false,
+          },
+        },
       },
     },
   

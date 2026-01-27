@@ -1,7 +1,7 @@
 import React from 'react';
 import data from '../../content/content.json'
 import styled from 'styled-components'
-import { useIntl } from "gatsby-plugin-react-intl"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 import Lottie from 'react-lottie'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import homepageAnimation from '../../images/animations/ina.json'
@@ -138,7 +138,7 @@ const SectionHeaderImgMobile = styled.img`
 `
 
 const HomepageHeader = (props) => {
-    const intl = useIntl();
+    const { t } = useTranslation();
 
     const animationOptions = {
         loop: true,
@@ -162,11 +162,11 @@ const HomepageHeader = (props) => {
                         </SectionHeaderImg>
                     </ImageContainerMobile>
                     <SectionHeaderDescription>
-                        {intl.formatMessage({id: "homepage.leadLine1"})}
-                        <SectionHeaderUnderlineSpan>{intl.formatMessage({id: "homepage.leadUnderlined"})}</SectionHeaderUnderlineSpan>
-                        {intl.formatMessage({id: "homepage.leadLine2"})}
-                        <SectionHeaderSpan>{intl.formatMessage({id: "homepage.leadBold"})}</SectionHeaderSpan>
-                        {intl.formatMessage({id: "homepage.leadLine3"})}
+                        {t("homepage.leadLine1")}
+                        <SectionHeaderUnderlineSpan>{t("homepage.leadUnderlined")}</SectionHeaderUnderlineSpan>
+                        {t("homepage.leadLine2")}
+                        <SectionHeaderSpan>{t("homepage.leadBold")}</SectionHeaderSpan>
+                        {t("homepage.leadLine3")}
                     </SectionHeaderDescription>
 
                 </InfoContainer>

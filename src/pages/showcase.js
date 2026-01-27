@@ -1,4 +1,5 @@
 import React from "react";
+import { graphql } from "gatsby";
 import styled from "styled-components";
 import data from "../content/content.json";
 
@@ -21,3 +22,17 @@ const Showcase = ({ path }) => {
 };
 
 export default Showcase;
+
+export const pageQuery = graphql`
+  query ($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`

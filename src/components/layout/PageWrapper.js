@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { StaticQuery, graphql } from "gatsby";
+import React from "react";
+import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
@@ -29,21 +29,23 @@ const PageContainer = styled.section`
   }
 `;
 const PageWrapper = (props) => {
-  const [ishomepage, setIsHomepage] = useState("true");
-
-  // hay que cambiar los homepaths cuando se deploye al server final
-  const homePathsGHpages = ["/", "/es", "/en"];
-
-  useEffect(() => {
-    if (homePathsGHpages.includes(props.location.pathname) === true) {
-      setIsHomepage("true");
-    } else {
-      setIsHomepage("false");
-    }
-  }, [props.location]);
+  const ishomepage = "false";
 
   // Hack to redirect /showcase to the showcase.pdf
   let path = props.location.pathname;
+
+  const data = useStaticQuery(graphql`
+    query MyQuery {
+      site {
+        siteMetadata {
+          menuLinks {
+            name
+            link
+          }
+        }
+      }
+    }
+  `);
 
   if (path.includes("/showcase")) {
     const pdfUrl = "/showcase.pdf";
@@ -57,32 +59,16 @@ const PageWrapper = (props) => {
   }
 
   return (
-    <StaticQuery
-      query={graphql`
-        query MyQuery {
-          site {
-            siteMetadata {
-              menuLinks {
-                name
-                link
-              }
-            }
-          }
-        }
-      `}
-      render={(data) => (
-        <Wrapper>
-          <Seo></Seo>
-          <Header
-            menuLinks={data.site.siteMetadata.menuLinks}
-            location={props.location}
-            ishomepage={ishomepage}
-          ></Header>
-          <PageContainer> {props.children}</PageContainer>
-          <Footer></Footer>
-        </Wrapper>
-      )}
-    ></StaticQuery>
+    <Wrapper>
+      <Seo></Seo>
+      <Header
+        menuLinks={data.site.siteMetadata.menuLinks}
+        location={props.location}
+        ishomepage={ishomepage}
+      ></Header>
+      <PageContainer> {props.children}</PageContainer>
+      <Footer></Footer>
+    </Wrapper>
   );
 };
 

@@ -24,8 +24,16 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     reporter.panicOnBuild("Error while running GraphQL query.");
   }
 
-  // Post template pages and context
+  const postsBySlug = new Map();
   query.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    const slug = node.frontmatter.slug;
+    if (!postsBySlug.has(slug)) {
+      postsBySlug.set(slug, node);
+    }
+  });
+
+  // Post template pages and context
+  postsBySlug.forEach((node) => {
     createPage({
       path: `/post${node.frontmatter.slug}`,
       component: blogPostTemplate,

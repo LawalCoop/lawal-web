@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import data from '../../content/content.json'
 import styled from 'styled-components'
-import { useIntl } from "gatsby-plugin-react-intl"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 import Lottie from 'react-lottie'
 import {Waypoint} from 'react-waypoint'
 import cultureAnimation from '../../images/animations/cultura.json'
@@ -129,7 +129,7 @@ const Btn = styled(Button)`
 
 const HomepageCulture = (props) => {
     const [renderLottie, setRenderLottie] = useState(false)
-    const intl = useIntl();
+    const { t } = useTranslation();
 
     const animationOptions= {
         loop: false,
@@ -145,7 +145,7 @@ const HomepageCulture = (props) => {
         <HomepageCultureContainer>
             <HomepageCultureBird
                 src={require('../../images/illustrations/bird.svg').default}
-                alt={intl.formatMessage({id: "homepageCulture.birdImageAlt"})}
+                alt={t("homepageCulture.birdImageAlt")}
             />
             <HomepageCultureWrapper>
                 <ImageContainer>
@@ -158,18 +158,18 @@ const HomepageCulture = (props) => {
                     </HomepageCultureImg>
                 </ImageContainer>
                 <InfoContainer>
-                    <HomepageCultureTitle>{intl.formatMessage({id: "homepageCulture.title"})}</HomepageCultureTitle>
+                    <HomepageCultureTitle>{t("homepageCulture.title")}</HomepageCultureTitle>
                     <HomepageCultureDescription>
-                        {intl.formatMessage({id: "homepageCulture.descriptionLine1"})}
-                        <DescriptionUnderline>{intl.formatMessage({id: "homepageCulture.underlinedText"})}</DescriptionUnderline>
-                        {intl.formatMessage({id: "homepageCulture.descriptionLine2"})}
+                        {t("homepageCulture.descriptionLine1")}
+                        <DescriptionUnderline>{t("homepageCulture.underlinedText")}</DescriptionUnderline>
+                        {t("homepageCulture.descriptionLine2")}
                     </HomepageCultureDescription>
                     <Btn 
                       type='btnPrimaryWhite' 
                       theme={styles} 
                       href="cultura"
                       isLink
-                      btnText={intl.formatMessage({id: "homepageCulture.btnText"})}
+                      btnText={t("homepageCulture.btnText")}
                     />
                 </InfoContainer>
             </HomepageCultureWrapper>
