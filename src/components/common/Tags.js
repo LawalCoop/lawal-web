@@ -27,7 +27,6 @@ const Tags = (props) => {
                     color : props.styles.colors.white,
                     padding : '9px 14px'
                  }
-            break
             case "services" : 
                 return {
                     background : props.styles.colors.yellow, 
@@ -35,7 +34,6 @@ const Tags = (props) => {
                     color : props.styles.colors.purpleSecondary,
                     padding : '8px 14px'
                 }
-            break
             default : 
                 return {
                     background : props.styles.colors.greenLight, 

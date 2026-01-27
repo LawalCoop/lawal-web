@@ -55,7 +55,6 @@ const Button = (props) => {
           color: props.theme.colors.white,
           imgDisplay: "none",
         };
-        break;
       case "btnPrimaryWhite":
         return {
           background: props.theme.colors.white,
@@ -65,7 +64,6 @@ const Button = (props) => {
           color: props.theme.colors.darkMainBg,
           imgDisplay: "none",
         };
-        break;
       case "btnPrimaryOrangePurple":
         return {
           background: props.theme.colors.orangeMain,
@@ -75,7 +73,6 @@ const Button = (props) => {
           color: props.theme.colors.white,
           imgDisplay: "none",
         };
-        break;
       case "btnPrimaryYellow":
         return {
           background: props.theme.colors.yellow,
@@ -85,7 +82,6 @@ const Button = (props) => {
           color: props.theme.colors.purplePrimary,
           imgDisplay: "none",
         };
-        break;
       case "btnPrimaryPurple":
         return {
           background: props.theme.colors.white,
@@ -95,7 +91,6 @@ const Button = (props) => {
           color: props.theme.colors.purplePrimary,
           imgDisplay: "none",
         };
-        break;
       case "btnSecondary":
         return {
           background: props.theme.colors.transparent,
@@ -106,7 +101,6 @@ const Button = (props) => {
           color: props.theme.colors.darkGrey,
           imgDisplay: "none",
         };
-        break;
       case "btnLabeled":
         return {
           background: props.theme.colors.white,
@@ -116,7 +110,6 @@ const Button = (props) => {
           color: props.theme.colors.darkMainBg,
           imgDisplay: "static",
         };
-        break;
       default:
         return {
           background: props.theme.colors.white,

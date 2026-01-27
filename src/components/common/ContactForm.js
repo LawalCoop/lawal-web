@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import data from '../../content/content.json';
 import { useTranslation } from "gatsby-plugin-react-i18next";
-import { useForm } from "react-hook-form";
-import axios from 'axios';
 
 const styles = data.styles;
 
@@ -113,63 +111,8 @@ const Office = styled.span`
     }
 `;
 
-const OfficeList = styled.ul`
-    margin-left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-`;
-
-const OfficeListItem = styled.li`
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    font-size: .88em;
-    list-style-type: none;
-    margin-bottom: 10px;
-    line-height: 22px;
-    &:last-of-type {
-        margin-bottom: 0;
-    }
-    @media (min-width: ${styles.breakpoints.m}px) {
-        font-size: 1em;
-        line-height: 26px;
-    }
-    &::before {
-        content: url("${require('../../images/pin.svg').default}");
-        display: inline-block;
-        width: 25px; 
-        margin-top: 3px;
-    }
-`;
-
 const ContactForm = () => {
     const { t } = useTranslation();
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const [emailSent, setEmailSent] = useState(false);
-    const [name, setName] = useState("");
-    const [mail, setMail] = useState("");
-    const [message, setText] = useState("");
-
-    const onSubmit = async () => {
-        try {
-            setEmailSent(true);
-            await axios.post("https://getform.io/f/a021d0d9-180f-4d03-8df0-462bc7ab9429", {
-                name,
-                mail,
-                message
-            });
-        } catch (error) {
-            setEmailSent(false);
-            console.log(error);
-        }
-    };
-
-    useEffect(() => {
-        reset();
-        setTimeout(() => { setEmailSent(false); }, 5000);
-    }, [emailSent]);
 
     return (
         <ContactMainContainer>

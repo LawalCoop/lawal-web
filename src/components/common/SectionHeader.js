@@ -16,16 +16,6 @@ const iluCultura = require('../../images/illustrations/cultura.svg');
 
 
 
-const setSharedStyles = (type) => {
-    return `
-        font-size: ${type.fontSize};
-        font-weight: ${type.fontWeight};
-        color: ${type.color };
-        background-color: ${type.background};
-        border-color: ${type.borderColor};
-        box-shadow:  0px 4px 0px ${type.boxShadow};
-    `
-} 
 const HeaderContainer = styled.div`
     background: ${colors.greenLight};
     padding-bottom: 80px;
@@ -157,27 +147,6 @@ const SectionHeaderDescription = styled.p`
     
 `
 
-const SectionHeaderImg = styled.img`
-    margin-top: 83px;
-    @media (min-width: ${breakpoints.m}px) {
-        max-width: 350px;
-    }
-    @media (min-width: ${breakpoints.l}px) {
-        max-width: 463px;
-    }
-    ${props => {
-        if (props.section === 'cultura') {
-            return  `margin-top: 0;
-            @media (min-width: ${breakpoints.m}px) {
-                max-width: 350px;
-            }
-            @media (min-width: ${breakpoints.l}px) {
-                max-width: 429px;
-            }
-            `
-        }
-    }}
-`
 const SectionHeaderImgMobile = styled.img`
     width: 100%;
     max-width: 307px;
@@ -200,10 +169,10 @@ const SectionHeader = (props) => {
         switch (section) {
           case "labs":
             return labsAnimation
-            break
           case "cultura":
             return cultureAnimation
-            break
+          default:
+            return labsAnimation
         }
       } 
     
@@ -226,14 +195,12 @@ const SectionHeader = (props) => {
                     color : colors.white,
                     image: iluCultura,
                  }
-            break
             case "labs" : 
                 return {
                     background : colors.greenLight,
                     color : colors.white,
                     image : iluLabs
                  }
-            break
             default : 
                 return {
                     background : colors.greenLight,

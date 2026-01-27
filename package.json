@@ -45,5 +45,9 @@
     "react-lottie": "^1.2.10",
     "react-waypoint": "^10.1.0",
     "styled-components": "^5.3.1"
+  },
+  "overrides": {
+    "cookie": "^0.7.0",
+    "tmp": "^0.2.4"
   }
 }

@@ -3,26 +3,12 @@ import data from '../../content/content.json'
 import styled from 'styled-components'
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import Lottie from 'react-lottie'
-import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import homepageAnimation from '../../images/animations/ina.json'
 
 // Desestructurar las propiedades para evitar warnings de webpack
 const { styles } = data;
 const { colors, breakpoints, fontWeight } = styles;
 
-const iluHomepage = require('../../images/illustrations/ina.png');
-
-
-const setSharedStyles = (type) => {
-    return `
-        font-size: ${type.fontSize};
-        font-weight: ${type.fontWeight};
-        color: ${type.color };
-        background-color: ${type.background};
-        border-color: ${type.borderColor};
-        box-shadow:  0px 4px 0px ${type.boxShadow};
-    `
-} 
 const HeaderContainer = styled.div`
     background: ${colors.greenLight};
     display: flex; 
@@ -128,15 +114,6 @@ const SectionHeaderImg = styled.div`
         max-width: 611px;
     }
 `
-const SectionHeaderImgMobile = styled.img`
-    width: 100%;
-    max-width: 249px;
-    margin-bottom: 25px;
-    @media (min-width: ${breakpoints.m}px) {
-        display: none;
-    }
-`
-
 const HomepageHeader = (props) => {
     const { t } = useTranslation();
 

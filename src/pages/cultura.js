@@ -235,10 +235,6 @@ const Culture = () => {
         }
     `;
 
-    const FederalContentBoldText = styled.b`
-        font-weight: ${fontWeight.regular};
-    `;
-
     const BottomBlock = styled.div`
         @media (min-width: ${breakpoints.m}px) {
             max-width: 754px;

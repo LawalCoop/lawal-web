@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment }  from 'react'
+import React, { useState, useEffect }  from 'react'
 import { graphql } from 'gatsby';
 import styled from 'styled-components'
 import data from '../content/content.json'
@@ -74,25 +74,16 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
   const [postsLimit, setPostsLimit] = useState(6)
   const postsAdd = 6
 
-  useEffect(()=>{
-    let tempPostsList = []
-    edges.forEach(edge => {
-      if(edge.node.frontmatter.lang === language){
-        tempPostsList.push(edge)
-      }
-      setCurrentPostsList([...tempPostsList])
-    });
-  }, [edges, language])
+  useEffect(() => {
+    const tempPostsList = edges.filter(
+      (edge) => edge.node.frontmatter.lang === language
+    );
+    setCurrentPostsList(tempPostsList);
+  }, [edges, language]);
 
-  useEffect(()=>{
-    if(currentPostsList.length !== 0){
-      setVisiblePosts(currentPostsList.slice(0,postsLimit))
-    }
-  }, [currentPostsList])
-
-  useEffect (()=>{
-    setVisiblePosts(currentPostsList.slice(0,postsLimit))
-  }, [postsLimit])
+  useEffect(() => {
+    setVisiblePosts(currentPostsList.slice(0, postsLimit));
+  }, [currentPostsList, postsLimit]);
   
   const showMorePosts = () => {
     if(postsLimit<=currentPostsList.length){

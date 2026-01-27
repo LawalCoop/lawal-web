@@ -228,13 +228,14 @@ export default function Post({
     return <PostContainer></PostContainer>;
   }
   
-  const postFiqus = edges.forEach((e) => {
+  for (const e of edges) {
     const { frontmatter: p } = e.node;
     if (p.lang === language) {
       post = p;
       html = e.node.html;
-    }      
-  })
+      break;
+    }
+  }
 
   return (
     <PostContainer>

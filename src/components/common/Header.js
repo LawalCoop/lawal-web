@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
 import data from '../../content/content.json'
 import { Link, useI18next } from "gatsby-plugin-react-i18next"
-import homepageAnimation from '../../images/animations/logo_blanco.json'
-import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 
 // Desestructurar las propiedades para evitar warnings de webpack
 const { styles } = data;
@@ -61,9 +59,6 @@ const LangSelector = styled.nav`
         margin-right: unset;
         margin-left: 0;
     }
-`
-const LangList = styled.ul`
-    display: flex;
 `
 const LangItem = styled.li`
     list-style-type: none;
@@ -208,15 +203,6 @@ const Header = (props) => {
         "en": "English",
         "es": "Español"
     }
-    const animationOptions= {
-        loop: false,
-        autoplay: true,
-        animationData: homepageAnimation,
-        rendererSettings: {
-          preserveAspectRatio: "xMidYMid slice"
-        }
-    }
-
     useEffect(() => {
         let active;
         props.menuLinks.forEach(menuLink => {
@@ -228,7 +214,7 @@ const Header = (props) => {
 
         setActiveLink(active)
 
-    }, [props.location])
+    }, [props.location.pathname, props.menuLinks])
 
     return (
         <NavWrapper ishomepage={props.ishomepage}>

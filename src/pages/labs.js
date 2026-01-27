@@ -58,11 +58,13 @@ const Labs = ({
 }) => {
   const { language, t } = useI18next();
 
-  const Labs = edges.map((edge) => {
-    const image = edge.node.frontmatter.image.childImageSharp.gatsbyImageData;
-    const english = edge.node.frontmatter.english;
-
-    if ((english && language == "en") || (!english && language == "es")) {
+  const Labs = edges
+    .filter((edge) => {
+      const english = edge.node.frontmatter.english;
+      return (english && language === "en") || (!english && language === "es");
+    })
+    .map((edge) => {
+      const image = edge.node.frontmatter.image.childImageSharp.gatsbyImageData;
       return (
         <Lab
           key={edge.node.frontmatter.id}
@@ -71,8 +73,7 @@ const Labs = ({
           labData={edge.node}
         ></Lab>
       );
-    }
-  });
+    });
 
   return (
     <Fragment>
