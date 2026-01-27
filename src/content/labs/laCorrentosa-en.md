@@ -2,8 +2,8 @@
 type: "lab"
 id: "lacorrentosa"
 slug: /lacorrentosa
-title: "Asociación Mutual La Correntosa"
-tags: ["Mutual", "Cooperativismo", "Alimentos", "Agroecología"]
+title: "Asociacion Mutual La Correntosa"
+tags: ["Mutual", "Cooperativism", "Food", "Agroecology"]
 image: images/corrent.png
 website: "https://www.lacorrentosa.com.ar"
 github: "https://github.com/fiqus/compras-comunitarias"
@@ -11,4 +11,4 @@ english: true
 
 ---
 
-Participamos activamente de la creación y gestión de una mutual de consumidores organizada para impulsar el consumo de alimentos agroecológicos o en vías de serlo de cooperativas o pequeñas producciones familiares.
+We actively participate in the creation and management of a consumers' mutual organized to promote the consumption of agroecological food, or food on the way to becoming so, from cooperatives or small family producers.

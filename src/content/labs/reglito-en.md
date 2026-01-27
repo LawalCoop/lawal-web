@@ -11,5 +11,4 @@ english: true
 
 ---
 
-Generador de reglamentos internos para cooperativas de trabajo.
-
+Internal bylaws generator for worker cooperatives.

@@ -11,4 +11,4 @@ english: true
 
 ---
 
-Sistema de facturación electrónica donde se pueden autorizar todo tipo de facturas con AFIP, también visualizarlas en un dashboard, descargarlas y compartirlas.
+Electronic invoicing system where all kinds of invoices can be authorized with AFIP, and also viewed in a dashboard, downloaded, and shared.

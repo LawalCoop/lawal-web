@@ -3,7 +3,7 @@ type: "lab"
 id: "hackerSpace"
 title: "Hacker Space"
 slug: /hackerspace
-tags: ["Comunidad", "Capacitación"]
+tags: ["Community", "Training"]
 image: images/hackerspace.jpg
 website: ""
 github: ""
@@ -11,4 +11,4 @@ english: true
 
 ---
 
-Tenemos un espacio abierto de capacitación informal en nuestra oficina, donde personas interesadas a aprender a programar pueden hacerlo.
+We have an open, informal training space in our office where people interested in learning to code can do so.

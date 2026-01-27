@@ -3,7 +3,7 @@ type: "lab"
 id: "coopHub"
 slug: /coophub
 title: "CoopHub"
-tags: ["Elixir", "Phoenix", "Utilización de ETS", "Cache de datos", "ReactJS", "Api y acciones de GitHub"]
+tags: ["Elixir", "Phoenix", "ETS usage", "Data cache", "ReactJS", "GitHub API and actions"]
 image: images/coophub.png
 website: "https://coophub.io/"
 github: "https://github.com/fiqus/coophub"
@@ -11,5 +11,4 @@ english: true
 
 ---
 
-Es un sitio web donde se muestran los repositorios open source de diferentes cooperativas a lo largo del mundo. 
-A su vez, se puede ver cuales son los lenguajes de programación más utilizados y buscar por tags.
+A website that showcases open source repositories from different cooperatives around the world. You can also see the most used programming languages and search by tags.
