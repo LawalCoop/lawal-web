@@ -26,14 +26,14 @@ const NavWrapper = styled.nav`
     }
 `
 const LinkLogo = styled(Link)`
-    width: 238px;
+    width: 100px;
     height: 50px;
-    margin-left: -45px;
     display: flex;
     align-items: center;
     @media (min-width: ${breakpoints.xl}px) {
         width: 300px;
         height: 65px;
+        margin-left: -45px;
         order: 1;
     }
 `
