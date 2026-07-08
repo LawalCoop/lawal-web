@@ -2,10 +2,14 @@ import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
 import data from '../../content/content.json'
 import { Link, useI18next } from "gatsby-plugin-react-i18next"
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
+import logoAnimation from '../../images/animations/logo_blanco.json'
 
 // Desestructurar las propiedades para evitar warnings de webpack
 const { styles } = data;
 const { colors, breakpoints } = styles;
+// El JSON se serializa una sola vez y se pasa por `data` (bundleado, sin fetch en runtime → sin 404 posible)
+const logoData = JSON.stringify(logoAnimation)
 const darkLogo = require('../../images/logo_blanco.png')
 const lightLogo = require('../../images/logo_blanco.png')
 const lightIconToggler = require('../../images/icon_toggler.svg')
@@ -26,24 +30,48 @@ const NavWrapper = styled.nav`
     }
 `
 const LinkLogo = styled(Link)`
-    width: 100px;
-    height: 50px;
     display: flex;
     align-items: center;
     @media (min-width: ${breakpoints.xl}px) {
-        width: 300px;
-        height: 65px;
-        margin-left: -45px;
         order: 1;
     }
 `
+// Caja del logo: dimensiones fijas para evitar saltos de layout entre el PNG y el Lottie
+const LogoBox = styled.div`
+    position: relative;
+    width: 120px;
+    height: 40px;
+    @media (min-width: ${breakpoints.xl}px) {
+        width: 210px;
+        height: 66px;
+    }
+`
+// Fallback estático: siempre presente desde el HTML (aparece al instante), se desvanece cuando el Lottie está listo
 const Logo = styled.img`
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
     width: 100px;
     height: 21px;
     display: block;
+    transition: opacity .25s ease;
+    opacity: ${props => props.faded ? 0 : 1};
     @media (min-width: ${breakpoints.xl}px) {
         width: 200px;
         height: 43px;
+    }
+`
+// Canvas animado: superpuesto, aparece con fade cuando dispara el evento load
+const LogoCanvas = styled.div`
+    position: absolute;
+    inset: 0;
+    opacity: ${props => props.visible ? 1 : 0};
+    transition: opacity .25s ease;
+    canvas {
+        width: 100% !important;
+        height: 100% !important;
+        display: block;
     }
 `
 const LangSelector = styled.nav`
@@ -201,7 +229,13 @@ const LangContent = styled.abbr`
 const Header = (props) => {
     const [isNavOpen, setIsNavOpen] = useState(false);
     const [activeLink, setActiveLink] = useState('/');
+    const [logoReady, setLogoReady] = useState(false);
     const { t, languages, language, originalPath } = useI18next();
+    // Revela el canvas (y desvanece el PNG) recién cuando la animación cargó y está lista
+    const dotLottieRefCallback = (dotLottie) => {
+        if (!dotLottie) return;
+        dotLottie.addEventListener('load', () => setLogoReady(true));
+    }
     const languageNames = {
         "en": "English",
         "es": "Español"
@@ -222,11 +256,20 @@ const Header = (props) => {
     return (
         <NavWrapper ishomepage={props.ishomepage}>
             <LinkLogo to="/">
-                {
-                    props.ishomepage === "true"? 
-                    <Logo src={darkLogo.default} alt={t("header.logoAlt")} /> : 
-                    <Logo src={lightLogo.default} alt={t("header.logoAlt")} />
-                }
+                <LogoBox>
+                    <Logo
+                        src={(props.ishomepage === "true" ? darkLogo : lightLogo).default}
+                        alt={t("header.logoAlt")}
+                        faded={logoReady}
+                    />
+                    <LogoCanvas visible={logoReady}>
+                        <DotLottieReact
+                            data={logoData}
+                            autoplay
+                            dotLottieRefCallback={dotLottieRefCallback}
+                        />
+                    </LogoCanvas>
+                </LogoBox>
             </LinkLogo>
             
             <LangSelector ishomepage={props.ishomepage}>
