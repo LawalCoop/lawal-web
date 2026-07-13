@@ -52,7 +52,6 @@ const doorBase = `
   position: fixed;
   left: 0;
   right: 0;
-  height: 51vh;
   z-index: 9998;
   pointer-events: none;
   overflow: hidden;
@@ -67,10 +66,20 @@ const doorColor = "#4E9384";
 const DoorTop = styled(motion.div)`
   ${doorBase}
   top: 0;
+  /* Llega hasta la costura (centro visual) + 1px de solape para tapar cualquier hairline
+     entre las dos puertas. dvh sigue el viewport real en mobile; vh es el fallback. */
+  height: calc(50vh + 1px);
+  height: calc(50dvh + 1px);
   background: ${doorColor};
 `;
 const DoorBottom = styled(motion.div)`
   ${doorBase}
+  /* Anclada por su borde SUPERIOR a la MISMA costura que el borde inferior de DoorTop.
+     Antes se anclaba a bottom:0 + la W usaba bottom:50vh, que en mobile (barra de
+     direcciones dinámica) no coincide con el top:50vh de la mitad de arriba y partía la W.
+     Ahora ambas mitades referencian la misma línea desde arriba (50dvh) → W siempre entera. */
+  top: 50vh;
+  top: 50dvh;
   bottom: 0;
   background: ${doorColor};
 `;
@@ -100,10 +109,13 @@ const WLogo = styled.div`
   mask: url(${W_LOGO_SRC}) center / contain no-repeat;
   filter: ${debossFilter};
   pointer-events: none;
+  /* Las dos mitades se anclan a la MISMA costura (centro de las puertas) desde arriba:
+     la de arriba a 50dvh dentro de su puerta (top:0), la de abajo a 0 dentro de la suya
+     (top:50dvh). Mismo centro, mismo nudge → la W se lee entera también en mobile. */
   ${(p) =>
     p.$half === "top"
-      ? `top: 50vh; transform: translate(-50%, calc(-50% + ${logoNudge}));`
-      : `bottom: 50vh; transform: translate(-50%, calc(50% + ${logoNudge}));`}
+      ? `top: 50vh; top: 50dvh; transform: translate(-50%, calc(-50% + ${logoNudge}));`
+      : `top: 0; transform: translate(-50%, calc(-50% + ${logoNudge}));`}
 `;
 
 // Anillo alrededor de la W, partido igual que el logo: cada puerta lleva un círculo
@@ -124,8 +136,8 @@ const WRing = styled.div`
   pointer-events: none;
   ${(p) =>
     p.$half === "top"
-      ? `top: 50vh; transform: translate(-50%, -50%);`
-      : `bottom: 50vh; transform: translate(-50%, 50%);`}
+      ? `top: 50vh; top: 50dvh; transform: translate(-50%, -50%);`
+      : `top: 0; transform: translate(-50%, -50%);`}
 `;
 
 // Brillo/reflejo que barre la W al unirse: una banda de luz diagonal enmascarada con la
@@ -135,6 +147,7 @@ const ShineWrap = styled.div`
   position: fixed;
   left: 50%;
   top: 50vh;
+  top: 50dvh;
   width: ${seamLogoWidth};
   aspect-ratio: 1 / 1;
   transform: translate(-50%, calc(-50% + ${logoNudge}));
