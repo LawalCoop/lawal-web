@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import data from '../../content/content.json'
 import styled from 'styled-components'
+import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import Lottie from 'react-lottie'
 import {Waypoint} from 'react-waypoint'
 import cultureAnimation from '../../images/animations/cultura.json'
 import Button from '../../components/common/Button'
+import { staggerContainer, riseItem } from '../common/motion/variants'
 
 // Desestructurar las propiedades para evitar warnings de webpack
 const { styles } = data;
@@ -36,7 +38,7 @@ const HomepageCultureWrapper = styled.div`
         max-width: 959px;
     }
 `
-const InfoContainer = styled.div`
+const InfoContainer = styled(motion.div)`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,7 +58,7 @@ const InfoContainer = styled.div`
         margin-top: -22px;
     }
 `
-const HomepageCultureTitle = styled.h2`
+const HomepageCultureTitle = styled(motion.h2)`
     font-size: 2.38em;
     line-height: 49px;
     font-weight: ${fontWeight.bold};
@@ -70,7 +72,20 @@ const HomepageCultureTitle = styled.h2`
         margin-bottom: 18px;
     }
 `
-const HomepageCultureDescription = styled.p`
+// Subrayado de acento neobrutalista bajo el título (amarillo, visible sobre fondo oscuro).
+const TitleUnderline = styled(motion.span)`
+    display: block;
+    width: 88px;
+    height: 11px;
+    background: ${colors.yellow};
+    border: 3px solid #000;
+    border-radius: 5px;
+    margin: 0 auto 26px auto;
+    @media (min-width: ${breakpoints.m}px) {
+        margin: 0 0 30px 0;
+    }
+`
+const HomepageCultureDescription = styled(motion.p)`
     font-size: 1em;
     line-height: 26px;
     font-weight: ${fontWeight.regular};
@@ -82,18 +97,20 @@ const HomepageCultureDescription = styled.p`
         line-height: 34px;
     }
 `
-const DescriptionUnderline = styled.span`
-    @media (min-width: ${breakpoints.m}px) {
-        position: relative;
-        &::before {
-            position: absolute; 
-            content: url("${require('../../images/orange_underline_culture.svg').default}");
-            left: 3px;
-            bottom: -12.5px;
-        }
-    }
+// Resalte tipo "marker" como los del hero, pero más chico y en naranja
+// (contrasta sobre el fondo oscuro y se diferencia del amarillo de los títulos).
+const Marker = styled.span`
+    background: ${colors.orangeMain};
+    color: #000;
+    font-weight: ${fontWeight.bold};
+    padding: 1px 7px;
+    border: 2px solid #000;
+    border-radius: 4px;
+    box-shadow: 2px 2px 0 #000;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
 `
-const ImageContainer = styled.div`
+const ImageContainer = styled(motion.div)`
     margin: -105px auto 8px auto;
     max-width: 314px;
     @media (min-width: ${breakpoints.m}px) {
@@ -107,7 +124,7 @@ const ImageContainer = styled.div`
     }
     
 `
-const HomepageCultureBird = styled.img`
+const HomepageCultureBird = styled(motion.img)`
     display: none;
     @media (min-width: ${breakpoints.m}px) {
         position: absolute;
@@ -121,7 +138,17 @@ const HomepageCultureImg = styled.div`
     width: 100%;
 `
 const Btn = styled(Button)`
+  /* inline-flex: que no se estire a full-width dentro del contenedor. */
+  display: inline-flex;
   margin: 0px auto 15px auto;
+  /* Sombra dura AMARILLA: la negra es invisible sobre el fondo oscuro de la sección. */
+  box-shadow: 5px 5px 0 ${colors.yellow};
+  &:hover {
+    box-shadow: 7px 7px 0 ${colors.yellow};
+  }
+  &:active {
+    box-shadow: 2px 2px 0 ${colors.yellow};
+  }
   @media (min-width: ${breakpoints.m}px) {
     margin: 0px auto 0 0;
   }
@@ -130,6 +157,11 @@ const Btn = styled(Button)`
 const HomepageCulture = (props) => {
     const [renderLottie, setRenderLottie] = useState(false)
     const { t } = useTranslation();
+    const reduce = useReducedMotion();
+
+    // Parallax suave del Lottie según scroll (desactivado con reduced-motion)
+    const { scrollYProgress } = useScroll();
+    const yParallax = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
     const animationOptions= {
         loop: false,
@@ -146,31 +178,47 @@ const HomepageCulture = (props) => {
             <HomepageCultureBird
                 src={require('../../images/illustrations/bird.svg').default}
                 alt={t("homepageCulture.birdImageAlt")}
+                animate={reduce ? undefined : { y: [0, -8, 0] }}
+                transition={reduce ? undefined : { duration: 3, repeat: Infinity, ease: "easeInOut" }}
             />
             <HomepageCultureWrapper>
-                <ImageContainer>
+                <ImageContainer
+                    style={{ y: reduce ? 0 : yParallax }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6 }}
+                >
                     <HomepageCultureImg>
                         <Waypoint onEnter={()=>setRenderLottie(true)}/>
                         { renderLottie && <Lottie
                             options = {animationOptions}
-                            width = "100%"/> 
+                            width = "100%"/>
                         }
                     </HomepageCultureImg>
                 </ImageContainer>
-                <InfoContainer>
-                    <HomepageCultureTitle>{t("homepageCulture.title")}</HomepageCultureTitle>
-                    <HomepageCultureDescription>
+                <InfoContainer
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.4 }}
+                    variants={staggerContainer}
+                >
+                    <HomepageCultureTitle variants={riseItem}>{t("homepageCulture.title")}</HomepageCultureTitle>
+                    <TitleUnderline variants={riseItem} />
+                    <HomepageCultureDescription variants={riseItem}>
                         {t("homepageCulture.descriptionLine1")}
-                        <DescriptionUnderline>{t("homepageCulture.underlinedText")}</DescriptionUnderline>
+                        <Marker>{t("homepageCulture.underlinedText")}</Marker>
                         {t("homepageCulture.descriptionLine2")}
                     </HomepageCultureDescription>
-                    <Btn 
-                      type='btnPrimaryWhite' 
-                      theme={styles} 
-                      href="cultura"
-                      isLink
-                      btnText={t("homepageCulture.btnText")}
-                    />
+                    <motion.div variants={riseItem} style={{ width: '100%' }}>
+                        <Btn
+                          type='btnPrimaryWhite'
+                          theme={styles}
+                          href="cultura"
+                          isLink
+                          btnText={t("homepageCulture.btnText")}
+                        />
+                    </motion.div>
                 </InfoContainer>
             </HomepageCultureWrapper>
         </HomepageCultureContainer>

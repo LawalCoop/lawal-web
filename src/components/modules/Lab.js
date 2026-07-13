@@ -1,121 +1,141 @@
 import React from 'react';
 import styled from 'styled-components';
+import { motion } from 'motion/react';
 import data from '../../content/content.json';
 import { GatsbyImage } from "gatsby-plugin-image";
 import Tags from '../common/Tags';
 import { useTranslation } from "gatsby-plugin-react-i18next";
 import Button from '../common/Button';
+import { spring } from '../common/motion/variants';
 
 const githubIcon = require('../../images/icon_github.svg');
 const styles = data.styles;
+const { colors } = styles;
 
-// Contenedor principal con bordes redondeados y efecto hover
-const CaseWrapper = styled.div`
-    margin-bottom: 40px;
-    max-width: 351px;
-    flex-basis: 100%;
-    background: ${styles.colors.white};
-    border-radius: 14px; /* Bordes redondeados */
-    padding: 20px;
-    border: 4px solid #000; /* Borde grueso */
-    box-shadow: 8px 8px 0 #000; /* Sombra pronunciada */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transición suave */
+// Paleta de sombras duras que rota por tarjeta (look bento / RetroUI).
+// Sin amarillo: el fondo de la sección es amarillo y la sombra se perdería.
+const shadowColors = [colors.red, colors.purpleLight, colors.purpleSecondary, colors.greenMain];
 
-    &:hover {
-        transform: translate(4px, 4px); /* Efecto de "bajar" */
-        box-shadow: 4px 4px 0 #000; /* Sombra reducida */
-    }
-
-    &:last-of-type {
-        margin-bottom: 96px;
-    }
-
-    @media (min-width: ${styles.breakpoints.l}px) {
-        flex-basis: 33%;
-        &:last-of-type {
-            margin-bottom: 75px;
-        }
-    }
-`;
-
-// Imagen con bordes redondeados
-const LabImage = styled(GatsbyImage)`
-    border-radius: 6px; /* Bordes redondeados */
-    margin-bottom: 15px;
-    height: 182px;
-    width: 100%;
-    border: 2px solid #000; /* Borde grueso */
+// Tarjeta bento. El ancho (span sobre un grid de 6 columnas) y la orientación
+// (vertical vs. horizontal "featured") vienen dados por props según la fila.
+const CaseWrapper = styled(motion.div)`
+    position: relative;
+    background: ${colors.white};
+    border-radius: 8px;
+    border: 4px solid #000;
+    box-shadow: 8px 8px 0 ${props => props.$shadow};
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     @media (min-width: ${styles.breakpoints.m}px) {
-        margin-bottom: 20px;
-    }
-    @media (min-width: ${styles.breakpoints.l}px) {
-        height: 208px;
+        grid-column: span ${props => props.$span};
+        flex-direction: ${props => (props.$horizontal ? 'row' : 'column')};
+        align-items: stretch;
     }
 `;
 
-// Título con estilo fuerte
+// Lado de la imagen. En vertical es una franja superior; en horizontal, lateral.
+const ImageSide = styled.div`
+    position: relative;
+    flex-shrink: 0;
+    border-bottom: 4px solid #000;
+    @media (min-width: ${styles.breakpoints.m}px) {
+        ${props => props.$horizontal
+            ? `width: 40%; border-bottom: none; border-right: 4px solid #000;`
+            : `width: 100%;`}
+    }
+`;
+
+const LabImage = styled(GatsbyImage)`
+    height: 180px;
+    width: 100%;
+    display: block;
+    @media (min-width: ${styles.breakpoints.m}px) {
+        ${props => props.$horizontal
+            ? `height: 100%; min-height: 240px;`
+            : `height: 170px;`}
+    }
+`;
+
+// Eyebrow en la esquina de la imagen (tag corto en mayúsculas, estilo RetroUI).
+const Eyebrow = styled.span`
+    position: absolute;
+    z-index: 2;
+    top: 14px;
+    left: 14px;
+    background: ${props => props.$shadow};
+    color: #000;
+    font-size: 0.72em;
+    font-weight: ${styles.fontWeight.bold};
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    border: 3px solid #000;
+    border-radius: 6px;
+    box-shadow: 3px 3px 0 #000;
+`;
+
+const ContentSide = styled.div`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    @media (min-width: ${styles.breakpoints.m}px) {
+        padding: ${props => (props.$horizontal ? '26px 30px' : '20px 22px')};
+    }
+`;
+
 const LabTitle = styled.h3`
-    font-size: 2.11em;
-    line-height: 42px;
-    color: ${styles.colors.greenMain};
-    margin-bottom: 15px;
+    font-size: 1.5em;
+    line-height: 1.2;
+    color: ${colors.greenMain};
+    margin-bottom: 12px;
+    @media (min-width: ${styles.breakpoints.l}px) {
+        font-size: ${props => (props.$horizontal ? '2em' : '1.6em')};
+    }
 `;
 
-// Descripción con bordes redondeados y línea divisoria
+// Descripción acotada a pocas líneas para que las tarjetas queden compactas.
 const LabDescription = styled.p`
-    font-size: 1em;
-    line-height: 1.22em;
-    padding-bottom: 22px;
-    margin-bottom: 20px;
-    color: ${styles.colors.darkMainBg};
-    border-bottom: 2px solid ${styles.colors.greenLight}; /* Línea divisoria */
-    @media (min-width: ${styles.breakpoints.l}px) {
-        line-height: 1.44em;
-    }
+    font-size: 0.95em;
+    line-height: 1.5;
+    color: ${colors.darkMainBg};
+    margin-bottom: 18px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: ${props => (props.$horizontal ? 3 : 4)};
+    overflow: hidden;
 `;
 
-// Título de las etiquetas
-const TagsTitle = styled.h4`
-    margin-bottom: 20px;
-    font-size: 0.88em;
-    font-weight: ${styles.fontWeight.medium};
-    color: ${styles.colors.ultraDarkGrey};
-`;
-
-// Contenedor de etiquetas con bordes redondeados
+// Etiquetas empujadas al fondo para alinear los botones abajo.
 const TagsContainer = styled.div`
-    padding-bottom: 13px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid ${styles.colors.greenLight}; /* Línea divisoria */
-    @media (min-width: ${styles.breakpoints.l}px) {
-        padding-bottom: 13px;
-    }
+    margin-top: auto;
+    padding-top: 16px;
+    margin-bottom: 18px;
+    border-top: 3px solid #000;
 `;
 
-// Contenedor de botones
 const BtnContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
-    gap: 10px; /* Espacio entre botones */
+    gap: 10px;
 `;
 
-// Botón de GitHub con bordes redondeados
 const BtnGithub = styled(Button)`
     font-size: 0.88em;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 6px; /* Bordes redondeados */
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 6px;
     @media (min-width: ${styles.breakpoints.l}px) {
         font-size: 1em;
     }
 `;
 
-// Botón de sitio con bordes redondeados
 const BtnSite = styled(Button)`
     font-size: 0.88em;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 6px; /* Bordes redondeados */
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 6px;
     @media (min-width: ${styles.breakpoints.l}px) {
         font-size: 1em;
     }
@@ -124,43 +144,58 @@ const BtnSite = styled(Button)`
 const SuccessCase = (props) => {
     const lab = props.labData;
     const { t } = useTranslation();
+    const shadow = shadowColors[(props.index || 0) % shadowColors.length];
+    const horizontal = !!props.horizontal;
+    const span = props.span || 2;
+    const eyebrow = (lab.frontmatter.tags && lab.frontmatter.tags[0]) || t("casos_de_exito.tagsTitle");
 
     return (
-        <CaseWrapper>
-            <LabImage
-                image={props.image}
-                alt={t("casos_de_exito.imageAltLine1") + lab.frontmatter.title}
-            />
-            <LabTitle>{lab.frontmatter.title}</LabTitle>
-            <LabDescription>{lab.excerpt}</LabDescription>
-            <TagsTitle>{t("casos_de_exito.tagsTitle")}</TagsTitle>
-            <TagsContainer>
-                <Tags styles={props.styles} type="labs" tags={lab.frontmatter.tags}></Tags>
-            </TagsContainer>
-            <BtnContainer>
-                {props.labData.frontmatter.website && (
-                    <BtnSite
-                        type='btnLabeled'
-                        theme={styles}
-                        isLink
-                        target="_blank"
-                        href={props.labData.frontmatter.website}
-                        btnText={t("casos_de_exito.btnTextVerMas")}
-                    />
-                )}
-                {props.labData.frontmatter.github && (
-                    <BtnGithub
-                        type='btnLabeled'
-                        theme={styles}
-                        isLink
-                        src={githubIcon.default}
-                        github={true}
-                        href={props.labData.frontmatter.github}
-                        target="_blank"
-                        btnText={t("casos_de_exito.btnTextGithub")}
-                    />
-                )}
-            </BtnContainer>
+        <CaseWrapper
+            $shadow={shadow}
+            $span={span}
+            $horizontal={horizontal}
+            whileHover={{ x: -4, y: -4, boxShadow: `12px 12px 0 ${shadow}`, transition: spring }}
+            whileTap={{ x: 2, y: 2, boxShadow: `4px 4px 0 ${shadow}`, transition: spring }}
+        >
+            <ImageSide $horizontal={horizontal}>
+                <Eyebrow $shadow={shadow}>{eyebrow}</Eyebrow>
+                <LabImage
+                    $horizontal={horizontal}
+                    image={props.image}
+                    alt={t("casos_de_exito.imageAltLine1") + lab.frontmatter.title}
+                />
+            </ImageSide>
+            <ContentSide $horizontal={horizontal}>
+                <LabTitle $horizontal={horizontal}>{lab.frontmatter.title}</LabTitle>
+                <LabDescription $horizontal={horizontal}>{lab.excerpt}</LabDescription>
+                <TagsContainer>
+                    <Tags styles={props.styles} type="labs" tags={lab.frontmatter.tags}></Tags>
+                </TagsContainer>
+                <BtnContainer>
+                    {props.labData.frontmatter.website && (
+                        <BtnSite
+                            type='btnLabeled'
+                            theme={styles}
+                            isLink
+                            target="_blank"
+                            href={props.labData.frontmatter.website}
+                            btnText={t("casos_de_exito.btnTextVerMas")}
+                        />
+                    )}
+                    {props.labData.frontmatter.github && (
+                        <BtnGithub
+                            type='btnLabeled'
+                            theme={styles}
+                            isLink
+                            src={githubIcon.default}
+                            github={true}
+                            href={props.labData.frontmatter.github}
+                            target="_blank"
+                            btnText={t("casos_de_exito.btnTextGithub")}
+                        />
+                    )}
+                </BtnContainer>
+            </ContentSide>
         </CaseWrapper>
     );
 };

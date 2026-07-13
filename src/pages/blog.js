@@ -6,6 +6,8 @@ import { useI18next } from "gatsby-plugin-react-i18next"
 
 import Button from '../components/common/Button'
 import PostThumbnail from '../components/modules/PostThumbnail'
+import SectionIntro from '../components/common/SectionIntro'
+import { buildLayout } from '../components/common/bento'
 
 // Desestructurar las propiedades para evitar warnings de webpack
 const { styles } = data;
@@ -30,37 +32,22 @@ const PostsContainer = styled.div`
   }
 `
 const PostsWrapper = styled.div`
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: auto;
-    gap: 10px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
     padding: 0;
-    max-width: 946px;
+    margin: auto;
     @media (min-width: ${breakpoints.m}px) {
-      justify-content: flex-start;
-      margin: auto;
-      gap: 23px;
-      padding: 0;
-    }
-    @media (min-width: ${breakpoints.l}px) {
-     width: 946px;
+      max-width: 1140px;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 30px;
     }
 `
 
-const BlogTitle = styled.h1`
-  flex-basis: 100%;
-  font-size: 2.38em;
-  line-height: 49px;
-  color: ${colors.purplePrimary};
-  margin: 0 auto 25px auto;
-  text-align: center;
-  @media (min-width: ${breakpoints.m}px) {
-    text-align: left;
-    font-size: 3em;    
-    line-height: 62px;
-    margin-bottom: 35px;
-  }
+// El encabezado ocupa la fila completa del grid bento.
+const BlogHeadCell = styled.div`
+  grid-column: 1 / -1;
 `
 const Btn = styled(Button)`
   margin: 0px auto 15px auto;
@@ -71,7 +58,7 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
   const { language, t } = useI18next();
   const [currentPostsList, setCurrentPostsList] = useState([])
   const [visiblePosts, setVisiblePosts] = useState([])
-  const [postsLimit, setPostsLimit] = useState(6)
+  const [postsLimit, setPostsLimit] = useState(9)
   const postsAdd = 6
 
   useEffect(() => {
@@ -91,18 +78,41 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
     }
   }
 
+  // Distribución bento (filas de 3 → 2 → 1) según cuántos posts se muestran.
+  const bentoLayout = buildLayout(visiblePosts.length);
+
 
     return (
       <MainWrapper>
       <PostsContainer>
         <PostsWrapper>
-            <BlogTitle>{t("blog.title")}</BlogTitle>
+            <BlogHeadCell>
+              <SectionIntro
+                as="h1"
+                title={t("blog.title")}
+                eyebrow={t("blog.eyebrow")}
+                sticker={t("blog.sticker")}
+                eyebrowBg={colors.yellow}
+                eyebrowColor={colors.darkMainBg}
+                stickerBg={colors.red}
+                stickerColor={colors.white}
+                stickerRot={-4}
+                titleColor={colors.purplePrimary}
+                underlineBg={colors.yellow}
+              />
+            </BlogHeadCell>
 
-            {visiblePosts.map( post => {
+            {visiblePosts.map( (post, index) => {
+                const cell = bentoLayout[index] || { span: 2, horizontal: false };
                 return(
-                  <PostThumbnail 
+                  <PostThumbnail
+                    key={post.node.id}
+                    index={index}
+                    span={cell.span}
+                    horizontal={cell.horizontal}
                     postTitle={post.node.frontmatter.title}
                     postDescription={post.node.excerpt}
+                    tags={post.node.frontmatter.tags}
                     image={post.node.frontmatter.image.childImageSharp.gatsbyImageData}
                     slug={`/${post.node.frontmatter.lang}/post${post.node.frontmatter.slug}`}
                     shortSlug={`/post${post.node.frontmatter.slug}`}
@@ -111,14 +121,16 @@ const Blog = ({data: {allMarkdownRemark: { edges }}})  =>  {
             })}
 
           </PostsWrapper>
-          <Btn
-            isLink={false}
-            type='btnPrimaryPurple'
-            theme={styles}
-            to="#"
-            btnText={t('verMasArticulos')}
-            onButtonClick = {showMorePosts}
-          />
+          {visiblePosts.length < currentPostsList.length &&
+            <Btn
+              isLink={false}
+              type='btnPrimaryPurple'
+              theme={styles}
+              to="#"
+              btnText={t('verMasArticulos')}
+              onButtonClick = {showMorePosts}
+            />
+          }
         </PostsContainer>
     </MainWrapper>
 

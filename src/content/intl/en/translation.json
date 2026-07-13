@@ -18,11 +18,11 @@
         "licenseIconAlt": "Creative Commons Attribution logo"
     },
     "header": {
-      "logoAlt": "Lawal logo ",
-      "iconTogglerAlt": "icon to open menu ",
-      "iconTogglerCloseAlt": "icon to close menu "  
+        "logoAlt": "Lawal logo ",
+        "iconTogglerAlt": "icon to open menu ",
+        "iconTogglerCloseAlt": "icon to close menu "
     },
-    "homepage" : {
+    "homepage": {
         "title": "Homepage",
         "imageAlt": " ",
         "imageAltMobile": " ",
@@ -32,7 +32,7 @@
         "leadBold": "specialized in Artificial Intelligence ",
         "leadLine3": " and high-concurrency systems."
     },
-    "homepageCulture" : {
+    "homepageCulture": {
         "title": "Culture",
         "birdImage": "bird.svg",
         "birdImageAlt": "illustration of a bird ",
@@ -43,7 +43,7 @@
         "descriptionLine2": " Whenever you deal with a person from Lawal, you will be dealing with someone with the ability to act, make decisions, and fully commit to the projects.",
         "btnText": "see more "
     },
-    "homepageLabs" : {
+    "homepageLabs": {
         "title": "Lawal Experimental",
         "subtitle": "We experiment with technology and cooperativism! ",
         "image": "homepageLabs.svg",
@@ -60,9 +60,23 @@
         "descriptionDot": ". ",
         "btnText": "see more "
     },
+    "home_marquee": "Worker cooperative ✳ Elixir ✳ Self-management ✳ Artificial Intelligence ✳ Free knowledge ✳ LLMs ✳ Patagonian territory ✳ Rust ✳ Mutual aid ✳ Machine Learning ✳ Concurrent systems ✳ Blockchain ✳ Social & solidarity economy ✳ AI agents ✳ Long term",
+    "home_manifesto": {
+        "sticker": "Manifesto",
+        "quote": "What's virtuous lies in sustaining processes over the long term: resisting the immediacy of modernity.",
+        "closer": "Lawal is for the long term.",
+        "sticker2": "Long term"
+    },
+    "home_cta": {
+        "sticker": "software",
+        "sticker2": "coop",
+        "title": "Shall we start?",
+        "text": "Got an idea, a problem to solve, or just curiosity?",
+        "btn": "Write to us"
+    },
     "button": {
         "verMas": "see more ",
-        "send": "send ", 
+        "send": "send ",
         "read": "read "
     },
     "verMasArticulos": "see all articles ",
@@ -81,13 +95,15 @@
     },
     "services": {
         "title": "Services",
+        "eyebrow": "What we do",
+        "sticker": "Co-op",
         "tagsTitle": "Technologies ",
         "btnText": "go to services "
-    }, 
-    "service_datos":  {
+    },
+    "service_datos": {
         "service": "Data Science ",
         "description": "This area focuses on cleaning, extracting, and analyzing data to feed Artificial Intelligence or Machine Learning processes. Processing data to make it easily understandable and usable is essential to achieving the outlined objectives. ",
-        "tags" : [
+        "tags": [
             "Python",
             "Pandas",
             "Numpy",
@@ -96,11 +112,10 @@
         "image": "datos",
         "link": " "
     },
-    "service_inteligenciaArtificial" :
-    {
+    "service_inteligenciaArtificial": {
         "service": "Artificial Intelligence ",
         "description": "Machine Learning is a subfield of Artificial Intelligence aimed at enabling 'computers to learn.' Using collected and processed data, we design, build, and train models that allow us to predict future events, classify images, recognize entities in texts, and much more. ",
-        "tags" : [
+        "tags": [
             "Python",
             "Pandas",
             "Numpy",
@@ -112,19 +127,19 @@
     "service_altaConcurrencia": {
         "service": "High Concurrency ",
         "description": "We use real-time functional programming languages widely adopted in the market, capable of supporting extremely high levels of concurrency and distribution, resulting in systems that respond quickly under heavy demand. ",
-        "tags" : [
+        "tags": [
             "Erlang",
             "Elixir",
-            "Phoenix Framework", 
+            "Phoenix Framework",
             "LiveView"
         ],
         "image": "altaConcurrencia",
         "link": " "
     },
-    "service_blockchain" : {
+    "service_blockchain": {
         "service": "Blockchain | Fintech ",
         "description": "We are developing fintech solutions, which are new applications, processes, products, or business models in the financial services industry, composed of one or more complementary financial services and made available to the public via the Internet. ",
-        "tags" : [
+        "tags": [
             "Python",
             "Ethereum"
         ],
@@ -134,12 +149,12 @@
     "service_fullstack": {
         "service": "Fullstack ",
         "description": "We develop web/mobile/desktop applications with various technologies to address the challenges faced by organizations, cooperatives, and companies, enabling them to carry out their processes more efficiently. ",
-        "tags" : [
+        "tags": [
             "Django",
             "Phoenix",
             "Phoenix LiveView",
-            "ReactJS", 
-            "VueJS", 
+            "ReactJS",
+            "VueJS",
             "React Native"
         ],
         "image": "fullstack",
@@ -148,73 +163,83 @@
     "service_subsection": {
         "title": "Cooperative Consulting ",
         "description": "We provide technical and/or cooperative training for organizations and cooperatives, aiming to share knowledge acquired in the technological and cooperative fields in an engaging and systematic way. ",
-        "image" : "capacitacion",
-        "featuredServiceImageAlt" : "Training, animated illustration ",
+        "image": "capacitacion",
+        "featuredServiceImageAlt": "Training, animated illustration ",
         "link": "services/#capacitacion"
     },
-    "culture" : {
+    "culture": {
         "title": "Culture",
-        "subtitle" : "We are a worker cooperative! ",
+        "subtitle": "We are a worker cooperative! ",
         "description": "Lawal is a technology company administered, managed, and governed by the people who work in it. Whenever you deal with a person from Lawal, you will be dealing with someone with the ability to act, make decisions, and fully commit to the projects. "
-    }, 
+    },
     "culture_historia": {
         "title": "The Collective Root ",
-        "imageMobile" : "equipoMobile",
-        "imageAltMobile" : "Lawal team ",
-        "imageDesktop" : "equipoDesktop",
-        "imageAlt" : "Lawal team ",
-        "content_line1": "Lawal took shape during 2024 through the decision to build a workspace rooted in the Patagonian territory we inhabit. Those of us who made this happen come from years of diverse cooperative experiences, particularly in software development, and this shared knowledge gave us confidence in the potential of collaborative and self-managed structures. ",
+        "imageMobile": "equipoMobile",
+        "imageAltMobile": "Lawal team ",
+        "imageDesktop": "equipoDesktop",
+        "imageAlt": "Lawal team ",
+        "content_line1": "Lawal took shape during 2024 through the decision to build a workspace rooted in the Patagonian territory we inhabit. Those of us who made this happen come from years of diverse cooperative experiences, particularly in software development, and this shared knowledge gave us confidence in the potential of **collaborative and self-managed structures**. ",
         "content_line2": "Lawal (or lahual) is the name given by the Mapuche-Huilliche people to the larch tree (Fitzroya cupressoides). Its meaning in the Mapudungun language is 'life after life.' That is precisely what this cooperative represents for those of us who build it day by day. ",
-        "content_line3": "We are a company organized as a Worker Cooperative because we see association as a tool for life, and we are united by technological knowledge and practice. ",
+        "content_line3": "We are a company organized as a Worker Cooperative because we see **association as a tool for life**, and we are united by technological knowledge and practice. ",
         "content_line4": "Ownership is collective, and thus we build agreements that shape our daily life, a living structure that allows us to innovate, experiment, and democratically choose what and how we produce. ",
         "subtitle": "We work with production logics different from the conventional ones! ",
-        "content_line5": "The voice of everyone who is part of the cooperative has a place and weight in the decisions that guide our work. "    
+        "content_line5": "The voice of everyone who is part of the cooperative has **a place and weight in the decisions** that guide our work. ",
+        "eyebrow": "Our History",
+        "sticker": "Est. 2024"
     },
     "culture_federales": {
-        "title1": "Creativity & Technology ", 
-        "imageCreatividad" : "creatividad",
-        "imageCreatividadAlt" : " ",
+        "title1": "Creativity & Technology ",
+        "imageCreatividad": "creatividad",
+        "imageCreatividadAlt": " ",
         "content1": "We are driven to explore cutting-edge technologies and develop solutions with robust, efficient, and scalable languages and architectures. ",
-        "content2": "We build and participate in various projects using Elixir and Rust, languages we specialize in to design concurrent, resilient, and high-performance systems. Our exploration has led us to delve into technologies like Blockchain and, increasingly, Artificial Intelligence, particularly through the implementation and use of Large Language Models (LLMs). ",
-        "title2": "Broad Exploration ", 
-        "content3": "Our collective identity is shaped by the diversity of experiences we bring. We blend technology with music, engineering, cultural management, food sovereignty, outdoor sports, yoga, community radio, martial arts, and mutualism. We are defined by the different paths we’ve walked, the oscillation between our personal lives and joint projects. We see ourselves as friends. The synergy of working together allows us to have fun, plan goals, and tackle challenges as a team. We believe that creativity and technique feed off each other when working this way, with horizontal structures where ideas, responsibilities, and enthusiasm are shared. We value working with freedom and autonomy, deepening our commitment to every project we take on. "
+        "content2": "We build and participate in various projects using Elixir and Rust, languages we specialize in to design **concurrent, resilient, and high-performance systems**. Our exploration has led us to delve into technologies like Blockchain and, increasingly, Artificial Intelligence, particularly through the implementation and use of Large Language Models (LLMs). ",
+        "title2": "Broad Exploration ",
+        "content3": "Our collective identity is shaped by the **diversity of experiences** we bring. We blend technology with music, engineering, cultural management, food sovereignty, outdoor sports, yoga, community radio, martial arts, and mutualism. We are defined by the different paths we’ve walked, the oscillation between our personal lives and joint projects. We see ourselves as friends. The synergy of working together allows us to have fun, plan goals, and tackle challenges as a team. We believe that creativity and technique feed off each other when working this way, with horizontal structures where ideas, responsibilities, and enthusiasm are shared. We value working with freedom and autonomy, deepening our commitment to every project we take on. ",
+        "eyebrow": "Our Practice"
     },
     "culture_facttic": {
-        "title": "Bridges to the Territory ", 
-        "subtitle": "We share knowledge through the Hackerspace ", 
+        "title": "Bridges to the Territory ",
+        "subtitle": "We share knowledge through the Hackerspace ",
         "content_line1_part1": "We invest in our training, and at the same time, we dedicate energy to creating spaces where knowledge flows circularly with people and groups outside the cooperative, to break with the privatization of knowledge and contribute to ways of life that integrate technology without losing sight of autonomy and community relationships. That’s what the ",
         "content_line1_facttic": " Hackerspace ",
         "content_line1_part2": ", an open laboratory for learning. ",
-        "content_line2": "We believe the future is also a contested territory, and through our work, it’s possible to transmit alternative paradigms of work and culture. ",
-        "content_line3": "Cooperativism as a form of resilience, a provocation to take on a role of responsibility and action in the communities where we live. "
+        "content_line2": "We believe **the future is also a contested territory**, and through our work, it’s possible to transmit alternative paradigms of work and culture. ",
+        "content_line3": "Cooperativism as a form of **resilience**, a provocation to take on a role of responsibility and action in the communities where we live. ",
+        "eyebrow": "Hackerspace",
+        "sticker": "Free knowledge"
     },
     "culture_internacional": {
-        "title": "The Ecosystems We Are Part Of ", 
-        "content_line1": "We choose to be cooperatives, which strengthens ties not only territorially but also structurally toward building other possible economies. We are part of the Social and Solidarity Economy (ESS) movement, and sectorally, our work in the tech industry connects us to FACTTIC, the Argentine Federation of Worker Cooperatives in Technology, Innovation, and Knowledge. We are more than 40 grouped cooperatives, a space of construction that has been generating job opportunities, social projects, and mutual aid for over 10 years. ",
-        "content_line2": "We see ourselves as territorial social actors, which is why those of us at Lawal are also involved in other social projects in Villa La Angostura. That’s how we support the development of Mutual La Correntosa, based on the organization of neighbors concerned with food sovereignty and dedicated to strengthening ties between consumers and family or cooperative agriculture producers. ",
-        "content_line3": "Additionally, with an interest in Patagonia’s history—from its ancestral roots to the meanings we construct today—as well as in sustaining community cultural spaces, we connect with the Osvaldo Bayer Popular Library and participate in joint projects like Archivos del Sur. "
+        "title": "The Ecosystems We Are Part Of ",
+        "content_line1": "We choose to be cooperatives, which strengthens ties not only territorially but also structurally toward building other possible economies. We are part of the Social and Solidarity Economy (ESS) movement, and sectorally, our work in the tech industry connects us to FACTTIC, the Argentine Federation of Worker Cooperatives in Technology, Innovation, and Knowledge. We are **more than 40 grouped cooperatives**, a space of construction that has been generating job opportunities, social projects, and mutual aid for over 10 years. ",
+        "content_line2": "We see ourselves as territorial social actors, which is why those of us at Lawal are also involved in other social projects in Villa La Angostura. That’s how we support the development of Mutual La Correntosa, based on the organization of neighbors concerned with **food sovereignty** and dedicated to strengthening ties between consumers and family or cooperative agriculture producers. ",
+        "content_line3": "Additionally, with an interest in **Patagonia’s history**—from its ancestral roots to the meanings we construct today—as well as in sustaining community cultural spaces, we connect with the Osvaldo Bayer Popular Library and participate in joint projects like Archivos del Sur. ",
+        "eyebrow": "Cooperativism"
     },
-    "labs" : {
-        "title": "Experimental ", 
-        "subtitle": "At Lawal, we choose to use technology as a tool to explore our territory and our minds. ", 
+    "labs": {
+        "title": "Experimental ",
+        "subtitle": "At Lawal, we choose to use technology as a tool to explore our territory and our minds. ",
         "content": " We research and apply new technologies like Elixir, Rust, AI, and Blockchain. We also rely on principles and techniques of horizontal organization and broad participation. This way, we create programs, applications, experiences, and spaces that allow us to live lives with purposes beyond economic sustenance. "
     },
     "casos_de_exito": {
         "title": "Experiences ",
+        "eyebrow": "Our work",
+        "sticker": "Open source",
         "tagsTitle": "Technologies Investigated ",
         "imageAltLine1": "project image ",
         "btnTextVerMas": "see more ",
         "btnTextGithub": "go to Github "
     },
-    "blog":{
-        "title": "Blog"
-    }, 
+    "blog": {
+        "title": "Blog",
+        "eyebrow": "Ideas & notes",
+        "sticker": "Journal"
+    },
     "blogPost": {
-        "tagsTitle": "Related Tags ", 
-        "relatesPost": "Related Articles ", 
+        "tagsTitle": "Related Tags ",
+        "relatesPost": "Related Articles ",
         "verTodosBtn": "See all articles "
     },
-    "page404" : {
+    "page404": {
         "title": "Error 404",
         "descriptionLine1": "We couldn’t find what you were looking for. ",
         "descriptionLine2": "We invite you to continue browsing our site by clicking the button below ",
@@ -222,5 +247,5 @@
         "btnHref": "/",
         "imageAlt": "ina illustration ",
         "imageAltMobile": "ina illustration "
-    }   
+    }
 }

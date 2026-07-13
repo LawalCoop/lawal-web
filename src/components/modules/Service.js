@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components'
+import { motion, useReducedMotion } from 'motion/react'
 import data from '../../content/content.json'
 import Tags from '../common/Tags'
 import Button from '../common/Button'
@@ -7,6 +8,8 @@ import { useTranslation } from "gatsby-plugin-react-i18next"
 import Lottie from 'react-lottie';
 import { Waypoint } from 'react-waypoint';
 import { AnchorLink } from 'gatsby-plugin-anchor-links'
+import { riseItem, cardHover, cardTap } from '../common/motion/variants'
+import { useTilt } from '../common/motion/useTilt'
 
 import datosAnimation from '../../images/animations/datos.json'
 import blockchainAnimation from '../../images/animations/blockchain.json'
@@ -16,9 +19,9 @@ import acAnimation from '../../images/animations/altaConcurrencia.json'
 
 const styles = data.styles
 
-const ServiceWrapper = styled.div`
-    background: ${styles.colors.white};    
-    border-radius: 14px;
+const ServiceWrapper = styled(motion.div)`
+    background: ${styles.colors.white};
+    border-radius: 6px;
     display: flex;
     flex-direction: column;
     max-width: 320px;
@@ -31,13 +34,7 @@ const ServiceWrapper = styled.div`
     flex-basis: 100%;
     /* Estilos neobrutalistas con una sola sombra */
     border: 4px solid #000; /* Borde grueso negro */
-    box-shadow: 8px 8px 0 #000; /* Sombra pronunciada */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transición suave */
-
-    &:hover {
-        transform: translate(4px, 4px); /* Efecto de "bajar" */
-        box-shadow: 4px 4px 0 #000; /* Sombra reducida */
-    }
+    box-shadow: 6px 6px 0 #000; /* Sombra pronunciada (el hover lo maneja Motion) */
 
     &:last-of-type {
         margin-bottom: 61px;
@@ -67,34 +64,24 @@ const ServiceWrapper = styled.div`
             padding: 0;
             margin-bottom: 0;
             margin: 0;
-            /* Una sola sombra en homepage */
+            /* Una sola sombra en homepage (el hover lo maneja Motion) */
             border: 4px solid #000;
-            box-shadow: 8px 8px 0 #000;
-
-            &:hover {
-                transform: translate(4px, 4px); /* Movimiento al hover */
-                box-shadow: 4px 4px 0 #000; /* Sombra reducida */
-                outline: none; /* Quito el outline original */
-            }
+            box-shadow: 6px 6px 0 #000;
 
             @media (min-width: ${styles.breakpoints.m}px) {
-                min-width: 330px;                
+                min-width: 330px;
                 margin-bottom: 50px;
                 padding: 0;
                 &:last-of-type {
                     margin-bottom: 0px;
                 }
                 min-width: unset;
-                max-width: 330px; 
+                max-width: 330px;
                 flex-basis: 50%;
                 margin: 0;
                 /* Reaplico sombra única */
                 border: 4px solid #000;
-                box-shadow: 8px 8px 0 #000;
-                &:hover {
-                    transform: translate(4px, 4px);
-                    box-shadow: 4px 4px 0 #000;
-                }
+                box-shadow: 6px 6px 0 #000;
                 @media (min-width: ${styles.breakpoints.l}px) {
                     flex-basis: 33.33%;
                 }
@@ -359,6 +346,9 @@ const Service = (props) => {
     const [renderLottie, setRenderLottie] = useState(false)
     const service = props.service;
     const { t } = useTranslation();
+    // Tilt magnético (solo en homepage; se desactiva con reduced-motion).
+    const reduce = useReducedMotion();
+    const tilt = useTilt(6);
 
     const getServiceAnimation = (service) => {
         switch (service) {
@@ -406,7 +396,16 @@ const Service = (props) => {
 
     return (
         props.ishomepage ?
-            <ServiceWrapper ishomepage={props.ishomepage} onMouseEnter={startLottie} onMouseLeave={pauseLottie}>
+            <ServiceWrapper
+                ishomepage={props.ishomepage}
+                onMouseEnter={startLottie}
+                onMouseMove={reduce ? undefined : tilt.onMouseMove}
+                onMouseLeave={() => { pauseLottie(); tilt.reset(); }}
+                style={reduce ? undefined : { rotateX: tilt.rotateX, rotateY: tilt.rotateY, transformPerspective: 800 }}
+                variants={riseItem}
+                whileHover={cardHover}
+                whileTap={cardTap}
+            >
                 <ServiceLink
                     ishomepage={props.ishomepage}
                     theme={styles}
@@ -474,7 +473,12 @@ const Service = (props) => {
                 </ServiceLink>
             </ServiceWrapper>
             :
-            <ServiceWrapper id={service.image} ishomepage={props.ishomepage}>
+            <ServiceWrapper
+                id={service.image}
+                ishomepage={props.ishomepage}
+                whileHover={cardHover}
+                whileTap={cardTap}
+            >
                 <Waypoint onEnter={() => { setRenderLottie(true) }} onLeave={()=>{setRenderLottie(false)}} />
                 <ImageContainerMobile>
                     <ServiceImage

@@ -1,348 +1,381 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
+import { motion } from "motion/react";
 import data from "../content/content.json";
 import { graphql } from "gatsby";
 import { useTranslation } from "gatsby-plugin-react-i18next";
 import SectionHeader from "../components/common/SectionHeader";
+import Reveal from "../components/common/motion/Reveal";
+import Stagger from "../components/common/motion/Stagger";
+import { riseItem, spring } from "../components/common/motion/variants";
+import { nb } from "../styles/neobrutalism";
 
-// Desestructurar las propiedades para evitar warnings de webpack
 const { styles } = data;
-const { colors, breakpoints, fontWeight } = styles;
+const { colors, breakpoints } = styles;
+
+// Fondo crema cálido, base del sistema neobrutalista.
+const CREAM = "#F4ECDF";
+const DARK = "#1B232B";
+
+// Hover con "peso" para cards (lift + sombra crece).
+const cardLift = {
+    y: -5,
+    x: -5,
+    boxShadow: "12px 12px 0 #000",
+    transition: spring,
+};
+
+// ---------------------------------------------------------------------------
+// Estructura
+// ---------------------------------------------------------------------------
+const Body = styled.div`
+    background: ${CREAM};
+    overflow: hidden;
+`;
+
+const Section = styled.section`
+    position: relative;
+    padding: 56px 20px;
+    ${(p) => p.$bg && `background: ${p.$bg};`}
+    /* La última sección deja hueco para el card flotante "Contactanos"
+       (ContactForm se posiciona absolute con top negativo y se superpone). */
+    ${(p) => p.$last && `padding-bottom: 200px;`}
+    @media (min-width: ${breakpoints.m}px) {
+        padding: 96px 24px;
+        ${(p) => p.$last && `padding-bottom: 300px;`}
+    }
+`;
+
+const Inner = styled.div`
+    max-width: 1040px;
+    margin: 0 auto;
+    position: relative;
+`;
+
+// Encabezado de sección: eyebrow + título + subrayado de acento
+const Head = styled.div`
+    margin-bottom: 40px;
+`;
+
+const Eyebrow = styled.span`
+    display: inline-block;
+    font-size: 0.72em;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #000;
+    background: ${(p) => p.$bg || nb.accent};
+    border: ${nb.borderThin};
+    border-radius: ${nb.radius};
+    padding: 7px 15px;
+    box-shadow: ${nb.shadowSm};
+    margin-bottom: 20px;
+`;
+
+const SectionTitle = styled.h2`
+    font-size: 2.2em;
+    line-height: 0.98;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.015em;
+    color: ${(p) => p.$color || "#000"};
+    margin: 0;
+    @media (min-width: ${breakpoints.m}px) {
+        font-size: 3.6em;
+    }
+`;
+
+// Barrita de acento debajo del título
+const Underline = styled.span`
+    display: block;
+    width: 96px;
+    height: 11px;
+    background: ${(p) => p.$bg || nb.accent};
+    border: ${nb.borderThin};
+    border-radius: 5px;
+    box-shadow: ${nb.shadowSm};
+    margin-top: 18px;
+`;
+
+// Sticker rotado (rótulo decorativo con "onda")
+const Sticker = styled.span`
+    display: inline-block;
+    transform: rotate(${(p) => p.$rot || -5}deg);
+    background: ${(p) => p.$bg || colors.purpleLight};
+    border: ${nb.borderThin};
+    border-radius: ${nb.radius};
+    box-shadow: ${nb.shadowSm};
+    font-size: 0.66em;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 7px 13px;
+    color: ${(p) => p.$color || "#fff"};
+    margin-left: 12px;
+`;
+
+const Row = styled.div`
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 20px;
+`;
+
+// ---------------------------------------------------------------------------
+// Cards, marcos, textos
+// ---------------------------------------------------------------------------
+const Card = styled.div`
+    background: ${(p) => p.$bg || "#fff"};
+    border: ${nb.border};
+    border-radius: ${nb.radius};
+    box-shadow: ${nb.shadow};
+    padding: 26px 24px 28px 24px;
+    @media (min-width: ${breakpoints.m}px) {
+        padding: 34px 32px 36px 32px;
+    }
+`;
+
+const Paragraph = styled.p`
+    font-size: 0.96em;
+    line-height: 1.62;
+    color: ${(p) => p.$color || colors.darkMainBg};
+    margin: 0 0 16px 0;
+    &:last-child {
+        margin-bottom: 0;
+    }
+    @media (min-width: ${breakpoints.m}px) {
+        font-size: 1.03em;
+    }
+`;
+
+const CardTitle = styled.h3`
+    font-size: 1.5em;
+    font-weight: 700;
+    line-height: 1.1;
+    color: ${(p) => p.$color || colors.darkMainBg};
+    margin: 0 0 16px 0;
+    @media (min-width: ${breakpoints.m}px) {
+        font-size: 1.9em;
+    }
+`;
+
+const Lead = styled.p`
+    font-size: 1.12em;
+    line-height: 1.5;
+    font-weight: 500;
+    color: ${(p) => p.$color || colors.darkMainBg};
+    margin: 22px 0 0 0;
+    max-width: 720px;
+    @media (min-width: ${breakpoints.m}px) {
+        font-size: 1.4em;
+    }
+`;
+
+// Resalte tipo "marker" (borde + sombrita) para que lea sobre cualquier fondo de
+// sección y corte la monotonía del texto largo.
+const Highlight = styled.b`
+    background: ${nb.accent};
+    color: #000;
+    font-weight: 700;
+    padding: 1px 6px;
+    border: 2px solid #000;
+    border-radius: 4px;
+    box-shadow: 2px 2px 0 #000;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+`;
+
+// Interpreta **frase** dentro de un string i18n y la envuelve en <Highlight>.
+// Permite marcar lo importante desde la traducción, sin romper el texto.
+const HL = (text) => {
+    const parts = String(text == null ? "" : text).split(/\*\*(.+?)\*\*/g);
+    return parts.map((part, i) =>
+        i % 2 === 1 ? <Highlight key={i}>{part}</Highlight> : part
+    );
+};
+
+// Marco de imagen: rotado + lift al hover
+const Frame = styled.div`
+    border: ${nb.border};
+    border-radius: ${nb.radius};
+    box-shadow: ${nb.shadowLg};
+    overflow: hidden;
+    background: #fff;
+    transform: rotate(-1.4deg);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    img {
+        display: block;
+        width: 100%;
+    }
+    &:hover {
+        transform: rotate(0deg) translate(-3px, -3px);
+        box-shadow: 13px 13px 0 ${nb.accent};
+    }
+`;
+
+const HistoryFrame = styled(Frame)`
+    max-width: 720px;
+    margin: 8px auto 36px auto;
+`;
+
+// Pull-quote grande y rotado (el significado del nombre)
+const Quote = styled.blockquote`
+    background: ${nb.accent};
+    border: ${nb.border};
+    border-radius: ${nb.radius};
+    box-shadow: ${nb.shadowLg};
+    padding: 26px 26px 28px 26px;
+    margin: 0 0 32px 0;
+    transform: rotate(-1.1deg);
+    max-width: 760px;
+    p {
+        margin: 0;
+        font-size: 1.16em;
+        line-height: 1.42;
+        font-weight: 600;
+        color: #000;
+        @media (min-width: ${breakpoints.m}px) {
+            font-size: 1.44em;
+        }
+    }
+`;
+
+const TwoCol = styled.div`
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    @media (min-width: ${breakpoints.m}px) {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+`;
+
+// Callout de énfasis
+const Callout = styled(motion.div)`
+    background: ${colors.purpleLight};
+    border: ${nb.border};
+    border-radius: ${nb.radius};
+    box-shadow: ${nb.shadowLg};
+    padding: 28px 26px 30px 26px;
+    margin-top: 28px;
+`;
+
+const CalloutTitle = styled.h3`
+    font-size: 1.3em;
+    font-weight: 700;
+    line-height: 1.18;
+    color: #fff;
+    margin: 0 0 14px 0;
+    @media (min-width: ${breakpoints.m}px) {
+        font-size: 1.7em;
+    }
+`;
+
+// Card horizontal (imagen + texto) para "Creatividad & Tecnología"
+const HCard = styled(motion.div)`
+    background: #fff;
+    border: ${nb.border};
+    border-radius: ${nb.radius};
+    box-shadow: ${nb.shadow};
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-bottom: 24px;
+    @media (min-width: ${breakpoints.m}px) {
+        grid-template-columns: 320px 1fr;
+        align-items: center;
+        padding: 28px;
+    }
+`;
+
+const HCardImg = styled.div`
+    border: ${nb.borderThin};
+    border-radius: ${nb.radius};
+    box-shadow: ${nb.shadowSm};
+    overflow: hidden;
+    img {
+        display: block;
+        width: 100%;
+    }
+`;
+
+// Card ancha con texto en 2 columnas (evita columnas altas y angostas)
+const WideCard = styled(motion.div)`
+    background: #fff;
+    border: ${nb.border};
+    border-radius: ${nb.radius};
+    box-shadow: ${nb.shadow};
+    padding: 26px 24px;
+    @media (min-width: ${breakpoints.m}px) {
+        padding: 34px 32px;
+    }
+`;
+
+const SubHead = styled.h3`
+    font-size: 1.4em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: ${(p) => p.$color || "#fff"};
+    margin: 0 0 16px 0;
+    @media (min-width: ${breakpoints.m}px) {
+        font-size: 2em;
+    }
+`;
+
+const Columns = styled.div`
+    @media (min-width: ${breakpoints.m}px) {
+        column-count: 2;
+        column-gap: 40px;
+    }
+    p {
+        margin-top: 0;
+    }
+`;
+
+// Ecosistemas: cards numeradas de colores
+const EcoGrid = styled.div`
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    @media (min-width: ${breakpoints.m}px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+`;
+
+const EcoCard = styled(motion.div)`
+    background: ${(p) => p.$bg || "#fff"};
+    border: ${nb.border};
+    border-radius: ${nb.radius};
+    box-shadow: ${nb.shadow};
+    padding: 26px 22px 28px 22px;
+`;
+
+const EcoNum = styled.span`
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    font-size: 1.35em;
+    font-weight: 700;
+    color: #000;
+    background: #fff;
+    border: ${nb.border};
+    border-radius: ${nb.radius};
+    box-shadow: ${nb.shadowSm};
+    transform: rotate(-6deg);
+    margin-bottom: 20px;
+`;
 
 const Culture = () => {
     const { t } = useTranslation();
 
-    // Estilos neobrutalistas
-    const CultureMainContainer = styled.div`
-        padding-bottom: 151px;
-        @media (min-width: ${breakpoints.m}px) {
-            padding-bottom: 247px;
-        }
-    `;
-
-    const HistoryMainContainer = styled.div`
-        background-color: ${colors.marroncin};
-        padding: 30px 20px 40px 20px;
-        @media (min-width: ${breakpoints.m}px) {
-            padding-top: 50px;
-            padding-bottom: 53px;
-        }
-    `;
-
-    const HistoryTitle = styled.h2`
-        font-size: 1.72em;
-        line-height: 37px;
-        font-weight: ${fontWeight.medium};
-        color: ${colors.purplePrimary};
-        text-align: center;
-        margin-bottom: 30px;
-        @media (min-width: ${breakpoints.m}px) {
-            font-size: 2.83em;
-            line-height: 59px;
-            margin-bottom: 42px;
-        }
-    `;
-
-    const TeamImgContainer = styled.div`
-        height: 169px;
-        margin: 0 auto 30px auto;
-        overflow: hidden;
-        border: 4px solid #000; /* Borde grueso */
-        border-radius: 14px; /* Bordes redondeados */
-        box-shadow: 8px 8px 0 #000; /* Sombra pronunciada */
-        transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transición suave */
-
-        &:hover {
-            transform: translate(4px, 4px); /* Movimiento al hover */
-            box-shadow: 4px 4px 0 #000; /* Sombra reducida */
-        }
-
-        @media (min-width: ${breakpoints.s}px) {
-            max-width: 500px;
-            height: 220px;
-        }
-        @media (min-width: ${breakpoints.m}px) {
-            max-width: 754px;
-            height: 248px;
-            margin: 0 auto 28px auto;
-        }
-    `;
-
-    const TeamImgMobile = styled.img`
-        display: block;
-        width: 100%;
-        @media (min-width: ${breakpoints.m}px) {
-            display: none;
-        }
-    `;
-
-    const TeamImgDesktop = styled.img`
-        display: none;
-        width: 100%;
-        @media (min-width: ${breakpoints.m}px) {
-            display: block;
-        }
-    `;
-
-    const HistoryContentContainer = styled.div`
-        padding: 0;
-        @media (min-width: ${breakpoints.m}px) {
-            max-width: 754px;
-            margin: auto;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 22px;
-        }
-    `;
-
-    const HistoryContentLeftBlock = styled.div`
-        @media (min-width: ${breakpoints.m}px) {
-            flex-basis: calc(50% - 9px);
-            max-width: 370px;
-            margin-right: 15px;
-        }
-    `;
-
-    const HistoryContentRightBlock = styled.div`
-        margin-bottom: 30px;
-        @media (min-width: ${breakpoints.m}px) {
-            flex-basis: calc(50% - 8px);
-            max-width: 370px;
-        }
-    `;
-
-    const HistoryContentFullBlock = styled.div`
-        @media (min-width: ${breakpoints.m}px) {
-            width: 100%;
-            max-width: 754px;
-            margin: auto;
-        }
-    `;
-
-    const HistorySubtitle = styled.h3`
-        font-size: 1.44em;
-        line-height: 34px;
-        font-weight: ${fontWeight.bold};
-        color: ${colors.purplePrimary};
-        text-align: left;
-        margin-bottom: 18px;
-        @media (min-width: ${breakpoints.m}px) {
-            font-size: 1.66em;
-            line-height: 37px;
-            font-weight: ${fontWeight.regular};
-            margin-bottom: 15px;
-        }
-    `;
-
-    const HistoryContent = styled.p`
-        font-size: 0.88em;
-        line-height: 22px;
-        color: ${colors.darkMainBg};
-        margin-bottom: 22px;
-        @media (min-width: ${breakpoints.m}px) {
-            font-size: 1em;
-            line-height: 26px;
-            margin-bottom: 25px;
-        }
-    `;
-
-    const FederalMainContainer = styled.div`
-        background-color: ${colors.purplePrimary};
-        display: flex;
-        flex-direction: column;
-        padding: 30px 20px 10px 20px;
-        @media (min-width: ${breakpoints.m}px) {
-            padding-top: 53px;
-            padding-bottom: 34px;
-        }
-    `;
-
-    const TopBlock = styled.div`
-        display: flex;
-        flex-direction: column-reverse;
-        @media (min-width: ${breakpoints.m}px) {
-            width: 100%;
-            max-width: 754px;
-            flex-direction: row;
-            justify-content: space-between;
-            margin: auto;
-        }
-    `;
-
-    const TopBlockImgContainer = styled.div`
-        max-width: 320px;
-        margin: auto;
-        margin-bottom: 26px;
-        border: 4px solid #000; /* Borde grueso */
-        border-radius: 14px; /* Bordes redondeados */
-        box-shadow: 8px 8px 0 #000; /* Sombra pronunciada */
-        transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transición suave */
-
-        &:hover {
-            transform: translate(4px, 4px); /* Movimiento al hover */
-            box-shadow: 4px 4px 0 #000; /* Sombra reducida */
-        }
-
-        @media (min-width: ${breakpoints.m}px) {
-            max-width: 346px;
-            flex-basis: 50%;
-            margin-right: auto;
-            margin-left: 0;
-            margin-bottom: 22px;
-        }
-    `;
-
-    const TopBlockImg = styled.img`
-        width: 100%;
-        border-radius: 10px; /* Bordes redondeados para la imagen */
-    `;
-
-    const TopBlockInfoContainer = styled.div`
-        @media (min-width: ${breakpoints.m}px) {
-            flex-basis: 50%;
-            max-width: 367px;
-            margin-left: auto;
-            margin-right: 0;
-            padding-top: 22px;
-        }
-    `;
-
-    const FederalSubtitle = styled.h3`
-        font-size: 1.44em;
-        line-height: 34px;
-        font-weight: ${fontWeight.bold};
-        color: ${colors.white};
-        text-align: left;
-        margin-bottom: 18px;
-        @media (min-width: ${breakpoints.m}px) {
-            font-size: 1.66em;
-            line-height: 37px;
-            margin-bottom: 12px;
-        }
-    `;
-
-    const FederalContent = styled.p`
-        font-size: 0.88em;
-        line-height: 22px;
-        color: ${colors.white};
-        margin-bottom: 22px;
-        @media (min-width: ${breakpoints.m}px) {
-            font-size: 1em;
-            line-height: 26px;
-            margin-bottom: 25px;
-        }
-    `;
-
-    const BottomBlock = styled.div`
-        @media (min-width: ${breakpoints.m}px) {
-            max-width: 754px;
-            margin: auto;
-        }
-    `;
-
-    const FactticMainContainer = styled.div`
-        background-color: ${colors.white};
-        padding: 30px 20px 0px 20px;
-        margin: 20px;
-        @media (min-width: ${breakpoints.m}px) {
-            padding-top: 55px;
-        }
-    `;
-
-    const FactticTitle = styled.h3`
-        font-size: 1.44em;
-        line-height: 34px;
-        font-weight: ${fontWeight.bold};
-        color: ${colors.purplePrimary};
-        margin-bottom: 10px;
-        @media (min-width: ${breakpoints.m}px) {
-            font-size: 1.72em;
-            font-weight: ${fontWeight.bold};
-            margin-bottom: 20px;
-        }
-    `;
-
-    const FactticLead = styled.h4`
-        font-size: 1em;
-        line-height: 26px;
-        font-weight: ${fontWeight.regular};
-        color: ${colors.purplePrimary};
-        margin-bottom: 15px;
-        @media (min-width: ${breakpoints.m}px) {
-            font-size: 1.44em;
-            line-height: 34px;
-            font-weight: ${fontWeight.regular};
-            margin-bottom: 18px;
-        }
-    `;
-
-    const FactticContentContainer = styled.div`
-        padding: 0;
-        @media (min-width: ${breakpoints.m}px) {
-            max-width: 754px;
-            margin: auto;
-            margin-bottom: 2px;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-    `;
-
-    const FactticContentLeftBlock = styled.div`
-        @media (min-width: ${breakpoints.m}px) {
-            flex-basis: calc(50% - 9px);
-            max-width: 370px;
-            margin-right: 15px;
-        }
-    `;
-
-    const FactticContentRightBlock = styled.div`
-        margin-bottom: 27px;
-        @media (min-width: ${breakpoints.m}px) {
-            flex-basis: calc(50% - 8px);
-            max-width: 370px;
-        }
-    `;
-
-    const FactticContentFullBlock = styled.div`
-        @media (min-width: ${breakpoints.m}px) {
-            width: 100%;
-            max-width: 754px;
-            margin: auto;
-        }
-    `;
-
-    const FactticSubtitle = styled.h3`
-        font-size: 1.44em;
-        line-height: 34px;
-        font-weight: ${fontWeight.bold};
-        color: ${colors.purplePrimary};
-        text-align: left;
-        margin-bottom: 18px;
-        @media (min-width: ${breakpoints.m}px) {
-            font-size: 1.72em;
-            line-height: 32px;
-            font-weight: ${fontWeight.bold};
-            margin-bottom: 15px;
-        }
-    `;
-
-    const FactticContent = styled.p`
-        font-size: 0.88em;
-        line-height: 22px;
-        color: ${colors.darkMainBg};
-        margin-bottom: 22px;
-        @media (min-width: ${breakpoints.m}px) {
-            font-size: 1em;
-            line-height: 26px;
-            margin-bottom: 25px;
-        }
-    `;
-
-    const FactticContentBoldText = styled.b``;
+    // Las 3 cards tienen resalte amarillo, así que ninguna va en amarillo (si no, el
+    // marker se pierde). Blanco, beige y celeste-slate: los tres contrastan con el marker.
+    const ecoColors = ["#fff", colors.marroncin, colors.celestin];
 
     return (
         <Fragment>
@@ -352,77 +385,171 @@ const Culture = () => {
                 subtitle={t("culture.subtitle")}
                 description={t("culture.description")}
             />
-            <CultureMainContainer>
-                <HistoryMainContainer>
-                    <HistoryTitle>{t("culture_historia.title")}</HistoryTitle>
-                    <TeamImgContainer>
-                        <TeamImgMobile
-                            src={require("../images/" + t("culture_historia.imageMobile") + ".png").default}
-                            alt={t("culture_historia.imageAltMobile")}
-                        />
-                        <TeamImgDesktop
-                            src={require("../images/" + t("culture_historia.imageDesktop") + ".png").default}
-                            alt={t("culture_historia.imageAlt")}
-                        />
-                    </TeamImgContainer>
-                    <HistoryContentContainer>
-                        <HistoryContentLeftBlock>
-                            <HistoryContent>{t("culture_historia.content_line1")}</HistoryContent>
-                            <HistoryContent>{t("culture_historia.content_line2")}</HistoryContent>
-                        </HistoryContentLeftBlock>
-                        <HistoryContentRightBlock>
-                            <HistoryContent>{t("culture_historia.content_line3")}</HistoryContent>
-                            <HistoryContent>{t("culture_historia.content_line4")}</HistoryContent>
-                        </HistoryContentRightBlock>
-                    </HistoryContentContainer>
-                    <HistoryContentFullBlock>
-                        <HistorySubtitle>{t("culture_historia.subtitle")}</HistorySubtitle>
-                        <HistoryContent>{t("culture_historia.content_line5")}</HistoryContent>
-                    </HistoryContentFullBlock>
-                </HistoryMainContainer>
-                <FederalMainContainer>
-                    <TopBlock>
-                        <TopBlockImgContainer>
-                            <TopBlockImg
-                                src={require("../images/" + t("culture_federales.imageCreatividad") + ".jpg").default}
-                                alt={t("culture_federales.imageAlt")}
-                            />
-                        </TopBlockImgContainer>
-                        <TopBlockInfoContainer>
-                            <FederalSubtitle>{t("culture_federales.title1")}</FederalSubtitle>
-                            <FederalContent>{t("culture_federales.content1")}</FederalContent>
-                            <FederalContent>{t("culture_federales.content2")}</FederalContent>
-                        </TopBlockInfoContainer>
-                    </TopBlock>
-                    <BottomBlock>
-                        <FederalSubtitle>{t("culture_federales.title2")}</FederalSubtitle>
-                        <FederalContent>{t("culture_federales.content3")}</FederalContent>
-                    </BottomBlock>
-                </FederalMainContainer>
-                <FactticMainContainer>
-                    <FactticContentContainer>
-                        <FactticTitle>{t("culture_facttic.title")}</FactticTitle>
-                        <FactticLead>{t("culture_facttic.subtitle")}</FactticLead>
-                        <FactticContentLeftBlock>
-                            <FactticContent>
-                                {t("culture_facttic.content_line1_part1")}
-                                <FactticContentBoldText>{t("culture_facttic.content_line1_facttic")}</FactticContentBoldText>
-                                {t("culture_facttic.content_line1_part2")}
-                            </FactticContent>
-                        </FactticContentLeftBlock>
-                        <FactticContentRightBlock>
-                            <FactticContent>{t("culture_facttic.content_line2")}</FactticContent>
-                            <FactticContent>{t("culture_facttic.content_line3")}</FactticContent>
-                        </FactticContentRightBlock>
-                    </FactticContentContainer>
-                    <FactticContentFullBlock>
-                        <FactticSubtitle>{t("culture_internacional.title")}</FactticSubtitle>
-                        <FactticContent>{t("culture_internacional.content_line1")}</FactticContent>
-                        <FactticContent>{t("culture_internacional.content_line2")}</FactticContent>
-                        <FactticContent>{t("culture_internacional.content_line3")}</FactticContent>
-                    </FactticContentFullBlock>
-                </FactticMainContainer>
-            </CultureMainContainer>
+
+            <Body>
+                {/* ---------- 1. LA RAÍZ COLECTIVA ---------- */}
+                <Section>
+                    <Inner>
+                        <Reveal variants={riseItem} amount={0.3}>
+                            <Head>
+                                <Row>
+                                    <Eyebrow>{t("culture_historia.eyebrow")}</Eyebrow>
+                                    <Sticker $rot={4} $bg={colors.red}>
+                                        {t("culture_historia.sticker")}
+                                    </Sticker>
+                                </Row>
+                                <SectionTitle>{t("culture_historia.title")}</SectionTitle>
+                                <Underline />
+                            </Head>
+                        </Reveal>
+
+                        <Reveal variants={riseItem} amount={0.15}>
+                            <HistoryFrame>
+                                <img
+                                    src={require("../images/" + t("culture_historia.imageDesktop") + ".png").default}
+                                    alt={t("culture_historia.imageAlt")}
+                                />
+                            </HistoryFrame>
+                        </Reveal>
+
+                        <Reveal variants={riseItem} amount={0.2}>
+                            <Quote>
+                                <p>{t("culture_historia.content_line2")}</p>
+                            </Quote>
+                        </Reveal>
+
+                        <Stagger amount={0.15}>
+                            <TwoCol>
+                                <Card as={motion.div} variants={riseItem} whileHover={cardLift}>
+                                    <Paragraph>{HL(t("culture_historia.content_line1"))}</Paragraph>
+                                </Card>
+                                <Card as={motion.div} variants={riseItem} whileHover={cardLift}>
+                                    <Paragraph>{HL(t("culture_historia.content_line3"))}</Paragraph>
+                                    <Paragraph>{t("culture_historia.content_line4")}</Paragraph>
+                                </Card>
+                            </TwoCol>
+                        </Stagger>
+
+                        <Reveal variants={riseItem} amount={0.2}>
+                            <Callout whileHover={cardLift}>
+                                <CalloutTitle>{t("culture_historia.subtitle")}</CalloutTitle>
+                                <Paragraph $color="#fff">
+                                    {HL(t("culture_historia.content_line5"))}
+                                </Paragraph>
+                            </Callout>
+                        </Reveal>
+                    </Inner>
+                </Section>
+
+                {/* ---------- 2. CREATIVIDAD & EXPLORACIÓN ---------- */}
+                <Section $bg={colors.purpleSecondary}>
+                    <Inner>
+                        <Reveal variants={riseItem} amount={0.3}>
+                            <Head>
+                                <Eyebrow>{t("culture_federales.eyebrow")}</Eyebrow>
+                                <SectionTitle $color="#fff">
+                                    {t("culture_federales.title1")}
+                                </SectionTitle>
+                                <Underline />
+                            </Head>
+                        </Reveal>
+
+                        <Reveal variants={riseItem} amount={0.15}>
+                            <HCard whileHover={cardLift}>
+                                <HCardImg>
+                                    <img
+                                        src={require("../images/" + t("culture_federales.imageCreatividad") + ".jpg").default}
+                                        alt={t("culture_federales.imageAlt")}
+                                    />
+                                </HCardImg>
+                                <div>
+                                    <Paragraph>{HL(t("culture_federales.content1"))}</Paragraph>
+                                    <Paragraph>{HL(t("culture_federales.content2"))}</Paragraph>
+                                </div>
+                            </HCard>
+                        </Reveal>
+
+                        <Reveal variants={riseItem} amount={0.1}>
+                            <SubHead>{t("culture_federales.title2")}</SubHead>
+                            <WideCard whileHover={cardLift}>
+                                <Columns>
+                                    <Paragraph>{HL(t("culture_federales.content3"))}</Paragraph>
+                                </Columns>
+                            </WideCard>
+                        </Reveal>
+                    </Inner>
+                </Section>
+
+                {/* ---------- 3. PUENTES HACIA EL TERRITORIO (Hackerspace) ---------- */}
+                <Section $bg={DARK}>
+                    <Inner>
+                        <Reveal variants={riseItem} amount={0.25}>
+                            <Head>
+                                <Row>
+                                    <Eyebrow $bg={colors.red} $color="#fff">
+                                        {t("culture_facttic.eyebrow")}
+                                    </Eyebrow>
+                                    <Sticker $rot={5} $bg={nb.accent} $color="#000">
+                                        {t("culture_facttic.sticker")}
+                                    </Sticker>
+                                </Row>
+                                <SectionTitle $color="#fff">
+                                    {t("culture_facttic.title")}
+                                </SectionTitle>
+                                <Underline />
+                                <Lead $color={CREAM}>{t("culture_facttic.subtitle")}</Lead>
+                            </Head>
+                        </Reveal>
+
+                        <Reveal variants={riseItem} amount={0.15}>
+                            <Card as={motion.div} $bg={CREAM} whileHover={cardLift}>
+                                <Paragraph>
+                                    {t("culture_facttic.content_line1_part1")}
+                                    <Highlight>{t("culture_facttic.content_line1_facttic")}</Highlight>
+                                    {t("culture_facttic.content_line1_part2")}
+                                </Paragraph>
+                                <Paragraph>{HL(t("culture_facttic.content_line2"))}</Paragraph>
+                                <Paragraph>{HL(t("culture_facttic.content_line3"))}</Paragraph>
+                            </Card>
+                        </Reveal>
+                    </Inner>
+                </Section>
+
+                {/* ---------- 4. LOS ECOSISTEMAS QUE INTEGRAMOS ---------- */}
+                <Section $bg={colors.red} $last>
+                    <Inner>
+                        <Reveal variants={riseItem} amount={0.3}>
+                            <Head>
+                                <Eyebrow>{t("culture_internacional.eyebrow")}</Eyebrow>
+                                <SectionTitle $color="#fff">
+                                    {t("culture_internacional.title")}
+                                </SectionTitle>
+                                <Underline />
+                            </Head>
+                        </Reveal>
+
+                        <Stagger amount={0.12}>
+                            <EcoGrid>
+                                {[
+                                    t("culture_internacional.content_line1"),
+                                    t("culture_internacional.content_line2"),
+                                    t("culture_internacional.content_line3"),
+                                ].map((line, i) => (
+                                    <EcoCard
+                                        key={i}
+                                        $bg={ecoColors[i]}
+                                        variants={riseItem}
+                                        whileHover={cardLift}
+                                    >
+                                        <EcoNum>{i + 1}</EcoNum>
+                                        <Paragraph>{HL(line)}</Paragraph>
+                                    </EcoCard>
+                                ))}
+                            </EcoGrid>
+                        </Stagger>
+                    </Inner>
+                </Section>
+            </Body>
         </Fragment>
     );
 };
@@ -441,4 +568,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

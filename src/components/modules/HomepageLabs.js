@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import data from '../../content/content.json'
 import styled from 'styled-components'
+import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import Lottie from 'react-lottie'
 import {Waypoint} from 'react-waypoint'
 import labsAnimation from '../../images/animations/labs.json'
 import Button from '../../components/common/Button'
+import { staggerContainer, riseItem } from '../common/motion/variants'
 
 // Desestructurar las propiedades para evitar warnings de webpack
 const { styles } = data;
@@ -38,7 +40,7 @@ const HomepageLabsWrapper = styled.div`
         max-width: 1140px;
     }
 `
-const InfoContainer = styled.div`
+const InfoContainer = styled(motion.div)`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,7 +55,7 @@ const InfoContainer = styled.div`
         margin-right: auto;
     }
 `
-const ImageContainer = styled.div`
+const ImageContainer = styled(motion.div)`
     display: none;
     @media (min-width: ${breakpoints.m}px) {
         display: block;
@@ -62,9 +64,9 @@ const ImageContainer = styled.div`
         text-align: right;
         margin-right: 15px;
     }
-    
+
 `
-const HomepageLabsSubtitle = styled.h3`
+const HomepageLabsSubtitle = styled(motion.h3)`
     font-size: 1.72em;
     line-height: 37px;
     font-weight: ${fontWeight.bold};
@@ -75,7 +77,7 @@ const HomepageLabsSubtitle = styled.h3`
         line-height: 49px;
     }
 `
-const HomepageLabsTitle = styled.h2`
+const HomepageLabsTitle = styled(motion.h2)`
     font-size: 2.38em;
     line-height: 49px;
     font-weight: ${fontWeight.bold};
@@ -89,7 +91,21 @@ const HomepageLabsTitle = styled.h2`
         margin-bottom: 33px;
     }
 `
-const HomepageLabsDescription = styled.p`
+// Subrayado de acento neobrutalista bajo el título.
+const TitleUnderline = styled(motion.span)`
+    display: block;
+    width: 88px;
+    height: 11px;
+    background: ${colors.yellow};
+    border: 3px solid #000;
+    border-radius: 5px;
+    box-shadow: 3px 3px 0 #000;
+    margin: -22px auto 32px auto;
+    @media (min-width: ${breakpoints.m}px) {
+        margin: -24px 0 34px 0;
+    }
+`
+const HomepageLabsDescription = styled(motion.p)`
     font-size: 1em;
     line-height: 26px;
     font-weight: ${fontWeight.regular};
@@ -115,7 +131,7 @@ const HomepageLabsImg = styled.div`
         max-width: 532px;
     }
 `
-const HomepageLabsImgMobile = styled.img`
+const HomepageLabsImgMobile = styled(motion.img)`
     width: 100%;
     max-width: 270px;
     margin-bottom: 40px;
@@ -125,7 +141,16 @@ const HomepageLabsImgMobile = styled.img`
     
 `
 const Btn = styled(Button)`
+  /* inline-flex: botón compacto (no full-width). Sombra dura más marcada. */
+  display: inline-flex;
   margin: 0px auto 15px auto;
+  box-shadow: 5px 5px 0 #000;
+  &:hover {
+    box-shadow: 7px 7px 0 #000;
+  }
+  &:active {
+    box-shadow: 2px 2px 0 #000;
+  }
   @media (min-width: ${breakpoints.m}px) {
     margin: 0px auto 0 0;
   }
@@ -134,6 +159,11 @@ const Btn = styled(Button)`
 const HomepageLabs = (props) => {
     const [renderLottie, setRenderLottie] = useState(false)
     const { t } = useTranslation();
+    const reduce = useReducedMotion();
+
+    // Parallax suave del Lottie según scroll (desactivado con reduced-motion)
+    const { scrollYProgress } = useScroll();
+    const yParallax = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
     const animationOptions= {
         loop: false,
@@ -147,14 +177,21 @@ const HomepageLabs = (props) => {
     return (
         <HomepageLabsContainer>
             <HomepageLabsWrapper>
-                <InfoContainer>
-                    <HomepageLabsTitle>{t("homepageLabs.title")}</HomepageLabsTitle>
+                <InfoContainer
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    variants={staggerContainer}
+                >
+                    <HomepageLabsTitle variants={riseItem}>{t("homepageLabs.title")}</HomepageLabsTitle>
+                    <TitleUnderline variants={riseItem} />
                     <HomepageLabsImgMobile
+                        variants={riseItem}
                         src={require('../../images/illustrations/' + t("homepageLabs.image")).default}
                         alt={t("homepageLabs.imageAltMobile")}
                     />
-                    <HomepageLabsSubtitle>{t("homepageLabs.subtitle")}</HomepageLabsSubtitle>
-                    <HomepageLabsDescription>
+                    <HomepageLabsSubtitle variants={riseItem}>{t("homepageLabs.subtitle")}</HomepageLabsSubtitle>
+                    <HomepageLabsDescription variants={riseItem}>
                         {t("homepageLabs.descriptionLine1")}
                         <DescriptionBold>{t("homepageLabs.descriptionBold1")}</DescriptionBold>
                         {t("homepageLabs.descriptionComma")}
@@ -166,20 +203,28 @@ const HomepageLabs = (props) => {
                         <DescriptionBold>{t("homepageLabs.descriptionBold4")}</DescriptionBold>
                         {t("homepageLabs.descriptionDot")}
                     </HomepageLabsDescription>
-                    <Btn 
-                      type='btnPrimaryWhite' 
-                      theme={styles} 
-                      href="labs" 
-                      isLink
-                      btnText={t("homepageLabs.btnText")}
-                    />
+                    <motion.div variants={riseItem} style={{ width: '100%' }}>
+                        <Btn
+                          type='btnPrimaryWhite'
+                          theme={styles}
+                          href="labs"
+                          isLink
+                          btnText={t("homepageLabs.btnText")}
+                        />
+                    </motion.div>
                 </InfoContainer>
-                <ImageContainer>
-                    <HomepageLabsImg> 
+                <ImageContainer
+                    style={{ y: reduce ? 0 : yParallax }}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.6 }}
+                >
+                    <HomepageLabsImg>
                         <Waypoint onEnter={()=>setRenderLottie(true)}/>
                         { renderLottie && <Lottie
                             options = {animationOptions}
-                            width = "100%"/> 
+                            width = "100%"/>
                         }
                     </HomepageLabsImg>
                 </ImageContainer>

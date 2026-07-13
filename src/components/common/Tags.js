@@ -7,13 +7,18 @@ const TagsContainer = styled.div`
     flex-wrap: wrap;
 `
 const TagItem = styled.div`
-    margin: 0 6px 8px 0px;
+    margin: 0 8px 8px 0px;
     padding: ${props => props.type.padding };
-    border-radius: 10px;
+    border: 2px solid #000;
+    border-radius: 6px;
+    box-shadow: 3px 3px 0 #000;
     font-size: 14px;
     font-weight: ${props => props.type.fontWeight };
     background-color: ${props => props.type.background };
     color: ${props => props.type.color };
+    p {
+        margin: 0;
+    }
 `
 
 const Tags = (props) => {

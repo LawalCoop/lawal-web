@@ -18,11 +18,11 @@
         "licenseIconAlt": "Creative Commons Attribution logo"
     },
     "header": {
-      "logoAlt": "logo Lawal",
-      "iconTogglerAlt": "icono para abrir menú",
-      "iconTogglerCloseAlt": "icono para cerrar menú"  
+        "logoAlt": "logo Lawal",
+        "iconTogglerAlt": "icono para abrir menú",
+        "iconTogglerCloseAlt": "icono para cerrar menú"
     },
-    "homepage" : {
+    "homepage": {
         "title": "Homepage",
         "imageAlt": " ",
         "imageAltMobile": " ",
@@ -32,7 +32,7 @@
         "leadBold": " especializada en Inteligencia Artificial",
         "leadLine3": " y sistemas de alta concurrencia."
     },
-    "homepageCulture" : {
+    "homepageCulture": {
         "title": "Cultura",
         "birdImage": "bird.svg",
         "birdImageAlt": "ilustración de un pájaro",
@@ -43,7 +43,7 @@
         "descriptionLine2": " Siempre que trates con una persona de Lawal vas a tratar con una persona con capacidad de acción, decisión y compromiso total con los proyectos.",
         "btnText": "ver más"
     },
-    "homepageLabs" : {
+    "homepageLabs": {
         "title": "Lawal Experimental",
         "subtitle": "Experimentamos con la tecnología y el cooperativismo!",
         "image": "homepageLabs.svg",
@@ -60,10 +60,24 @@
         "descriptionDot": ".",
         "btnText": "ver más"
     },
+    "home_marquee": "Cooperativa de trabajo ✳ Elixir ✳ Autogestión ✳ Inteligencia Artificial ✳ Conocimiento libre ✳ LLMs ✳ Territorio patagónico ✳ Rust ✳ Ayuda mutua ✳ Machine Learning ✳ Sistemas concurrentes ✳ Blockchain ✳ Economía social y solidaria ✳ Agentes de IA ✳ Largo plazo",
+    "home_manifesto": {
+        "sticker": "Manifiesto",
+        "quote": "Lo virtuoso está en sostener los procesos a largo plazo: resistir la inmediatez de la modernidad.",
+        "closer": "Lawal es a largo plazo.",
+        "sticker2": "Largo plazo"
+    },
+    "home_cta": {
+        "sticker": "software",
+        "sticker2": "coop",
+        "title": "¿Arrancamos?",
+        "text": "¿Tenés una idea, un problema para resolver, o simplemente curiosidad?",
+        "btn": "Escribinos"
+    },
     "button": {
         "verMas": "ver más",
-        "send": "enviar", 
-        "read":"leer"
+        "send": "enviar",
+        "read": "leer"
     },
     "verMasArticulos": "ver todos los artículos",
     "y": " y ",
@@ -81,13 +95,15 @@
     },
     "services": {
         "title": "Servicios",
+        "eyebrow": "Lo que hacemos",
+        "sticker": "Cooperativa",
         "tagsTitle": "Tecnologías",
         "btnText": "ir a servicios"
-    }, 
-    "service_datos":  {
+    },
+    "service_datos": {
         "service": "Ciencia de Datos",
         "description": "Este área se dedica a la limpieza, extracción y análisis de datos con el fin de poder servir de alimento para procesos de Inteligencia Artificial o Aprendizaje Automático. Es de esencial importancia procesar los datos para lograr que sean de fácil entendimiento, así como su uso para llegar a los objetivos planteados.",
-        "tags" : [
+        "tags": [
             "Python",
             "Pandas",
             "Numpy",
@@ -96,11 +112,10 @@
         "image": "datos",
         "link": " "
     },
-    "service_inteligenciaArtificial" :
-    {
+    "service_inteligenciaArtificial": {
         "service": "Inteligencia Artificial",
         "description": "El Aprendizaje Automático es un subcampo de la Inteligencia Artificial en el que se tiene como objetivo que las \"computadoras aprendan\". A partir de datos recolectados y procesados, diseñamos, construimos y entrenamos modelos que nos permitan predecir eventos futuros, clasificar imágenes, reconocer entidades en textos y muchas otras cosas más.",
-        "tags" : [
+        "tags": [
             "Python",
             "Pandas",
             "Numpy",
@@ -112,19 +127,19 @@
     "service_altaConcurrencia": {
         "service": "Alta Concurrencia",
         "description": "Utilizamos lenguajes de programación funcional en tiempo real y muy adoptados en el mercado, que soportan niveles de altísima concurrencia y distribución, teniendo como resultado sistemas que responden a gran velocidad ante altas demandas.",
-        "tags" : [
+        "tags": [
             "Earlang",
             "Elixir",
-            "Phoenix Framework", 
+            "Phoenix Framework",
             "LiveView"
         ],
         "image": "altaConcurrencia",
         "link": " "
     },
-    "service_blockchain" : {
+    "service_blockchain": {
         "service": "Blockchain | Fintech",
         "description": "Estamos desarrollando fintech, que son las nuevas aplicaciones, procesos, productos o modelos de negocios en la industria de los servicios financieros compuestos de uno o más servicios financieros complementarios y puestos a disposición del público vía Internet.",
-        "tags" : [
+        "tags": [
             "Python",
             "Ethereum"
         ],
@@ -134,12 +149,12 @@
     "service_fullstack": {
         "service": "Fullstack",
         "description": "Desarrollamos aplicaciones web/mobile/desktop con diferentes tecnologías que permitan resolver problemáticas de organizaciones, cooperativas y empresas y poder realizar sus procesos de manera más eficiente.",
-        "tags" : [
+        "tags": [
             "Django",
             "Phoenix",
             "Phoenix LiveView",
-            "ReactJS", 
-            "VueJS", 
+            "ReactJS",
+            "VueJS",
             "React Native"
         ],
         "image": "fullstack",
@@ -148,73 +163,83 @@
     "service_subsection": {
         "title": "Asesoramiento a Cooperativas",
         "description": "Realizamos capacitaciones técnicas y/o de cooperativismo para organizaciones y cooperativas donde buscamos transmitir de forma amena y sistematizada los conocimientos adquiridos en el ámbito tecnológico y cooperativo.",
-        "image" : "capacitacion",
-        "featuredServiceImageAlt" : "Capacitación, ilustración animada",
+        "image": "capacitacion",
+        "featuredServiceImageAlt": "Capacitación, ilustración animada",
         "link": "servicios/#capacitacion"
     },
-    "culture" : {
+    "culture": {
         "title": "Cultura",
-        "subtitle" : "¡Somos una cooperativa de trabajo!",
+        "subtitle": "¡Somos una cooperativa de trabajo!",
         "description": "Lawal es una empresa tecnológica administrada, gestionada y gobernada por las personas que trabajan en ella. Siempre que trates con una persona de Lawal vas a tratar con una persona con capacidad de acción, decisión y compromiso total con los proyectos."
-    }, 
+    },
     "culture_historia": {
         "title": "La Raíz Colectiva",
-        "imageMobile" : "equipoMobile",
-        "imageAltMobile" : "equipo Lawal",
-        "imageDesktop" : "equipoDesktop",
-        "imageAlt" : "equipo Lawal",
-        "content_line1": "Lawal toma forma en el transcurso del año 2024, a través de la decisión de construir un espacio de trabajo arraigado en el territorio patagónico que habitamos. Quienes traccionamos que esto suceda, venimos de transitar años de distintas experiencias cooperativas y particularmente en el ámbito del desarrollo de software, y ese conocimiento puesto en común nos dio la certeza del potencial de las estructuras colaborativas y autogestionadas.",
+        "imageMobile": "equipoMobile",
+        "imageAltMobile": "equipo Lawal",
+        "imageDesktop": "equipoDesktop",
+        "imageAlt": "equipo Lawal",
+        "content_line1": "Lawal toma forma en el transcurso del año 2024, a través de la decisión de construir un espacio de trabajo arraigado en el territorio patagónico que habitamos. Quienes traccionamos que esto suceda, venimos de transitar años de distintas experiencias cooperativas y particularmente en el ámbito del desarrollo de software, y ese conocimiento puesto en común nos dio la certeza del potencial de las **estructuras colaborativas y autogestionadas**.",
         "content_line2": "Lawal (o lahual) es el nombre dado por el pueblo mapuche-huilliche al árbol alerce (Fitzroya cupressoides). Su significado en lengua mapudungun es “vida después de la vida.” Eso mismo representa esta cooperativa para quienes la construimos día a día.",
-        "content_line3": "Somos una empresa organizada como Cooperativa de Trabajo, porque entendemos al asociativismo como herramienta de vida y nos agrupa el saber  y el hacer tecnológico.",
+        "content_line3": "Somos una empresa organizada como Cooperativa de Trabajo, porque entendemos al **asociativismo como herramienta de vida** y nos agrupa el saber  y el hacer tecnológico.",
         "content_line4": "La propiedad es colectiva, y así construimos acuerdos que dan forma a nuestra cotidianeidad, estructura viva que nos permite innovar, experimentar y elegir qué y cómo producimos, de manera democrática.",
         "subtitle": "¡Trabajamos con lógicas de producción diferentes a las convencionales!",
-        "content_line5": "La voz de todas las personas que integramos la cooperativa tiene lugar y peso en las decisiones que marcan nuestro hacer. "    
+        "content_line5": "La voz de todas las personas que integramos la cooperativa **tiene lugar y peso en las decisiones** que marcan nuestro hacer. ",
+        "eyebrow": "Nuestra Historia",
+        "sticker": "Est. 2024"
     },
     "culture_federales": {
-        "title1": "Creatividad & Tecnología", 
-        "imageCreatividad" : "creatividad",
-        "imageCreatividadAlt" : " ",
+        "title1": "Creatividad & Tecnología",
+        "imageCreatividad": "creatividad",
+        "imageCreatividadAlt": " ",
         "content1": "Nos motiva explorar tecnologías de vanguardia y desarrollar soluciones con lenguajes y arquitecturas robustas, eficientes y escalables. ",
-        "content2": "Construimos y participamos en diversos proyectos utilizando Elixir y Rust, lenguajes en los que nos especializamos para diseñar sistemas concurrentes, resilientes y de alto rendimiento. Nuestra exploración nos ha llevado a profundizar en tecnologías como Blockchain y, cada vez más, en Inteligencia Artificial, particularmente a través de la implementación y uso de Large Language Models (LLMs).",
-        "title2": "Exploración Amplia", 
-        "content3": "Nuestra identidad colectiva está compuesta por la diversidad de experiencias que traemos. A la tecnología la cruzamos con la música, las ingenierías, la gestión cultural, la soberanía alimentaria, deportes en la naturaleza, el yoga, las radios comunitarias, las artes marciales, el mutualismo. Nos hacen los distintos senderos que transitamos, la oscilación entre nuestras vidas personales y los proyectos en conjunto. Nos reconocemos amigxs. La sinergía de trabajo nos habilita divertirnos, planificar objetivos, y abordar los desafíos en equipo. Creemos que la creatividad y la técnica se retroalimentan cuando se trabaja de este modo, con estructuras horizontales donde se ponen en común y se comparten las ideas, las responsabilidades, el entusiasmo. Valoramos trabajar con libertad y autonomía, profundizando el compromiso con cada proyecto que abordamos."
+        "content2": "Construimos y participamos en diversos proyectos utilizando Elixir y Rust, lenguajes en los que nos especializamos para diseñar **sistemas concurrentes, resilientes y de alto rendimiento**. Nuestra exploración nos ha llevado a profundizar en tecnologías como Blockchain y, cada vez más, en Inteligencia Artificial, particularmente a través de la implementación y uso de Large Language Models (LLMs).",
+        "title2": "Exploración Amplia",
+        "content3": "Nuestra identidad colectiva está compuesta por la **diversidad de experiencias** que traemos. A la tecnología la cruzamos con la música, las ingenierías, la gestión cultural, la soberanía alimentaria, deportes en la naturaleza, el yoga, las radios comunitarias, las artes marciales, el mutualismo. Nos hacen los distintos senderos que transitamos, la oscilación entre nuestras vidas personales y los proyectos en conjunto. Nos reconocemos amigxs. La sinergía de trabajo nos habilita divertirnos, planificar objetivos, y abordar los desafíos en equipo. Creemos que la creatividad y la técnica se retroalimentan cuando se trabaja de este modo, con estructuras horizontales donde se ponen en común y se comparten las ideas, las responsabilidades, el entusiasmo. Valoramos trabajar con libertad y autonomía, profundizando el compromiso con cada proyecto que abordamos.",
+        "eyebrow": "Nuestra Práctica"
     },
     "culture_facttic": {
-        "title": "Puentes hacia el Territorio", 
-        "subtitle": "Compartimos conocimiento a través del Hackerspace", 
+        "title": "Puentes hacia el Territorio",
+        "subtitle": "Compartimos conocimiento a través del Hackerspace",
         "content_line1_part1": "Invertimos en nuestra formación, y a su vez, dedicamos energía en generar espacios donde el conocimiento fluya de manera circular con personas y grupos externos a la cooperativa, para romper con la privatización del conocimiento, y aportar a formas de vida que integren la tecnología sin perder el horizonte de la autonomía y la relación comunitaria. De eso se trata el espacio de",
         "content_line1_facttic": " Hackerspace",
         "content_line1_part2": ", laboratorio abierto para el aprendizaje.",
-        "content_line2": "Creemos que el futuro también es un territorio en disputa, y desde nuestro hacer, es posible transmitir otros paradigmas de trabajo y cultura.",
-        "content_line3": "El cooperativismo como una forma de reexistencia, una provocación para asumir un lugar de responsabilidad y acción en las comunidades en las que vivimos."
+        "content_line2": "Creemos que **el futuro también es un territorio en disputa**, y desde nuestro hacer, es posible transmitir otros paradigmas de trabajo y cultura.",
+        "content_line3": "El cooperativismo como una forma de **reexistencia**, una provocación para asumir un lugar de responsabilidad y acción en las comunidades en las que vivimos.",
+        "eyebrow": "Hackerspace",
+        "sticker": "Conocimiento libre"
     },
     "culture_internacional": {
-        "title": "Los Ecosistemas que Integramos", 
-        "content_line1": "Elegimos ser cooperativas, y eso lleva al fortalecimiento de lazos no sólo territoriales sino también estructurales hacia la construcción de otras economías posibles. Somos parte del movimiento de la Economía Social y Solidaria (ESS), y de manera sectorial, nuestro trabajo dedicado a la industria tecnológica nos une a FACTTIC, la Federación Argentina de Cooperativas de Trabajo, Tecnología, Innovación y Conocimiento. Somos más de 40 cooperativas agrupadas, espacio de construcción desde el que generamos oportunidades laborales, proyectos sociales y ayuda mutua desde hace más de 10 años.",
-        "content_line2": "Nos entendemos como actores sociales territoriales, y por eso es que quienes integramos Lawal, formamos parte de otros proyectos sociales de Villa La Angostura. Así es que acompañamos el desarrollo de la Mutual La Correntosa, con base en la organización de vecinxs preocupadxs por la soberanía alimentaria, y dedicadxs al fortalecimiento de los lazos entre consumidores y productores de la agricultural familiar y/o cooperativos.",
-        "content_line3": "A su vez, interesadxs en la historia de la Patagonia, desde su ancestralidad a las construcciones de sentido de las que somos hoy parte, así como del sostenimiento de espacios culturales comunitarios, es que nos vinculamos a la Biblioteca Popular Osvaldo Bayer, e integramos proyectos en conjunto como lo son Archivos del Sur."
+        "title": "Los Ecosistemas que Integramos",
+        "content_line1": "Elegimos ser cooperativas, y eso lleva al fortalecimiento de lazos no sólo territoriales sino también estructurales hacia la construcción de otras economías posibles. Somos parte del movimiento de la Economía Social y Solidaria (ESS), y de manera sectorial, nuestro trabajo dedicado a la industria tecnológica nos une a FACTTIC, la Federación Argentina de Cooperativas de Trabajo, Tecnología, Innovación y Conocimiento. Somos **más de 40 cooperativas agrupadas**, espacio de construcción desde el que generamos oportunidades laborales, proyectos sociales y ayuda mutua desde hace más de 10 años.",
+        "content_line2": "Nos entendemos como actores sociales territoriales, y por eso es que quienes integramos Lawal, formamos parte de otros proyectos sociales de Villa La Angostura. Así es que acompañamos el desarrollo de la Mutual La Correntosa, con base en la organización de vecinxs preocupadxs por la **soberanía alimentaria**, y dedicadxs al fortalecimiento de los lazos entre consumidores y productores de la agricultural familiar y/o cooperativos.",
+        "content_line3": "A su vez, interesadxs en **la historia de la Patagonia**, desde su ancestralidad a las construcciones de sentido de las que somos hoy parte, así como del sostenimiento de espacios culturales comunitarios, es que nos vinculamos a la Biblioteca Popular Osvaldo Bayer, e integramos proyectos en conjunto como lo son Archivos del Sur.",
+        "eyebrow": "Cooperativismo"
     },
-    "labs" : {
-        "title": "Experimental", 
-        "subtitle": "En Lawal elegimos usar la tecnología como herramienta para explorar nuestro territorio y nuestras mentes.", 
+    "labs": {
+        "title": "Experimental",
+        "subtitle": "En Lawal elegimos usar la tecnología como herramienta para explorar nuestro territorio y nuestras mentes.",
         "content": " Investigamos y aplicamos nuevas tecnologías como Elixir, Rust, AI y Blockchain. También nos basamos en principios y técnicas de organización horizontal y participación amplia. Así creamos programas, aplicaciones, experiencias y espacios que nos permitan tener vidas con otros propósitos mas allá del sostén económico."
     },
     "casos_de_exito": {
         "title": "Experiencias",
+        "eyebrow": "Nuestros trabajos",
+        "sticker": "Código libre",
         "tagsTitle": "Tecnologías Investigadas",
         "imageAltLine1": "imagen del proyecto ",
         "btnTextVerMas": "ver más",
         "btnTextGithub": "ir a Github"
     },
-    "blog":{
-        "title": "Blog"
-    }, 
+    "blog": {
+        "title": "Blog",
+        "eyebrow": "Ideas y apuntes",
+        "sticker": "Bitácora"
+    },
     "blogPost": {
-        "tagsTitle": "Etiquetas relacionadas", 
-        "relatesPost": "Artículos relacionados", 
+        "tagsTitle": "Etiquetas relacionadas",
+        "relatesPost": "Artículos relacionados",
         "verTodosBtn": "Ver todos los artículos"
     },
-    "page404" : {
+    "page404": {
         "title": "Error 404",
         "descriptionLine1": "No pudimos encontrar lo que estabas buscando.",
         "descriptionLine2": "Te invitamos a seguir navegando nuestro sitio tocando el siguiente botón",
@@ -222,6 +247,5 @@
         "btnHref": "/",
         "imageAlt": "ilustración de ina",
         "imageAltMobile": "ilustración de ina"
-    }   
-    
+    }
 }

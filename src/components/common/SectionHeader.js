@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import data from '../../content/content.json'
 import styled from 'styled-components'
 import {Waypoint} from 'react-waypoint'
 import Lottie from 'react-lottie'
 import cultureAnimation from '../../images/animations/cultura.json'
 import labsAnimation from '../../images/animations/labs.json'
+import { nb } from '../../styles/neobrutalism'
 
 // Desestructurar las propiedades para evitar warnings de webpack
 const { styles } = data;
@@ -19,11 +20,13 @@ const iluCultura = require('../../images/illustrations/cultura.svg');
 const HeaderContainer = styled.div`
     background: ${colors.greenLight};
     padding-bottom: 80px;
-    display: flex; 
+    display: flex;
     justify-content: center;
     padding: 40px 20px 50px 20px;
     margin-bottom: 0px;
     background: ${props => props.type.background};
+    /* Divisor duro neobrutalista entre el hero y el cuerpo */
+    border-bottom: 5px solid #000;
     @media (min-width: ${breakpoints.m}px) {
         margin-bottom: 0px;
         padding-top: 55px;
@@ -44,7 +47,10 @@ const HeaderWrapper = styled.div`
     flex-direction: column;
     @media (min-width: ${breakpoints.m}px) {
         flex-direction: row;
-        justify-content: center;        
+        justify-content: center;
+        /* Centrar verticalmente la ilustración respecto al bloque de texto (si no, el
+           Lottie ancho/bajo de labs queda pegado arriba en vez de centrado como en cultura). */
+        align-items: center;
     }
 
 `
@@ -144,7 +150,22 @@ const SectionHeaderDescription = styled.p`
     line-height: 26px;
     font-weight: ${fontWeight.regular};
     color: ${props => props.type.color};
-    
+
+`
+
+// Barrita de acento debajo del título (mismo lenguaje que el cuerpo)
+const Underline = styled.span`
+    display: block;
+    width: 84px;
+    height: 11px;
+    background: ${nb.accent};
+    border: ${nb.borderThin};
+    border-radius: 5px;
+    box-shadow: ${nb.shadowSm};
+    margin: 0 auto 25px auto;
+    @media (min-width: ${breakpoints.m}px) {
+        margin: 0 0 30px 0;
+    }
 `
 
 const SectionHeaderImgMobile = styled.img`
@@ -159,11 +180,20 @@ const SectionHeaderImgMobile = styled.img`
     @media (min-width: ${breakpoints.m}px) {
         display: none;
     }
-    
+
 `
 
 const SectionHeader = (props) => {
     const [renderLottie, setRenderLottie] = useState(false)
+    // Diferimos el montaje del Lottie hasta que la transición "door" terminó (~1.2s tras
+    // montar la vista). El parseo del JSON + armado del SVG es un pico sincrónico en el
+    // main thread que, si ocurre durante la apertura de la puerta, la congela y hace que
+    // abra "de golpe" (Motion anima en el main thread). Diferirlo mantiene la apertura fluida.
+    const [transitionDone, setTransitionDone] = useState(false)
+    useEffect(() => {
+        const t = setTimeout(() => setTransitionDone(true), 1200)
+        return () => clearTimeout(t)
+    }, [])
 
     const getSectionAnimation = (section) => {
         switch (section) {
@@ -215,15 +245,16 @@ const SectionHeader = (props) => {
             <HeaderWrapper>
                 <InfoContainer>
                     <SectionHeaderTitle type={getHeadStyles(props.section)}>{props.title}</SectionHeaderTitle>
-                    <SectionHeaderImgMobile src={getHeadStyles(props.section).image.default}></SectionHeaderImgMobile>
+                    <Underline />
+                    <SectionHeaderImgMobile section={props.section} src={getHeadStyles(props.section).image.default}></SectionHeaderImgMobile>
                     <SectionHeaderSubtitle section={props.section} type={getHeadStyles(props.section)}>{props.subtitle}</SectionHeaderSubtitle>
                     <SectionHeaderDescription type={getHeadStyles(props.section)}> {props.description} </SectionHeaderDescription>
                 </InfoContainer>
                 <ImageContainer section={props.section}>
                     <Waypoint onEnter={()=>setRenderLottie(true)}/>
-                    { renderLottie && <Lottie
+                    { renderLottie && transitionDone && <Lottie
                         options = {getAnimationOptions(props.section)}
-                        width = "100%"/> 
+                        width = "100%"/>
                     }
                 </ImageContainer>
             </HeaderWrapper>

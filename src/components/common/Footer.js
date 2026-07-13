@@ -19,19 +19,38 @@ const FooterContainer = styled.footer`
 `
 const FooterWrapper = styled.div`
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
     margin: auto;
     max-width: 320px;
     @media (min-width: ${styles.breakpoints.m}px) {
-        justify-content: space-between; 
+        /* 3 columnas: licencia | W centrada | cooperativas */
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
         align-items: center;
+        gap: 20px;
         max-width: calc(100% - 40px);
     }
     @media (min-width: ${styles.breakpoints.l}px) {
         max-width: 946px;
     }
-
+`
+// Isotipo W de Lawal, centrado. Se tinta en claro con mask (el PNG original es oscuro).
+const FooterLogo = styled.div`
+    width: 62px;
+    height: 62px;
+    flex-shrink: 0;
+    /* En mobile va primera del stack. */
+    order: -1;
+    background: rgba(255, 255, 255, 0.9);
+    -webkit-mask: url("/Lawal_Iso_w_oscuro.png") center / contain no-repeat;
+    mask: url("/Lawal_Iso_w_oscuro.png") center / contain no-repeat;
+    @media (min-width: ${styles.breakpoints.m}px) {
+        width: 72px;
+        height: 72px;
+        order: 0;
+    }
 `
 const FooterLicense = styled.div`
     display: flex;
@@ -45,9 +64,13 @@ const FooterLicenseName = styled.span`
     font-weight:${styles.fontWeight.bold};
 `
 const FooterCopyright = styled.div`
+      text-align: center;
+      @media (min-width: ${styles.breakpoints.m}px) {
+          text-align: right;
+      }
       @media (min-width: ${styles.breakpoints.l}px) {
           margin-top: 0;
-        }
+      }
 `
 const FooterCoopName = styled.a`
     font-weight:${styles.fontWeight.bold};
@@ -86,6 +109,7 @@ const Footer = () => {
                             {t("footer.disclaimer")}  <FooterLicenseName>{t("footer.licenseName")}</FooterLicenseName>
                         </FooterLicenseContent>
                     </FooterLicense>
+                    <FooterLogo aria-hidden />
                     <FooterCopyright>
                         {t("footer.designby")}{" "}
                         <FooterCoopName

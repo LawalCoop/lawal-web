@@ -1,5 +1,8 @@
 import React from "react";
-import { Link } from "gatsby";
+// Link localizado de i18next: prefija el idioma (/es/…, /en/…) y navega client-side sin
+// romper la transición de página. El Link plano de gatsby generaba rutas sin prefijo
+// (/servicios) que interrumpían el "door" (se veía la nueva vista antes de cerrar).
+import { Link } from "gatsby-plugin-react-i18next";
 import styled from "styled-components";
 
 const BtnImg = styled.img`
@@ -9,34 +12,43 @@ const BtnImg = styled.img`
 `;
 const setSharedStyles = (type) => {
   return `
-        margin: 0px;
-        padding: 9px 20px;
-        margin-bottom: 5px;
-        margin-right: 10px;
-        font-size: 18px;
-        font-size: ${type.fontSize};
-        font-weight: ${type.fontWeight};
+        margin: 0 10px 10px 0;
+        padding: 11px 24px;
+        font-size: ${type.fontSize || "16px"};
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
         color: ${type.color};
         background-color: ${type.background};
-        border-radius: 12px;
-        border-color: ${type.borderColor};
-        border-width: 2px!important;
-        border-style: solid;
-        box-shadow:  0px 4px 0px ${type.boxShadow};
-        transition: 100ms ease-in-out all;
-        margin-bottom: 10px;
+        border-radius: 6px;
+        border: 3px solid #000;
+        box-shadow: 4px 4px 0 #000;
+        transition: transform 0.12s ease, box-shadow 0.12s ease;
         text-decoration: none;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         &:hover {
-            box-shadow: none;
-        };
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 #000;
+        }
+        &:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 #000;
+        }
+        &:focus-visible {
+            outline: 3px solid ${type.background === "#FFBE69" ? "#000" : "#FFBE69"};
+            outline-offset: 3px;
+        }
     `;
 };
 
 const BtnLink = styled(Link)`
+  ${(props) => setSharedStyles(props.$btnStyles)}
+`;
+// Ancla plana para links externos (target _blank / URLs http, mailto, tel).
+const BtnAnchor = styled.a`
   ${(props) => setSharedStyles(props.$btnStyles)}
 `;
 const BtnCta = styled.button`
@@ -127,25 +139,49 @@ const Button = (props) => {
     if (props.onButtonClick) props.onButtonClick(event);
   };
 
+  // Un link es externo si abre en otra pestaña o apunta a un protocolo/host absoluto.
+  const href = props.href || "";
+  const isExternal =
+    props.target === "_blank" ||
+    /^(https?:)?\/\//.test(href) ||
+    /^(mailto:|tel:)/.test(href);
+  // Para internos, normalizo a ruta absoluta para que el Link de i18next la localice.
+  const internalTo = href && !href.startsWith("/") ? `/${href}` : href;
+  const btnIcon = (
+    <BtnImg
+      imgDisplay={getBtnStyles(props.type).imgDisplay}
+      src={
+        props.github
+          ? require("../../images/icon_github.svg").default
+          : require("../../images/icon_website.svg").default
+      }
+    />
+  );
+
   return props.isLink ? (
-    <BtnLink
-      to={props.href}
-      className={props.className}
-      $btnStyles={getBtnStyles(props.type)}
-      theme={props.theme}
-      href={props.href}
-      target={props.target}
-    >
-      <BtnImg
-        imgDisplay={getBtnStyles(props.type).imgDisplay}
-        src={
-          props.github
-            ? require("../../images/icon_github.svg").default
-            : require("../../images/icon_website.svg").default
-        }
-      />
-      {props.btnText}
-    </BtnLink>
+    isExternal ? (
+      <BtnAnchor
+        href={props.href}
+        className={props.className}
+        $btnStyles={getBtnStyles(props.type)}
+        theme={props.theme}
+        target={props.target}
+        rel={props.target === "_blank" ? "noopener noreferrer" : undefined}
+      >
+        {btnIcon}
+        {props.btnText}
+      </BtnAnchor>
+    ) : (
+      <BtnLink
+        to={internalTo}
+        className={props.className}
+        $btnStyles={getBtnStyles(props.type)}
+        theme={props.theme}
+      >
+        {btnIcon}
+        {props.btnText}
+      </BtnLink>
+    )
   ) : (
     <BtnCta
       className={props.className}

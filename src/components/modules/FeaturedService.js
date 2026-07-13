@@ -1,48 +1,45 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components'
+import { motion } from 'motion/react'
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import data from '../../content/content.json'
 import {Waypoint} from 'react-waypoint'
 import Lottie from 'react-lottie'
 import { AnchorLink } from 'gatsby-plugin-anchor-links'
 import capacitacionAnimation from '../../images/animations/capacitacion.json'
+import { riseItem, cardHover, cardTap } from '../common/motion/variants'
 
 const styles = data.styles
 
-const FeaturedServiceContainer = styled.div`
+const FeaturedServiceContainer = styled(motion.div)`
     background: ${styles.colors.white};
     position: relative;
     min-height: 253px;
     margin-bottom: 0px;
-    /* Estilos neobrutalistas con una sola sombra */
+    /* Estilos neobrutalistas con una sola sombra (el hover lo maneja Motion) */
     border: 4px solid #000; /* Borde grueso negro */
-    box-shadow: 8px 8px 0 #000; /* Sombra única negra */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transición suave */
+    box-shadow: 6px 6px 0 #000; /* Sombra única negra */
 
     @media (min-width: ${styles.breakpoints.m}px) {
-        min-height: 215px;
+        /* Alto suficiente para que el InfoContainer (absoluto) no quede pegado al
+           borde inferior de la card. */
+        min-height: 330px;
         padding: 0 20px;
     }
-    
+
     ${props => {
         if (props.ishomepage) {
-            return ` 
+            return `
             flex-basis: 100%;
             max-width: 320px;
-            border-radius: 14px;
+            border-radius: 6px;
             padding: 0px;
             min-height: unset;
             background: ${styles.colors.white};
             margin: 0px;
             /* Aplico neobrutalismo con sombra única */
             border: 4px solid #000;
-            box-shadow: 8px 8px 0 #000;
-
-            &:hover {
-                transform: translate(4px, 4px); /* Movimiento al hover */
-                box-shadow: 4px 4px 0 #000; /* Sombra reducida */
-                outline: none; /* Quito el outline original */
-            }
+            box-shadow: 6px 6px 0 #000;
 
             @media (min-width: ${styles.breakpoints.m}px) {
                 position: static;
@@ -54,11 +51,7 @@ const FeaturedServiceContainer = styled.div`
                 padding: 0;
                 /* Sobreescribo border: none y box-shadow: none */
                 border: 4px solid #000;
-                box-shadow: 8px 8px 0 #000;
-                &:hover {
-                    transform: translate(4px, 4px);
-                    box-shadow: 4px 4px 0 #000;
-                }
+                box-shadow: 6px 6px 0 #000;
             }
             @media (min-width: ${styles.breakpoints.l}px) {
                 flex-basis: 33.33%;
@@ -92,7 +85,7 @@ const FeaturedServiceWrapper = styled.div`
     padding: 46px 22px 33px 22px;
     background: ${styles.colors.white};
     border: 2px solid ${styles.colors.purplePrimary};
-    border-radius: 14px;
+    border-radius: 6px;
     box-shadow: 0px 6px 0px ${styles.colors.purplePrimary};
     @media (min-width: ${styles.breakpoints.m}px) {
         max-width: 946px;
@@ -142,7 +135,7 @@ const ImageContainer = styled.div`
         margin-bottom: 50px;
         background: ${styles.colors.white};
         border: 3px solid ${styles.colors.purplePrimary};
-        border-radius: 14px;
+        border-radius: 6px;
         box-shadow: 12px 12px 0px ${styles.colors.purplePrimary};
     }
     ${props => {
@@ -197,7 +190,7 @@ const InfoContainer = styled.div`
         padding: 49px 47px 44px 47px;
         background: ${styles.colors.white};
         border: 3px solid ${styles.colors.purplePrimary};
-        border-radius: 14px;
+        border-radius: 6px;
         box-shadow: 12px 12px 0px ${styles.colors.purplePrimary};
     }
     @media (min-width: ${styles.breakpoints.m}px) and (max-width: 875px) {
@@ -312,8 +305,15 @@ const FeaturedService = (props) => {
     }
 
     return (
-        props.ishomepage ? 
-        <FeaturedServiceContainer ishomepage={props.ishomepage} onMouseEnter={startLottie} onMouseLeave={pauseLottie}> 
+        props.ishomepage ?
+        <FeaturedServiceContainer
+            ishomepage={props.ishomepage}
+            onMouseEnter={startLottie}
+            onMouseLeave={pauseLottie}
+            variants={riseItem}
+            whileHover={cardHover}
+            whileTap={cardTap}
+        >
             <FeaturedServiceWrapper ishomepage={props.ishomepage}> 
                 <FeaturedServiceLink
                     ishomepage={props.ishomepage}
@@ -340,7 +340,7 @@ const FeaturedService = (props) => {
             </FeaturedServiceWrapper>
         </FeaturedServiceContainer>
         :
-        <FeaturedServiceContainer ishomepage={props.ishomepage}> 
+        <FeaturedServiceContainer ishomepage={props.ishomepage} whileHover={cardHover} whileTap={cardTap}>
             <FeaturedServiceWrapper id="capacitacion" ishomepage={props.ishomepage}>
                     <Waypoint onEnter={() => { setRenderLottie(true) }} onLeave={()=>{setRenderLottie(false)}} />
                 <ImageContainer ishomepage={props.ishomepage}>
