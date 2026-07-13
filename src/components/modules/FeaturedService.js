@@ -1,10 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components'
 import { motion } from 'motion/react'
 import { useTranslation } from "gatsby-plugin-react-i18next"
 import data from '../../content/content.json'
-import {Waypoint} from 'react-waypoint'
-import Lottie from 'react-lottie'
+import LottieVisibility from '../common/LottieVisibility'
 import { AnchorLink } from 'gatsby-plugin-anchor-links'
 import capacitacionAnimation from '../../images/animations/capacitacion.json'
 import { riseItem, cardHover, cardTap } from '../common/motion/variants'
@@ -279,13 +278,9 @@ const FeaturedServiceDescription = styled.p`
 `
 
 const FeaturedService = (props) => {
-    const [renderLottie, setRenderLottie] = useState(false)
+    // pauseAnimation controla el play/pause por hover en la homepage (arranca pausado).
     const [pauseAnimation, setPauseAnimation] = useState(true)
     const { t } = useTranslation();
-
-    useEffect(() => {
-        setPauseAnimation(renderLottie)
-    }, [renderLottie])
 
     const startLottie = () => {
         setPauseAnimation(false)
@@ -325,10 +320,10 @@ const FeaturedService = (props) => {
                             ishomepage={props.ishomepage}
                         >
 
-                            <Lottie
-                                options = {animationOptions}
-                                width = "100%"
-                                isPaused={pauseAnimation}
+                            <LottieVisibility
+                                options={animationOptions}
+                                width="100%"
+                                paused={pauseAnimation}
                             />
                         </FeaturedServiceImage>
                     </ImageContainer>
@@ -342,15 +337,13 @@ const FeaturedService = (props) => {
         :
         <FeaturedServiceContainer ishomepage={props.ishomepage} whileHover={cardHover} whileTap={cardTap}>
             <FeaturedServiceWrapper id="capacitacion" ishomepage={props.ishomepage}>
-                    <Waypoint onEnter={() => { setRenderLottie(true) }} onLeave={()=>{setRenderLottie(false)}} />
                 <ImageContainer ishomepage={props.ishomepage}>
                     <FeaturedServiceImage
                         alt={t("service_subsection.featuredServiceImageAlt")}
                         ishomepage={props.ishomepage}>
-                        <Lottie
-                            options = {animationOptions}
-                            width = "100%"
-                            isPaused={pauseAnimation}
+                        <LottieVisibility
+                            options={animationOptions}
+                            width="100%"
                         />
                     </FeaturedServiceImage>
                 </ImageContainer>

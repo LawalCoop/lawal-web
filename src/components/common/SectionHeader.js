@@ -1,8 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import data from '../../content/content.json'
 import styled from 'styled-components'
-import {Waypoint} from 'react-waypoint'
-import Lottie from 'react-lottie'
+import LottieVisibility from './LottieVisibility'
 import cultureAnimation from '../../images/animations/cultura.json'
 import labsAnimation from '../../images/animations/labs.json'
 import { nb } from '../../styles/neobrutalism'
@@ -184,17 +183,6 @@ const SectionHeaderImgMobile = styled.img`
 `
 
 const SectionHeader = (props) => {
-    const [renderLottie, setRenderLottie] = useState(false)
-    // Diferimos el montaje del Lottie hasta que la transición "door" terminó (~1.2s tras
-    // montar la vista). El parseo del JSON + armado del SVG es un pico sincrónico en el
-    // main thread que, si ocurre durante la apertura de la puerta, la congela y hace que
-    // abra "de golpe" (Motion anima en el main thread). Diferirlo mantiene la apertura fluida.
-    const [transitionDone, setTransitionDone] = useState(false)
-    useEffect(() => {
-        const t = setTimeout(() => setTransitionDone(true), 1200)
-        return () => clearTimeout(t)
-    }, [])
-
     const getSectionAnimation = (section) => {
         switch (section) {
           case "labs":
@@ -251,11 +239,13 @@ const SectionHeader = (props) => {
                     <SectionHeaderDescription type={getHeadStyles(props.section)}> {props.description} </SectionHeaderDescription>
                 </InfoContainer>
                 <ImageContainer section={props.section}>
-                    <Waypoint onEnter={()=>setRenderLottie(true)}/>
-                    { renderLottie && transitionDone && <Lottie
-                        options = {getAnimationOptions(props.section)}
-                        width = "100%"/>
-                    }
+                    {/* mountDelay difiere el parseo del Lottie ~1.2s para no congelar la
+                        apertura de la puerta al entrar a la vista (mismo motivo que antes). */}
+                    <LottieVisibility
+                        options={getAnimationOptions(props.section)}
+                        width="100%"
+                        mountDelay={1200}
+                    />
                 </ImageContainer>
             </HeaderWrapper>
         </HeaderContainer>

@@ -27,38 +27,46 @@ const silentAudio = () => ({
 //    el hilo principal aunque no estén a la vista (el hero hace loop infinito). Al salir
 //    del viewport se pausan, liberando el main thread y evitando tirones al scrollear.
 // SSR-safe: sin window / IntersectionObserver, monta y reproduce normal.
-const LottieVisibility = ({ options, style, ...rest }) => {
+// Props extra:
+//  - mountDelay (ms): difiere el montaje (parseo del JSON) tras entrar al viewport. En
+//    páginas con transición "door", evita que ese pico sincrónico congele la apertura de
+//    la puerta. Default 0 (monta apenas es visible).
+//  - paused (bool): override externo de pausa (ej. controlado por hover). Se combina con
+//    la visibilidad: la animación corre solo si está a la vista Y no está pausada afuera.
+const LottieVisibility = ({ options, style, mountDelay = 0, paused = false, ...rest }) => {
   const ref = useRef(null);
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined" || !("IntersectionObserver" in window)) {
-      setMounted(true);
-      setVisible(true);
-      return;
+      const t = setTimeout(() => { setMounted(true); setVisible(true); }, mountDelay);
+      return () => clearTimeout(t);
     }
     const el = ref.current;
     if (!el) return;
+    let delayTimer;
     const io = new IntersectionObserver(
       ([entry]) => {
+        setVisible(entry.isIntersecting);
         // Una vez montado queda montado (no re-parseamos el JSON al reentrar);
         // lo que alterna con la visibilidad es solo play/pause.
-        if (entry.isIntersecting) setMounted(true);
-        setVisible(entry.isIntersecting);
+        if (entry.isIntersecting && !delayTimer) {
+          delayTimer = setTimeout(() => setMounted(true), mountDelay);
+        }
       },
       { rootMargin: "150px 0px" } // arranca un toque antes de entrar, para que no se note el mount
     );
     io.observe(el);
-    return () => io.disconnect();
-  }, []);
+    return () => { io.disconnect(); if (delayTimer) clearTimeout(delayTimer); };
+  }, [mountDelay]);
 
   return (
     <div ref={ref} style={{ width: "100%", ...style }}>
       {mounted && (
         <Lottie
           options={{ audioFactory: silentAudio, ...options }}
-          isPaused={!visible}
+          isPaused={!visible || paused}
           {...rest}
         />
       )}
