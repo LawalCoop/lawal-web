@@ -1,9 +1,16 @@
 // Presets de animación compartidos para toda la web (estilo "alto impacto").
 // Se usan con Motion (motion/react). Ver Reveal.js / Stagger.js / SplitText.js.
 
-// Springs base
+// Springs base (para interacciones cortas: hover/tap de cards, NO para entradas).
 export const spring = { type: "spring", stiffness: 420, damping: 28, mass: 0.9 };
 export const springSoft = { type: "spring", stiffness: 260, damping: 30 };
+
+// Tween de entrada acelerable por el compositor. Clave para la fluidez en mobile:
+// un spring lo simula Motion en el hilo principal frame a frame, y como las entradas
+// se disparan con whileInView (justo mientras scrolleás), pierde frames y se "traba".
+// Un tween de transform/opacity, en cambio, Motion lo delega a la Web Animations API,
+// que corre fuera del hilo principal → la entrada queda suave aunque dispare en pleno scroll.
+export const revealTween = { duration: 0.55, ease: [0.22, 1, 0.36, 1] };
 
 // Container que escalona la entrada de sus hijos
 export const staggerContainer = {
@@ -13,10 +20,11 @@ export const staggerContainer = {
   },
 };
 
-// Item que sube + aparece + escala (cards, bloques de texto)
+// Item que sube + aparece (cards, bloques de texto). Solo translate+opacity (acelerables);
+// sin scale, que sobre texto grande con text-shadow obliga a re-rasterizar y agrega jank.
 export const riseItem = {
-  hidden: { opacity: 0, y: 48, scale: 0.96 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: spring },
+  hidden: { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: revealTween },
 };
 
 // Palabra individual para efectos split-text (sube y aparece; el escalonado lo da el container)
@@ -25,7 +33,7 @@ export const wordItem = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: "spring", stiffness: 300, damping: 24 },
+    transition: { duration: 0.42, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -41,7 +49,7 @@ export const heroWord = {
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { ...springSoft, delay: i * 0.05 },
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.05 },
   }),
 };
 
