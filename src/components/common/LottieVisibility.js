@@ -1,6 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
 import Lottie from "react-lottie";
 
+// lottie-web tiene un bug: al pausar/destruir una animación con capa de audio llama
+// this.audio.pause() sobre un objeto de audio incompleto → "this.audio.pause is not a
+// function". Como ahora sí pausamos los Lottie fuera de pantalla, hay que darle un audio
+// no-op completo. loadAnimation usa config.audioFactory(assetPath) para construir el audio.
+const silentAudio = () => ({
+  play() {},
+  pause() {},
+  resume() {},
+  stop() {},
+  seek() {},
+  playing() {
+    return false;
+  },
+  rate() {},
+  setVolume() {},
+  volume() {},
+});
+
 // Wrapper de react-lottie optimizado para performance:
 //  - Lazy mount: monta la animación recién cuando su contenedor entra al viewport. Un
 //    contenedor display:none (ej. la variante desktop del hero cuando estás en mobile)
@@ -37,7 +55,13 @@ const LottieVisibility = ({ options, style, ...rest }) => {
 
   return (
     <div ref={ref} style={{ width: "100%", ...style }}>
-      {mounted && <Lottie options={options} isPaused={!visible} {...rest} />}
+      {mounted && (
+        <Lottie
+          options={{ audioFactory: silentAudio, ...options }}
+          isPaused={!visible}
+          {...rest}
+        />
+      )}
     </div>
   );
 };
