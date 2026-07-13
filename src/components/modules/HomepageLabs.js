@@ -8,6 +8,7 @@ import {Waypoint} from 'react-waypoint'
 import labsAnimation from '../../images/animations/labs.json'
 import Button from '../../components/common/Button'
 import { staggerContainer, riseItem } from '../common/motion/variants'
+import useMediaQuery from '../common/motion/useMediaQuery'
 
 // Desestructurar las propiedades para evitar warnings de webpack
 const { styles } = data;
@@ -160,8 +161,11 @@ const HomepageLabs = (props) => {
     const [renderLottie, setRenderLottie] = useState(false)
     const { t } = useTranslation();
     const reduce = useReducedMotion();
+    // El parallax solo corre en desktop: en mobile produce tirones al scrollear sin aporte visual.
+    const isDesktop = useMediaQuery(`(min-width: ${breakpoints.m}px)`);
+    const parallaxOn = isDesktop && !reduce;
 
-    // Parallax suave del Lottie según scroll (desactivado con reduced-motion)
+    // Parallax suave del Lottie según scroll (desactivado en mobile y con reduced-motion)
     const { scrollYProgress } = useScroll();
     const yParallax = useTransform(scrollYProgress, [0, 1], [50, -50]);
 
@@ -214,7 +218,7 @@ const HomepageLabs = (props) => {
                     </motion.div>
                 </InfoContainer>
                 <ImageContainer
-                    style={{ y: reduce ? 0 : yParallax }}
+                    style={{ y: parallaxOn ? yParallax : 0 }}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true, amount: 0.3 }}

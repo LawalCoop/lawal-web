@@ -6,6 +6,7 @@ import { useTranslation } from "gatsby-plugin-react-i18next"
 import Lottie from 'react-lottie'
 import homepageAnimation from '../../images/animations/ina.json'
 import { staggerContainer, wordItem } from '../common/motion/variants'
+import useMediaQuery from '../common/motion/useMediaQuery'
 import { nb } from '../../styles/neobrutalism'
 
 // Desestructurar las propiedades para evitar warnings de webpack
@@ -135,8 +136,12 @@ const SectionHeaderImg = styled.div`
 const HomepageHeader = (props) => {
     const { t } = useTranslation();
     const reduce = useReducedMotion();
+    // El parallax solo corre en desktop: en mobile mueve el contenedor del Lottie en cada
+    // frame de scroll (repintado pesado) y produce tirones, sin aportar casi nada visual.
+    const isDesktop = useMediaQuery(`(min-width: ${breakpoints.m}px)`);
+    const parallaxOn = isDesktop && !reduce;
 
-    // Parallax del Lottie según el scroll (desactivado con reduced-motion)
+    // Parallax del Lottie según el scroll (desactivado en mobile y con reduced-motion)
     const { scrollY } = useScroll();
     const yParallax = useTransform(scrollY, [0, 600], [0, -80]);
 
@@ -184,7 +189,7 @@ const HomepageHeader = (props) => {
                     )}
 
                 </InfoContainer>
-                <ImageContainer style={{ y: reduce ? 0 : yParallax }}>
+                <ImageContainer style={{ y: parallaxOn ? yParallax : 0 }}>
                     <SectionHeaderImg>
                         <Lottie
                             options={animationOptions}

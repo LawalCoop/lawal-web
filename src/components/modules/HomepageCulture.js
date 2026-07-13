@@ -8,6 +8,7 @@ import {Waypoint} from 'react-waypoint'
 import cultureAnimation from '../../images/animations/cultura.json'
 import Button from '../../components/common/Button'
 import { staggerContainer, riseItem } from '../common/motion/variants'
+import useMediaQuery from '../common/motion/useMediaQuery'
 
 // Desestructurar las propiedades para evitar warnings de webpack
 const { styles } = data;
@@ -158,8 +159,12 @@ const HomepageCulture = (props) => {
     const [renderLottie, setRenderLottie] = useState(false)
     const { t } = useTranslation();
     const reduce = useReducedMotion();
+    // El parallax solo corre en desktop: en mobile este Lottie SÍ es visible y moverlo en
+    // cada frame de scroll lo repinta entero → tirones. Se apaga en mobile y reduced-motion.
+    const isDesktop = useMediaQuery(`(min-width: ${breakpoints.m}px)`);
+    const parallaxOn = isDesktop && !reduce;
 
-    // Parallax suave del Lottie según scroll (desactivado con reduced-motion)
+    // Parallax suave del Lottie según scroll (desactivado en mobile y con reduced-motion)
     const { scrollYProgress } = useScroll();
     const yParallax = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
@@ -183,7 +188,7 @@ const HomepageCulture = (props) => {
             />
             <HomepageCultureWrapper>
                 <ImageContainer
-                    style={{ y: reduce ? 0 : yParallax }}
+                    style={{ y: parallaxOn ? yParallax : 0 }}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true, amount: 0.3 }}
