@@ -183,16 +183,20 @@ const Shine = () => (
 
 // closed = cubriendo (y:0); open = fuera de pantalla (arriba/abajo).
 // Cerrar: rápido y sin demora. Abrir: con delay para sostener la W unida + el spark.
+// Nota: "open" usa 120% (no 101%) a propósito. En mobile, al scrollear y esconderse la
+// barra de direcciones, el viewport crece de golpe y reposiciona los elementos fixed; con
+// solo 1% de margen la puerta de abajo asomaba unos px por el borde inferior ("footer"
+// verde). 120% deja ~10dvh de colchón, más que cualquier barra, sin afectar el cubrir (y:0).
 const doorEase = [0.83, 0, 0.17, 1];
 const doorClose = { duration: 0.42, ease: doorEase };
 const doorOpen = { duration: 0.5, ease: doorEase, delay: 0.6 };
 const doorTopVariants = {
   closed: { y: "0%", transition: doorClose },
-  open: { y: "-101%", transition: doorOpen },
+  open: { y: "-120%", transition: doorOpen },
 };
 const doorBottomVariants = {
   closed: { y: "0%", transition: doorClose },
-  open: { y: "101%", transition: doorOpen },
+  open: { y: "120%", transition: doorOpen },
 };
 
 // `firstLoad` evita el barrido en la carga inicial: las puertas arrancan directamente
