@@ -3,7 +3,7 @@ import data from '../../content/content.json'
 import styled from 'styled-components'
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import { useTranslation } from "gatsby-plugin-react-i18next"
-import Lottie from 'react-lottie'
+import LottieVisibility from '../common/LottieVisibility'
 import homepageAnimation from '../../images/animations/ina.json'
 import { staggerContainer, wordItem } from '../common/motion/variants'
 import useMediaQuery from '../common/motion/useMediaQuery'
@@ -160,7 +160,7 @@ const HomepageHeader = (props) => {
                 <InfoContainer>
                     <ImageContainerMobile>
                         <SectionHeaderImg>
-                            <Lottie
+                            <LottieVisibility
                                 options={animationOptions}
                                 width="100%"
                             />
@@ -191,7 +191,7 @@ const HomepageHeader = (props) => {
                 </InfoContainer>
                 <ImageContainer style={{ y: parallaxOn ? yParallax : 0 }}>
                     <SectionHeaderImg>
-                        <Lottie
+                        <LottieVisibility
                             options={animationOptions}
                             width="100%"
                         />

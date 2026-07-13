@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import data from '../../content/content.json'
 import styled from 'styled-components'
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import { useTranslation } from "gatsby-plugin-react-i18next"
-import Lottie from 'react-lottie'
-import {Waypoint} from 'react-waypoint'
+import LottieVisibility from '../common/LottieVisibility'
 import cultureAnimation from '../../images/animations/cultura.json'
 import Button from '../../components/common/Button'
 import { staggerContainer, riseItem } from '../common/motion/variants'
@@ -156,7 +155,6 @@ const Btn = styled(Button)`
 `
 
 const HomepageCulture = (props) => {
-    const [renderLottie, setRenderLottie] = useState(false)
     const { t } = useTranslation();
     const reduce = useReducedMotion();
     // El parallax solo corre en desktop: en mobile este Lottie SÍ es visible y moverlo en
@@ -195,11 +193,10 @@ const HomepageCulture = (props) => {
                     transition={{ duration: 0.6 }}
                 >
                     <HomepageCultureImg>
-                        <Waypoint onEnter={()=>setRenderLottie(true)}/>
-                        { renderLottie && <Lottie
-                            options = {animationOptions}
-                            width = "100%"/>
-                        }
+                        <LottieVisibility
+                            options={animationOptions}
+                            width="100%"
+                        />
                     </HomepageCultureImg>
                 </ImageContainer>
                 <InfoContainer

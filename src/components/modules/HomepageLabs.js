@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import data from '../../content/content.json'
 import styled from 'styled-components'
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import { useTranslation } from "gatsby-plugin-react-i18next"
-import Lottie from 'react-lottie'
-import {Waypoint} from 'react-waypoint'
+import LottieVisibility from '../common/LottieVisibility'
 import labsAnimation from '../../images/animations/labs.json'
 import Button from '../../components/common/Button'
 import { staggerContainer, riseItem } from '../common/motion/variants'
@@ -158,7 +157,6 @@ const Btn = styled(Button)`
 `
 
 const HomepageLabs = (props) => {
-    const [renderLottie, setRenderLottie] = useState(false)
     const { t } = useTranslation();
     const reduce = useReducedMotion();
     // El parallax solo corre en desktop: en mobile produce tirones al scrollear sin aporte visual.
@@ -225,11 +223,10 @@ const HomepageLabs = (props) => {
                     transition={{ duration: 0.6 }}
                 >
                     <HomepageLabsImg>
-                        <Waypoint onEnter={()=>setRenderLottie(true)}/>
-                        { renderLottie && <Lottie
-                            options = {animationOptions}
-                            width = "100%"/>
-                        }
+                        <LottieVisibility
+                            options={animationOptions}
+                            width="100%"
+                        />
                     </HomepageLabsImg>
                 </ImageContainer>
             </HomepageLabsWrapper>
